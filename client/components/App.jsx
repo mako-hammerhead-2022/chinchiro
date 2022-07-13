@@ -2,20 +2,23 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import React from 'react'
-import Counter from './Counter'
-import Dice from './Dice'
 import Nav from './Nav'
+import Register from './Register'
+import GameBoard from './GameBoard'
+
+import { useAuth0 } from '@auth0/auth0-react'
+import { cacheUser } from '../auth0-utils'
 
 function App() {
-  console.log('hello')
+  cacheUser(useAuth0)
   return (
     <>
       <Router>
         <Nav />
-        <section className="main">
-          <Dice />
-          <Counter />
-        </section>
+        <Routes>
+          <Route path="/" element={<GameBoard />} />
+          <Route path="register" element={<Register />} />
+        </Routes>
       </Router>
     </>
   )
