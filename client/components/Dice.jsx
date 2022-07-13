@@ -73,8 +73,8 @@ const Dice = () => {
     // Store Roll
     setRollP1([newArray[0], newArray[1], newArray[2]])
     scoreBust(dice1, dice2, dice3, newArray, pisser)
-    scoreDouble(dice1, dice2, dice3)
-    scoreTriple(dice1, dice2, dice3)
+    scoreDouble(newArray)
+    scoreTriple(newArray)
     scoreRun(newArray)
     checkPisser(pisser)
   }

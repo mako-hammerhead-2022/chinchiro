@@ -23,28 +23,28 @@ export const minusTenCount = () => ({ type: types.MINUS_TEN })
 export const resetCount = () => ({ type: types.RESET })
 
 // Score double
-export function scoreDouble(dice1, dice2, dice3) {
-  if (dice1 == dice2) {
-    console.log(dice3, 'points')
-    return dice3
-  } else if (dice1 == dice3) {
-    console.log(dice2, 'points')
-    return dice2
-  } else if (dice2 == dice3) {
-    console.log(dice1, 'points')
-    return dice1
+export function scoreDouble(newArray) {
+  if (newArray[0] == newArray[1]) {
+    console.log(newArray[2], 'points')
+    return newArray[2]
+  } else if (newArray[0] == newArray[2]) {
+    console.log(newArray[1], 'points')
+    return newArray[1]
+  } else if (newArray[1] == newArray[2]) {
+    console.log(newArray[0], 'points')
+    return newArray[0]
   } else {
     return false
   }
 }
 
 //Score triple
-export function scoreTriple(dice1, dice2, dice3) {
-  if (dice1 == dice2 && dice1 == dice3) {
-    if (dice1 != 1) {
+export function scoreTriple(newArray) {
+  if (newArray[0] == newArray[1] && newArray[0] == newArray[2]) {
+    if (newArray[0] != 1) {
       console.log('triple x3!')
       return 'x3'
-    } else if (dice1 == 1) {
+    } else if (newArray[0] == 1) {
       console.log('triple ones x5!')
       return 'x5'
     }
@@ -59,11 +59,15 @@ export function scoreRun(newArray) {
     if (newArray[1] == 2 && newArray[2] == 3) {
       console.log('lose double bet!')
       return 'lose double bet!'
+    } else {
+      return false
     }
   } else if (newArray[0] == 4) {
     if (newArray[1] == 5 && newArray[2] == 6) {
       console.log('Win double bet!')
       return 'win double bet!'
+    } else {
+      return false
     }
   } else {
     return false
@@ -81,9 +85,9 @@ export function checkPisser(pisser) {
 }
 
 //score Bust
-export function scoreBust(dice1, dice2, dice3, newArray, pisser) {
-  if (scoreDouble(dice1, dice2, dice3) == false) {
-    if (scoreTriple(dice1, dice2, dice3) == false) {
+export function scoreBust(newArray, pisser) {
+  if (scoreDouble(newArray) == false) {
+    if (scoreTriple(newArray) == false) {
       if (scoreRun(newArray) == false) {
         if (checkPisser(pisser) == false) {
           console.log('bust')
