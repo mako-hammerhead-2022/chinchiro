@@ -12,11 +12,17 @@ const counterReducer = (state = 0, { type }) => {
     case types.ADD_TEN:
       return state + 10
     case types.DECREMENT:
-      return state - 1
+      if (state - 1 <= 0) {
+        return (state = 0)
+      } else return state - 1
     case types.MINUS_FIVE:
-      return state - 5
+      if (state - 5 <= 0) {
+        return (state = 0)
+      } else return state - 5
     case types.MINUS_TEN:
-      return state - 10
+      if (state - 10 <= 0) {
+        return (state = 0)
+      } else return state - 10
     case types.RESET:
       return 0
     default:

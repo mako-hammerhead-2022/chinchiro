@@ -1,4 +1,3 @@
-import Counter from '../components/Counter'
 import * as types from '../reducers/types'
 
 // INCREMENT COUNTER BY 1
