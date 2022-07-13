@@ -1,7 +1,9 @@
 import React from 'react'
+import Counter from './Counter'
 import Dice from './Dice'
 
 function App () {
+  console.log('hello')
   return (
     <>
       <header className="header">
@@ -9,6 +11,7 @@ function App () {
       </header>
       <section className="main">
         <Dice />
+        <Counter/>
       </section>
     </>
   )

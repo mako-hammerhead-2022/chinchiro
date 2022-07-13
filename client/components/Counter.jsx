@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -8,10 +9,9 @@ import {
   resetCount,
   minusFiveCount,
   minusTenCount,
-  totalCount,
-} from '../actions'
-import { Button, ButtonGroup } from '@mui/material'
-import Link from 'next/link'
+} from '../actions/actions'
+
+
 
 const Counter = () => {
   const count = useSelector((state) => state.counter)
@@ -25,33 +25,33 @@ const Counter = () => {
       <h2>
         Amount: $<span>{count}</span>
       </h2>
-      <ButtonGroup
+      <div
         style={{ marginRight: 10 }}
         variant="outlined"
         aria-label="outlined button group"
       >
-        <Button onClick={() => dispatch(incrementCount())}>+1</Button>
-        <Button onClick={() => dispatch(plusFiveCount())}>+5</Button>
-        <Button onClick={() => dispatch(plusTenCount())}>+10</Button>
-      </ButtonGroup>
-      <ButtonGroup
+        <button onClick={() => dispatch(incrementCount())}>+1</button>
+        <button onClick={() => dispatch(plusFiveCount())}>+5</button>
+        <button onClick={() => dispatch(plusTenCount())}>+10</button>
+      </div>
+      <div
         variant="outlined"
         aria-label="outlined button group"
         color="secondary"
       >
-        <Button onClick={() => dispatch(decrementCount())}>-1</Button>
-        <Button onClick={() => dispatch(minusFiveCount())}>-5</Button>
-        <Button onClick={() => dispatch(minusTenCount())}>-10</Button>
-      </ButtonGroup>
+        <button onClick={() => dispatch(decrementCount())}>-1</button>
+        <button onClick={() => dispatch(minusFiveCount())}>-5</button>
+        <button onClick={() => dispatch(minusTenCount())}>-10</button>
+      </div>
       <div>
-        <ButtonGroup style={{ marginTop: 10 }}>
-          <Link href={'./game'}>
-            <Button variant="contained">START GAME</Button>
-          </Link>
-          <Button variant="contained" onClick={() => dispatch(resetCount())}>
+        <div style={{ marginTop: 10 }}>
+          
+            <button variant="contained">START GAME</button>
+          
+          <button variant="contained" onClick={() => dispatch(resetCount())}>
             Reset Amount
-          </Button>
-        </ButtonGroup>
+          </button>
+        </div>
       </div>
     </div>
   )
