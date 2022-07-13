@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addUser } from '../apiClient'
-
+import '../styles/index.scss'
+import Avatars from './Avatars'
 import { GridForm, ColOne, ColTwo, Button } from './Styled'
 
 function Register() {
@@ -12,6 +13,7 @@ function Register() {
     auth0Id: '',
     email: '',
     userName: '',
+    avatar: '',
   })
 
   useEffect(() => {
@@ -28,7 +30,6 @@ function Register() {
     let prev = { ...form }
     prev[key] = value
     setForm(prev)
-    console.log(form)
   }
 
   async function handleClick() {
@@ -66,6 +67,8 @@ function Register() {
           value={setForm.userName}
           onChange={(e) => handleFormUpdate(e)}
         />
+
+        <Avatars handleAddAvatar={handleFormUpdate} />
 
         <Button type="button" onClick={handleClick}>
           Register

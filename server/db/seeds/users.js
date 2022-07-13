@@ -10,6 +10,7 @@ exports.seed = (knex) => {
           win_tally: 10,
           loss_tally: 5,
           total_earnings: 100,
+          avatar: 'img/punk9052.png',
         },
         {
           auth0_id: 'auth0|567',
@@ -18,6 +19,7 @@ exports.seed = (knex) => {
           win_tally: 12,
           loss_tally: 3,
           total_earnings: 50,
+          avatar: 'img/punk9953.png',
         },
       ])
     )
