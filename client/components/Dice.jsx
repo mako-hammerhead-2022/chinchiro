@@ -1,4 +1,11 @@
 import React, { useState } from 'react'
+import {
+  scoreDouble,
+  scoreRun,
+  scoreTriple,
+  checkPisser,
+  scoreBust,
+} from '../actions/actions.js'
 
 const Dice = () => {
   const diceImage = [
@@ -65,52 +72,11 @@ const Dice = () => {
 
     // Store Roll
     setRollP1([newArray[0], newArray[1], newArray[2]])
-
-    //If dice roll contains a triple
-    if (dice1 == dice2 && dice1 == dice3) {
-      if (dice1 != 1) {
-        console.log('triple x3!')
-        return 'x3'
-      } else {
-        console.log('triple ones x5!')
-        return 'x5'
-      }
-    }
-
-    //If dice roll contains a double
-    if (dice1 == dice2) {
-      console.log(dice3, 'points')
-      return dice3
-    } else if (dice1 == dice3) {
-      console.log(dice2, 'points')
-      return dice2
-    } else if (dice2 == dice3) {
-      console.log(dice1, 'points')
-      return dice1
-    }
-
-    //if dice roll is sequencial '1, 2, 3'
-    if (newArray[0] == 1) {
-      if (newArray[1] == 2 && newArray[2] == 3) {
-        console.log('lose double bet!')
-        return 'lose double bet!'
-      }
-    }
-
-    //if dice roll is sequencial '4, 5, 6'
-    if (newArray[0] == 4) {
-      if (newArray[1] == 5 && newArray[2] == 6) {
-        console.log('Win double bet!')
-        return 'win double bet!'
-      }
-    }
-
-    if (pisser == 99) {
-      console.log('PISSER!')
-      return 'PISSER!'
-    }
-    console.log('bust')
-    return 'bust'
+    scoreBust(dice1, dice2, dice3, newArray, pisser)
+    scoreDouble(dice1, dice2, dice3)
+    scoreTriple(dice1, dice2, dice3)
+    scoreRun(newArray)
+    checkPisser(pisser)
   }
 
   function orderDice(D1, D2, D3) {
