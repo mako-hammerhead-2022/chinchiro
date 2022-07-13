@@ -55,6 +55,7 @@ const Dice = () => {
   let dice3 = dice3Value
 
   function rollDiceP1() {
+    let pisser = getRandomNum(1, 200)
     let newArray = orderDice(dice1, dice2, dice3)
     console.log(newArray)
     // Set Dice Values
@@ -102,6 +103,11 @@ const Dice = () => {
         console.log('Win double bet!')
         return 'win double bet!'
       }
+    }
+
+    if (pisser == 99) {
+      console.log('PISSER!')
+      return 'PISSER!'
     }
     console.log('bust')
     return 'bust'
