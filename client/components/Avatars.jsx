@@ -1,5 +1,6 @@
 //external dependencies
 import React from 'react'
+import { useState } from 'react'
 import '../styles/index.scss'
 
 const avatarArr = [
@@ -32,8 +33,13 @@ const avatarArr = [
 export default function Avatars({ handleAddAvatar }) {
   const [avatar, setAvatar] = useState('')
 
-  const handleClick = (avatarName) => {
-    console.log(avatarName)
+  const handleClick = (data) => {
+    console.log(data)
+    const avatarData = {
+      name: data,
+      value: data,
+    }
+    handleAddAvatar(avatarData)
   }
 
   const avatars = avatarArr.map((avatar, i) => {
@@ -41,16 +47,13 @@ export default function Avatars({ handleAddAvatar }) {
       <div
         key={i}
         className="avatar-container"
-        onClick={() => {
+        name={avatar.loc}
+        value={avatar.loc}
+        onClick={(e) => {
           handleClick(avatar.loc)
         }}
       >
-        <img
-          src={avatar.loc}
-          alt="avatar"
-          className="avatar-img"
-          name={avatar.loc}
-        />
+        <img src={avatar.loc} alt="avatar" className="avatar-img" />
       </div>
     )
   })

@@ -32,6 +32,16 @@ function Register() {
     setForm(prev)
   }
 
+  const handleAddAvatar = (data) => {
+    console.log(data)
+    let key = 'avatar'
+    let value = data.value
+    let prev = { ...form }
+    prev[key] = value
+    setForm(prev)
+    console.log(form)
+  }
+
   async function handleClick() {
     await addUser(form)
     navigate('/')
@@ -68,7 +78,7 @@ function Register() {
           onChange={(e) => handleFormUpdate(e)}
         />
 
-        <Avatars handleAddAvatar={handleFormUpdate} />
+        <Avatars handleAddAvatar={handleAddAvatar} />
 
         <Button type="button" onClick={handleClick}>
           Register

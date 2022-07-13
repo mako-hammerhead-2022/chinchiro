@@ -1,17 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
-
-const NavGroup = styled.nav`
-  float: right;
-`
-
-const NavLink = styled(Link)`
-  margin-right: 30px;
-`
 
 function Nav() {
   const { logout, loginWithRedirect } = useAuth0()
@@ -35,23 +26,45 @@ function Nav() {
   }
   return (
     <>
-      <NavGroup>
-        <NavLink to="/">Home</NavLink>
-        <IfAuthenticated>
-          <a href="/" onClick={handleLogoff}>
-            Log off
-          </a>
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <a href="/" onClick={handleRegister}>
-            Register
-          </a>
-          <a href="/" onClick={handleSignIn}>
-            Sign in
-          </a>
-        </IfNotAuthenticated>
-      </NavGroup>
-      <h1>Chinchiro - チンチロリン, チンチロ</h1>
+      <nav className="navbar-container">
+        <div className="navbar">
+          <div className="nav-header-container">
+            <div className="nav-item-container">
+              <Link className="nav-item header" to="/">
+                Chinchiro - チンチロリン, チンチロ
+              </Link>
+            </div>
+          </div>
+
+          <div className="nav-group">
+            <div className="nav-item-container">
+              <Link className="nav-item" to="/">
+                Home
+              </Link>
+            </div>
+
+            <IfAuthenticated>
+              <div className="nav-item-container">
+                <a className="nav-item" href="/" onClick={handleLogoff}>
+                  Log off
+                </a>
+              </div>
+            </IfAuthenticated>
+            <IfNotAuthenticated>
+              <div className="nav-item-container">
+                <a className="nav-item" href="/" onClick={handleRegister}>
+                  Register
+                </a>
+              </div>
+              <div className="nav-item-container">
+                <a className="nav-item" href="/" onClick={handleSignIn}>
+                  Sign in
+                </a>
+              </div>
+            </IfNotAuthenticated>
+          </div>
+        </div>
+      </nav>
     </>
   )
 }
