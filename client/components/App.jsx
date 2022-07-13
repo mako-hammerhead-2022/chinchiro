@@ -1,6 +1,7 @@
 import React from 'react'
 import Counter from './Counter'
 import Dice from './Dice'
+import Player from './Player'
 
 function App () {
   console.log('hello')
@@ -10,8 +11,7 @@ function App () {
         <h1>My Collection</h1>
       </header>
       <section className="main">
-        <Dice />
-        <Counter/>
+        <Player/>
       </section>
     </>
   )

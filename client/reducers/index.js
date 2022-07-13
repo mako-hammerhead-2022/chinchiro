@@ -30,9 +30,25 @@ const counterReducer = (state = 0, { type }) => {
   }
 }
 
+// Player Wallet
+
+const playerWalletReducer = (state = 1000, { type, payload }) => {
+  switch (type) {
+    case types.INITIAL_WALLET:
+      return 1000
+    case types.ADD_MONEY:
+      return state + payload
+    case types.DEDUCT_MONEY:
+      return state - payload
+    default:
+      return state
+  }
+}
+
 // COMBINED REDUCERS
 const reducers = {
   counter: counterReducer,
+  playerWallet: playerWalletReducer,
 }
 
 export default combineReducers(reducers)

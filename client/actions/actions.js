@@ -20,3 +20,8 @@ export const minusTenCount = () => ({ type: types.MINUS_TEN })
 
 // RESET COUNTER
 export const resetCount = () => ({ type: types.RESET })
+
+export const addToWallet = (betAmount) => ({
+  type: types.ADD_MONEY,
+  payload: betAmount,
+})
