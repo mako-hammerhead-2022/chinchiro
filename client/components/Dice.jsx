@@ -18,6 +18,9 @@ const Dice = () => {
     return Math.floor(Math.random() * (max - min) + min)
   }
 
+  //generating player score
+  let P1score = 0
+
   // Set rank of roll
 
   const scoreRank = [
@@ -59,9 +62,85 @@ const Dice = () => {
 
     // Store Roll
     setRollP1([dice1, dice2, dice3])
+    orderDice(dice1, dice2, dice3)
 
-    rollDiceP2()
+    //If dice roll contains a double
+    if (dice1 == dice2) {
+      P1score = dice3
+    } else if (dice1 == dice3) {
+      P1score = dice2
+    } else if (dice2 == dice3) {
+      P1score = dice1
+    }
+
+    //If dice roll contains a triple
+    if (dice1 == dice2 && dice1 == dice3) {
+      if (dice1 != 1) {
+        console.log('triple x3!')
+        return 'x3'
+      } else {
+        console.log('triple ones x5!')
+        return 'x5'
+      }
+    }
+
+    //if dice roll is sequrncial '1,2,3/4,5,6'
+
+    console.log(P1score, 'is the player score')
+
+    // rollDiceP2()
   }
+
+  function orderDice(D1, D2, D3) {
+    console.log('Old Order', D1, D2, D3)
+    let newD1 = D1
+    let newD2 = D2
+    let newD3 = D3
+
+    //If first number is highest {5, 3, 1}
+    if (D1 >= D2 && D1 >= D3) {
+      if (D2 >= D3) {
+        newD1 = D3
+        newD2 = D2
+        newD3 = D1
+      } else if (D3 >= D2) {
+        newD1 = D2
+        newD2 = D3
+        newD3 = D1
+      }
+    }
+    //if middle number is highest {1,5,2}
+    else if (D2 >= D1 && D2 >= D3) {
+      if (D1 >= D3) {
+        newD1 = D3
+        newD2 = D1
+        newD3 = D2
+      }
+      //If  {3, 6, 1}
+      else if (D3 >= D1) {
+        newD1 = D1
+        newD2 = D3
+        newD3 = D2
+      }
+    }
+    //if last number is highest {1, 4, 5}
+    else if (D3 >= D1 && D3 >= D2) {
+      if (D1 >= D2) {
+        newD1 = D2
+        newD2 = D1
+        newD3 = D3
+      }
+      //If  {3,1,6}
+      else if (D2 >= D1) {
+        newD1 = D1
+        newD2 = D2
+        newD3 = D3
+      }
+    }
+    console.log('New Order', newD1, newD2, newD3)
+    setRollP1([newD1, newD2, newD3])
+  }
+
   const [dice1ValueP2, setDice1ValueP2] = useState(0)
   const [dice2ValueP2, setDice2ValueP2] = useState(0)
   const [dice3ValueP2, setDice3ValueP2] = useState(0)
