@@ -4,6 +4,15 @@ module.exports = {
   userExists,
   getUserByName,
   createUser,
+  getUserByAuthId,
+}
+
+function getUserByAuthId(authId, db = connection) {
+  console.log(authId)
+  return db('users')
+    .select('username', 'avatar')
+    .first()
+    .where('auth0_id', authId)
 }
 
 function userExists(username, db = connection) {
