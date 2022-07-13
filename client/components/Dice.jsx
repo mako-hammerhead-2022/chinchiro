@@ -55,23 +55,15 @@ const Dice = () => {
   let dice3 = dice3Value
 
   function rollDiceP1() {
+    let newArray = orderDice(dice1, dice2, dice3)
+    console.log(newArray)
     // Set Dice Values
     setDice1Value(getRandomNum(1, 7))
     setDice2Value(getRandomNum(1, 7))
     setDice3Value(getRandomNum(1, 7))
 
     // Store Roll
-    setRollP1([dice1, dice2, dice3])
-    orderDice(dice1, dice2, dice3)
-
-    //If dice roll contains a double
-    if (dice1 == dice2) {
-      P1score = dice3
-    } else if (dice1 == dice3) {
-      P1score = dice2
-    } else if (dice2 == dice3) {
-      P1score = dice1
-    }
+    setRollP1([newArray[0], newArray[1], newArray[2]])
 
     //If dice roll contains a triple
     if (dice1 == dice2 && dice1 == dice3) {
@@ -84,11 +76,35 @@ const Dice = () => {
       }
     }
 
-    //if dice roll is sequrncial '1,2,3/4,5,6'
+    //If dice roll contains a double
+    if (dice1 == dice2) {
+      console.log(dice3, 'points')
+      return dice3
+    } else if (dice1 == dice3) {
+      console.log(dice2, 'points')
+      return dice2
+    } else if (dice2 == dice3) {
+      console.log(dice1, 'points')
+      return dice1
+    }
 
-    console.log(P1score, 'is the player score')
+    //if dice roll is sequencial '1, 2, 3'
+    if (newArray[0] == 1) {
+      if (newArray[1] == 2 && newArray[2] == 3) {
+        console.log('lose double bet!')
+        return 'lose double bet!'
+      }
+    }
 
-    // rollDiceP2()
+    //if dice roll is sequencial '4, 5, 6'
+    if (newArray[0] == 4) {
+      if (newArray[1] == 5 && newArray[2] == 6) {
+        console.log('Win double bet!')
+        return 'win double bet!'
+      }
+    }
+    console.log('bust')
+    return 'bust'
   }
 
   function orderDice(D1, D2, D3) {
@@ -97,7 +113,7 @@ const Dice = () => {
     let newD2 = D2
     let newD3 = D3
 
-    //If first number is highest {5, 3, 1}
+    //If first die is highest {5, 3, 1}
     if (D1 >= D2 && D1 >= D3) {
       if (D2 >= D3) {
         newD1 = D3
@@ -109,36 +125,32 @@ const Dice = () => {
         newD3 = D1
       }
     }
-    //if middle number is highest {1,5,2}
+    //if middle die is highest {1,5,2}
     else if (D2 >= D1 && D2 >= D3) {
       if (D1 >= D3) {
         newD1 = D3
         newD2 = D1
         newD3 = D2
-      }
-      //If  {3, 6, 1}
-      else if (D3 >= D1) {
+      } else if (D3 >= D1) {
         newD1 = D1
         newD2 = D3
         newD3 = D2
       }
     }
-    //if last number is highest {1, 4, 5}
+    //if last die is highest {1, 4, 5}
     else if (D3 >= D1 && D3 >= D2) {
       if (D1 >= D2) {
         newD1 = D2
         newD2 = D1
         newD3 = D3
-      }
-      //If  {3,1,6}
-      else if (D2 >= D1) {
+      } else if (D2 >= D1) {
         newD1 = D1
         newD2 = D2
         newD3 = D3
       }
     }
     console.log('New Order', newD1, newD2, newD3)
-    setRollP1([newD1, newD2, newD3])
+    return [newD1, newD2, newD3]
   }
 
   const [dice1ValueP2, setDice1ValueP2] = useState(0)
