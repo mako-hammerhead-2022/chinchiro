@@ -1,4 +1,3 @@
-import Counter from '../components/Counter'
 import * as types from '../reducers/types'
 
 // INCREMENT COUNTER BY 1
@@ -21,6 +20,7 @@ export const minusTenCount = () => ({ type: types.MINUS_TEN })
 
 // RESET COUNTER
 export const resetCount = () => ({ type: types.RESET })
+
 
 // Score double
 export function scoreDouble(newArray) {
@@ -145,3 +145,22 @@ export function orderDice(D1, D2, D3) {
   console.log('New Order', newD1, newD2, newD3)
   return [newD1, newD2, newD3]
 }
+
+// ADD TO WALLET
+export const addToWallet = (betAmount) => ({
+  type: types.ADD_MONEY,
+  payload: betAmount,
+})
+
+// DEDUCT FROM WALLET
+export const deductFromWallet = (betAmount) => ({
+  type: types.DEDUCT_MONEY,
+  payload: betAmount,
+})
+
+// SET INITIAL STATE
+export const setInitialState = () => ({
+  type: types.INITIAL_WALLET,
+  payload: 1000,
+})
+

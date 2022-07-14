@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
 import * as types from './types'
+import loggedInUser from './loggedInUser'
 
 // COUNTER REDUCER
 const counterReducer = (state = 0, { type }) => {
@@ -12,13 +13,36 @@ const counterReducer = (state = 0, { type }) => {
     case types.ADD_TEN:
       return state + 10
     case types.DECREMENT:
-      return state - 1
+      if (state - 1 <= 0) {
+        return (state = 0)
+      } else return state - 1
     case types.MINUS_FIVE:
-      return state - 5
+      if (state - 5 <= 0) {
+        return (state = 0)
+      } else return state - 5
     case types.MINUS_TEN:
-      return state - 10
+      if (state - 10 <= 0) {
+        return (state = 0)
+      } else return state - 10
     case types.RESET:
       return 0
+    default:
+      return state
+  }
+}
+
+// Player Wallet
+
+const playerWalletReducer = (state = 1000, { type, payload }) => {
+  switch (type) {
+    case types.INITIAL_WALLET:
+      return payload
+    case types.ADD_MONEY:
+      return state + payload
+    case types.DEDUCT_MONEY:
+      if (state - payload <= 0) {
+        return (state = 0)
+      } else return state - payload
     default:
       return state
   }
@@ -27,6 +51,9 @@ const counterReducer = (state = 0, { type }) => {
 // COMBINED REDUCERS
 const reducers = {
   counter: counterReducer,
+  loggedInUser,
+  playerWallet: playerWalletReducer,
+
 }
 
 export default combineReducers(reducers)
