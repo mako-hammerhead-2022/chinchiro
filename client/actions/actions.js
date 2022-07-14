@@ -21,7 +21,6 @@ export const minusTenCount = () => ({ type: types.MINUS_TEN })
 // RESET COUNTER
 export const resetCount = () => ({ type: types.RESET })
 
-
 // Score double
 export function scoreDouble(newArray) {
   if (newArray[0] == newArray[1]) {
@@ -86,8 +85,8 @@ export function checkPisser(pisser) {
 
 //score Bust
 export function scoreBust(newArray, pisser) {
-  if (scoreDouble(newArray) == false) {
-    if (scoreTriple(newArray) == false) {
+  if (scoreTriple(newArray) == false) {
+    if (scoreDouble(newArray) == false) {
       if (scoreRun(newArray) == false) {
         if (checkPisser(pisser) == false) {
           console.log('bust')
@@ -163,4 +162,3 @@ export const setInitialState = () => ({
   type: types.INITIAL_WALLET,
   payload: 1000,
 })
-
