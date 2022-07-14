@@ -20,7 +20,6 @@ const Counter = () => {
 
   return (
     <div>
-      <h1>Player 1</h1>
       <h2>
         Amount: $<span>{count}</span>
       </h2>

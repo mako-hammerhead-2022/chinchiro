@@ -69,25 +69,24 @@ const Dice = () => {
   return (
     <div>
       <div>
-        <h1>Player 1:</h1>
         <div>
           <img
             src={diceImage[rollP1[0]]}
             alt="Player 2, Dice 1"
-            width={'100px'}
-            height={'100px'}
+            width={'50px'}
+            height={'50px'}
           />
           <img
             src={diceImage[rollP1[1]]}
             alt="Player 2, Dice 1"
-            width={'100px'}
-            height={'100px'}
+            width={'50px'}
+            height={'50px'}
           />
           <img
             src={diceImage[rollP1[2]]}
             alt="Player 2, Dice 1"
-            width={'100px'}
-            height={'100px'}
+            width={'50px'}
+            height={'50px'}
           />
         </div>
         <button onClick={rollDiceP1}>ROLL THE DICE</button>

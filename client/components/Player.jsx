@@ -4,10 +4,14 @@ import Dice from './Dice'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToWallet, deductFromWallet } from '../actions/actions'
 
-function Player() {
+
+
+function Player(props) {
+
   const wallet = useSelector((state) => state.playerWallet)
   const amount = useSelector((state) => state.counter)
-  let multiplier = 3
+  
+  let multiplier = 1
 
   const dispatch = useDispatch()
 
@@ -30,15 +34,22 @@ function Player() {
 
   return (
     <div>
-
-    <h1>{wallet}</h1>
-    <button onClick={()=> dispatch(addToWallet(results))}>ADD TO WINNINGS</button>
-    <button onClick={()=> dispatch(deductFromWallet(results))}>DEDUCT FROM WALLET</button>
-    <Dice/>
-    <Counter/>
-
+      <div >
+        <img className='avatar-container' src={props.avatar} alt="player avatar"></img>
+        <h1>{props.name}</h1>
+        <h2>Wallet: {wallet}</h2>
+      </div>
+      <div>
+        <button onClick={()=> dispatch(addToWallet(results))}>ADD TO WINNINGS</button>
+        <button onClick={()=> dispatch(deductFromWallet(results))}>DEDUCT FROM WALLET</button>
+      </div>
+      <Dice/>
+      <Counter/>
     </div>
   )
 }
+    
+    
+
 
 export default Player
