@@ -95,6 +95,8 @@ export function scoreBust(newArray, pisser) {
         }
       }
     }
+  } else {
+    return false
   }
 }
 
