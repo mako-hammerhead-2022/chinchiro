@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   incrementCount,
@@ -9,14 +8,14 @@ import {
   resetCount,
   minusFiveCount,
   minusTenCount,
+  setInitialState,
 } from '../actions/actions'
 
 
 
 const Counter = () => {
   const count = useSelector((state) => state.counter)
-  /* const total = useSelector((state) => state.total) */
-
+  const walletState = useSelector((state) => state.wallet)
   const dispatch = useDispatch()
 
   return (
@@ -25,20 +24,12 @@ const Counter = () => {
       <h2>
         Amount: $<span>{count}</span>
       </h2>
-      <div
-        style={{ marginRight: 10 }}
-        variant="outlined"
-        aria-label="outlined button group"
-      >
+      <div>
         <button onClick={() => dispatch(incrementCount())}>+1</button>
         <button onClick={() => dispatch(plusFiveCount())}>+5</button>
         <button onClick={() => dispatch(plusTenCount())}>+10</button>
       </div>
-      <div
-        variant="outlined"
-        aria-label="outlined button group"
-        color="secondary"
-      >
+      <div>
         <button onClick={() => dispatch(decrementCount())}>-1</button>
         <button onClick={() => dispatch(minusFiveCount())}>-5</button>
         <button onClick={() => dispatch(minusTenCount())}>-10</button>
@@ -46,9 +37,9 @@ const Counter = () => {
       <div>
         <div style={{ marginTop: 10 }}>
           
-            <button variant="contained">START GAME</button>
+            <button onClick={() => dispatch(setInitialState())}>START GAME</button>
           
-          <button variant="contained" onClick={() => dispatch(resetCount())}>
+          <button onClick={() => dispatch(resetCount())}>
             Reset Amount
           </button>
         </div>
