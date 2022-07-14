@@ -35,11 +35,13 @@ const counterReducer = (state = 0, { type }) => {
 const playerWalletReducer = (state = 1000, { type, payload }) => {
   switch (type) {
     case types.INITIAL_WALLET:
-      return 1000
+      return payload
     case types.ADD_MONEY:
       return state + payload
     case types.DEDUCT_MONEY:
-      return state - payload
+      if (state - payload <= 0) {
+        return (state = 0)
+      } else return state - payload
     default:
       return state
   }

@@ -1,6 +1,4 @@
 import React from 'react'
-import Counter from './Counter'
-import Dice from './Dice'
 import Player from './Player'
 
 function App () {

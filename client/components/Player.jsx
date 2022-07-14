@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
 import Counter from './Counter'
 import Dice from './Dice'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  addToWallet
+  addToWallet,
+  deductFromWallet,
 } from '../actions/actions'
 
 
@@ -16,7 +16,7 @@ function Player() {
 
   const dispatch = useDispatch()
 
-  function calcWinnings(bet, num) {
+  function calcResults(bet, num) {
     switch (num) {
     case num = 1:
       return bet
@@ -31,14 +31,13 @@ function Player() {
     }
   }
     
-    
-
-  const winnings = calcWinnings(amount, multiplier)
+  const results = calcResults(amount, multiplier)
 
   return (
   <div>
     <h1>{wallet}</h1>
-    <button onClick={()=> dispatch(addToWallet(winnings))}>Calculate Winnings</button>
+    <button onClick={()=> dispatch(addToWallet(results))}>ADD TO WINNINGS</button>
+    <button onClick={()=> dispatch(deductFromWallet(results))}>DEDUCT FROM WALLET</button>
     <Dice/>
     <Counter/>
     </div>
