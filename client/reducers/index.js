@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
 import * as types from './types'
+import loggedInUser from './loggedInUser'
 
 // COUNTER REDUCER
 const counterReducer = (state = 0, { type }) => {
@@ -50,7 +51,9 @@ const playerWalletReducer = (state = 1000, { type, payload }) => {
 // COMBINED REDUCERS
 const reducers = {
   counter: counterReducer,
+  loggedInUser,
   playerWallet: playerWalletReducer,
+
 }
 
 export default combineReducers(reducers)

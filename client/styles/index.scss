@@ -1,13 +1,73 @@
 body {
-  position: absolute;
-  top: 0;
-  left: 0;
   margin: 0;
-  padding: 20px;
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-image: url("../../server/public/under.png"); 
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
+
+.app-container{
+  background-color: white;
+  
+  height: 100%;
+}
+
+.navbar-container{
+  background: black;
+  opacity: 100;
+    color: white;
+    height: 3rem;
+    display: flex;
+  align-items: center;
+}
+
+.navbar{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.nav-group{
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav-item{
+  text-decoration: none;
+  text-decoration: none;
+    color: white;
+}
+
+
+.nav-user-info{
+  display: flex;
+    align-items: center;
+}
+
+.avatar-collection-container{
+  margin: 1rem;
+  display: flex;
+}
+
+.avatar-container{
+  height: 5rem;
+  width: 5rem;
+}
+
+.avatar-container:hover{
+  cursor: pointer;
+  border-style: solid;
+}
+
+.avatar-img{
+  height: 100%;
+}
+
 
 
