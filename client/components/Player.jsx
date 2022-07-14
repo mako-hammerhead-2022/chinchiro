@@ -34,7 +34,7 @@ function Player() {
   const results = calcResults(amount, multiplier)
 
   return (
-  <div>
+    <div>
     <h1>{wallet}</h1>
     <button onClick={()=> dispatch(addToWallet(results))}>ADD TO WINNINGS</button>
     <button onClick={()=> dispatch(deductFromWallet(results))}>DEDUCT FROM WALLET</button>
