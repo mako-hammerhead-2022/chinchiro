@@ -7,26 +7,38 @@ import { addToWallet, deductFromWallet } from '../actions/actions'
 function Player() {
   const wallet = useSelector((state) => state.playerWallet)
   const amount = useSelector((state) => state.counter)
-  let multiplier = 3
 
+  //const value = Dice.rollDiceP1
+  const value = 'x5'
   const dispatch = useDispatch()
 
-  function calcResults(bet, num) {
-    switch (num) {
-      case (num = 1):
+  function calcResults(bet, result) {
+    switch (result) {
+      case (result = 1):
+      case (result = 2):
+      case (result = 3):
+      case (result = 4):
+      case (result = 5):
+      case (result = 6):
         return bet
-      case (num = 2):
-        return bet * 2
-      case (num = 3):
+      case (result = 'x3'):
         return bet * 3
-      case (num = 5):
+      case (result = 'x5'):
         return bet * 5
+      case (result = '-x2'):
+        return bet * 2 * -1
+      case (result = 'x2'):
+        return bet * 2
+      case (result = 'pisser'):
+        return 0
       default:
         return 0
     }
   }
 
-  const results = calcResults(amount, multiplier)
+  const results = calcResults(amount, value)
+  console.log(results, 'results')
+  console.log(amount, 'amount')
 
   return (
     <div>
