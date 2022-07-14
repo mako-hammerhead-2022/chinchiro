@@ -1,4 +1,5 @@
 const Dice = require('../actions/actions')
+
 import '@testing-library/jest-dom'
 import '@babel/preset-typescript'
 import '@testing-library/react'
@@ -50,12 +51,20 @@ test('pisser hits', () => {
   expect(actual).toBe(expected)
 })
 
-//test if bust rolls
 test('dice rolls bust', () => {
-  const array = [3, 1, 6]
+  const roll = [3, 1, 6]
   const pisser = 98
   const expected = 'bust'
-  const actual = Dice.scoreBust(array, pisser)
+  const actual = Dice.scoreBust(roll, pisser)
   expect(actual).toBe(expected)
 })
-//tests order of dice changes to ascending order
+
+test('Orders dice lowest to highest', () => {
+  const D1 = 2
+  const D2 = 6
+  const D3 = 4
+  const expected = [2, 4, 6]
+  const actual = Dice.orderDice(D1, D2, D3)
+  console.log(actual)
+  expect(actual).toEqual(expected)
+})

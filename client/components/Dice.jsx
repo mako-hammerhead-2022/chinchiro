@@ -5,6 +5,7 @@ import {
   scoreTriple,
   checkPisser,
   scoreBust,
+  orderDice,
 } from '../actions/actions.js'
 
 const Dice = () => {
@@ -62,9 +63,9 @@ const Dice = () => {
   let dice3 = dice3Value
 
   function rollDiceP1() {
-    let pisser = getRandomNum(1, 200)
     let newArray = orderDice(dice1, dice2, dice3)
-    console.log(newArray)
+    let pisser = getRandomNum(1, 200)
+
     // Set Dice Values
     setDice1Value(getRandomNum(1, 7))
     setDice2Value(getRandomNum(1, 7))
@@ -72,57 +73,11 @@ const Dice = () => {
 
     // Store Roll
     setRollP1([newArray[0], newArray[1], newArray[2]])
-    scoreBust(dice1, dice2, dice3, newArray, pisser)
+    scoreBust(newArray, pisser)
     scoreDouble(newArray)
     scoreTriple(newArray)
     scoreRun(newArray)
     checkPisser(pisser)
-  }
-
-  function orderDice(D1, D2, D3) {
-    console.log('Old Order', D1, D2, D3)
-    let newD1 = D1
-    let newD2 = D2
-    let newD3 = D3
-
-    //If first die is highest {5, 3, 1}
-    if (D1 >= D2 && D1 >= D3) {
-      if (D2 >= D3) {
-        newD1 = D3
-        newD2 = D2
-        newD3 = D1
-      } else if (D3 >= D2) {
-        newD1 = D2
-        newD2 = D3
-        newD3 = D1
-      }
-    }
-    //if middle die is highest {1,5,2}
-    else if (D2 >= D1 && D2 >= D3) {
-      if (D1 >= D3) {
-        newD1 = D3
-        newD2 = D1
-        newD3 = D2
-      } else if (D3 >= D1) {
-        newD1 = D1
-        newD2 = D3
-        newD3 = D2
-      }
-    }
-    //if last die is highest {1, 4, 5}
-    else if (D3 >= D1 && D3 >= D2) {
-      if (D1 >= D2) {
-        newD1 = D2
-        newD2 = D1
-        newD3 = D3
-      } else if (D2 >= D1) {
-        newD1 = D1
-        newD2 = D2
-        newD3 = D3
-      }
-    }
-    console.log('New Order', newD1, newD2, newD3)
-    return [newD1, newD2, newD3]
   }
 
   const [dice1ValueP2, setDice1ValueP2] = useState(0)
