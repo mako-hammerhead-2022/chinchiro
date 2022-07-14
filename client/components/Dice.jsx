@@ -59,11 +59,14 @@ const Dice = () => {
 
     // Store Roll
     setRollP1([newArray[0], newArray[1], newArray[2]])
-    scoreDouble(newArray)
-    scoreTriple(newArray)
-    scoreRun(newArray)
-    checkPisser(pisser)
-    scoreBust(newArray, pisser)
+    if (scoreBust(newArray, pisser) == true) {
+      scoreTriple(newArray)
+      scoreDouble(newArray)
+      scoreRun(newArray)
+      checkPisser(pisser)
+    } else {
+      return 'bust'
+    }
   }
 
   return (

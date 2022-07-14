@@ -85,17 +85,17 @@ export function checkPisser(pisser) {
 
 //score Bust
 export function scoreBust(newArray, pisser) {
-  if (scoreTriple(newArray) == false) {
-    if (scoreDouble(newArray) == false) {
-      if (scoreRun(newArray) == false) {
-        if (checkPisser(pisser) == false) {
+  if (checkPisser(pisser) == false) {
+    if (scoreRun(newArray) == false) {
+      if (scoreTriple(newArray) == false) {
+        if (scoreDouble(newArray) == false) {
           console.log('bust')
           return 'bust'
         }
       }
     }
   } else {
-    return false
+    return true
   }
 }
 
