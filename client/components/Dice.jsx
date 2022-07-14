@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, { useState, useEffect } from 'react'
 
 import {
   scoreDouble,
@@ -20,16 +20,11 @@ const Dice = () => {
     '/dice6.png',
   ]
 
-const Dice = () => {
-
   useEffect(() => {
     setDice1Value(1)
     setDice2Value(1)
     setDice3Value(1)
-  },[]);
-
-  const diceImage = ['','/dice1.png','/dice2.png','/dice3.png','/dice4.png','/dice5.png','/dice6.png']
-
+  }, [])
 
   // Generate random number
   function getRandomNum(min, max) {
@@ -37,7 +32,6 @@ const Dice = () => {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min) + min)
   }
-
 
   //generating player score
   let P1score = 0
@@ -47,8 +41,8 @@ const Dice = () => {
   const [dice2Value, setDice2Value] = useState(0)
   const [dice3Value, setDice3Value] = useState(0)
 
-  const [rollP1,setRollP1] = useState([1,1,1])
-  
+  const [rollP1, setRollP1] = useState([1, 1, 1])
+
   let dice1 = dice1Value
   let dice2 = dice2Value
   let dice3 = dice3Value
@@ -65,26 +59,40 @@ const Dice = () => {
 
     // Store Roll
     setRollP1([newArray[0], newArray[1], newArray[2]])
-    scoreBust(newArray, pisser)
     scoreDouble(newArray)
     scoreTriple(newArray)
     scoreRun(newArray)
     checkPisser(pisser)
+    scoreBust(newArray, pisser)
   }
 
   return (
     <div>
-
       <div>
         <h1>Player 1:</h1>
         <div>
-          <img src={diceImage[rollP1[0]]} alt="Player 2, Dice 1" />
-          <img src={diceImage[rollP1[1]]} alt="Player 2, Dice 1" />
-          <img src={diceImage[rollP1[2]]} alt="Player 2, Dice 1" />
+          <img
+            src={diceImage[rollP1[0]]}
+            alt="Player 2, Dice 1"
+            width={'100px'}
+            height={'100px'}
+          />
+          <img
+            src={diceImage[rollP1[1]]}
+            alt="Player 2, Dice 1"
+            width={'100px'}
+            height={'100px'}
+          />
+          <img
+            src={diceImage[rollP1[2]]}
+            alt="Player 2, Dice 1"
+            width={'100px'}
+            height={'100px'}
+          />
         </div>
         <button onClick={rollDiceP1}>ROLL THE DICE</button>
       </div>
-     </div>
+    </div>
   )
 }
 
