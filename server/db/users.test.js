@@ -18,6 +18,7 @@ describe('can get user data from db', () => {
       expect(user).toHaveProperty('username')
       expect(user).toHaveProperty('avatar')
       expect(user.username).toBe('bananalover')
+      expect(user.avatar).toBe('img/punk9052.png')
     })
   })
 })
@@ -25,7 +26,7 @@ describe('can get user data from db', () => {
 describe('can add or take away user quant', () => {
   test('adds wins to user account', () => {
     return dbUsers
-      .updateUserWins('auth0|123', 'add', 100, testDb)
+      .updateUserWins('auth0|123', 0, testDb)
       .then(() => {
         return testDb('users').select().first().where('auth0_id', 'auth0|123')
       })
@@ -36,7 +37,7 @@ describe('can add or take away user quant', () => {
 
   test('adds money to user account', () => {
     return dbUsers
-      .updateUserEarnings('auth0|123', 'add', 100, testDb)
+      .updateUserEarnings('auth0|123', 100, testDb)
       .then(() => {
         return testDb('users').select().first().where('auth0_id', 'auth0|123')
       })

@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Counter from './Counter'
 import Dice from './Dice'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToWallet, deductFromWallet } from '../actions/actions'
+import * as api from '../apiClient'
 
 function Player() {
   const wallet = useSelector((state) => state.playerWallet)
   const amount = useSelector((state) => state.counter)
+  const user = useSelector((state) => state.loggedInUser)
+
   let multiplier = 3
+
+  useEffect(() => {
+    let data = [user.auth0Id, wallet]
+    user != ''
+      ? api
+          .updateUserEarnings(data)
+          .then((result) => {
+            console.log(result)
+            return null
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      : console.log('No user')
+  }, [wallet])
 
   const dispatch = useDispatch()
 

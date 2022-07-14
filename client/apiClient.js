@@ -2,32 +2,33 @@ import request from 'superagent'
 
 const url = '/api/v1'
 
-// export function addFruit(fruit, token) {
-//   return request
-//     .post(`${rootUrl}/fruits`)
-//     .set('authorization', `Bearer ${token}`)
-//     .send({ fruit })
-//     .then((res) => res.body.fruits)
-//     .catch(logError)
-// }
+export function updateUserWins(data) {
+  console.log(data)
+  return request
+    .post(`${url}/users/tally`)
+    .send(data)
+    .set('Accept', 'application/json')
+    .then((response) => {
+      console.log('Successfully posted' + JSON.stringify(response.body))
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
 
-// export function updateFruit(fruit, token) {
-//   return request
-//     .put(`${rootUrl}/fruits`)
-//     .set('authorization', `Bearer ${token}`)
-//     .send({ fruit })
-//     .then((res) => res.body.fruits)
-//     .catch(logError)
-// }
-
-// export function deleteFruit(id, token) {
-//   return request
-//     .delete(`${rootUrl}/fruits/${id}`)
-//     .set('authorization', `Bearer ${token}`)
-//     .send()
-//     .then((res) => res.body.fruits)
-//     .catch(logError)
-// }
+export function updateUserEarnings(data) {
+  console.log(data)
+  return request
+    .post(`${url}/users/earnings`)
+    .send(data)
+    .set('Accept', 'application/json')
+    .then((response) => {
+      console.log('Successfully posted' + JSON.stringify(response.body))
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
 
 export function getUserInfo(authId) {
   console.log(authId)

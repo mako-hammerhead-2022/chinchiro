@@ -44,7 +44,7 @@ async function getCurrentWinTally(authId, db = connection) {
     })
 }
 
-async function updateUserWins(authId, addOrSub, amount, db = connection) {
+async function updateUserWins(authId, amount, db = connection) {
   const current_wins = await getCurrentWinTally(authId)
   const updated_wins = Number(current_wins.win_tally) + amount
 
@@ -63,7 +63,7 @@ async function getCurrentEarnings(authId, db = connection) {
     })
 }
 
-async function updateUserEarnings(authId, addOrSub, amount, db = connection) {
+async function updateUserEarnings(authId, amount, db = connection) {
   const current_earnings = await getCurrentEarnings(authId)
   const updated_earnings = Number(current_earnings.total_earnings) + amount
   return db('users')
