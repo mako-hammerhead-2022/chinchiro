@@ -2,15 +2,6 @@ import request from 'superagent'
 
 const url = '/api/v1'
 
-// export function getFruits() {
-//   return request
-//     .get(`${rootUrl}/fruits`)
-//     .then((res) => {
-//       return res.body.fruits
-//     })
-//     .catch(logError)
-// }
-
 // export function addFruit(fruit, token) {
 //   return request
 //     .post(`${rootUrl}/fruits`)
@@ -37,6 +28,17 @@ const url = '/api/v1'
 //     .then((res) => res.body.fruits)
 //     .catch(logError)
 // }
+
+export function getUserInfo(authId) {
+  console.log(authId)
+  return request
+    .get(`${url}/users/${authId}`)
+    .then((response) => {
+      const userData = response.body
+      return userData
+    })
+    .catch(logError)
+}
 
 export async function addUser(user) {
   console.log(user)

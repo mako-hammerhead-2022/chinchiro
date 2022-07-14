@@ -23,3 +23,15 @@ router.post('/', async (req, res) => {
     res.status(500).send(err.message)
   }
 })
+
+router.get('/:authId', (req, res) => {
+  let authId = req.params.authId
+  db.getUserByAuthId(authId)
+    .then((data) => {
+      res.json(data)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send({ message: 'Something went wrong' })
+    })
+})
