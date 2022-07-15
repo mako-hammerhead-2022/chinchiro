@@ -12,8 +12,14 @@ beforeEach(() => {
   return testDb.seed.run()
 })
 
-
 describe('can get user data from db', () => {
+  test('gets all the users from the db', () => {
+    return dbUsers.getAllUsers().then((users) => {
+      expect(users[0]).toHaveProperty('email')
+      expect(users).toHaveLength(5)
+    })
+  })
+
   test('gets username and avatar from db', () => {
     return dbUsers.getUserByAuthId('auth0|123').then((user) => {
       expect(user).toHaveProperty('username')
@@ -32,7 +38,7 @@ describe('can add or take away user quant', () => {
         return testDb('users').select().first().where('auth0_id', 'auth0|123')
       })
       .then((userDetails) => {
-        expect(Number(userDetails.win_tally)).toBeGreaterThanOrEqual(50)
+        expect(Number(userDetails.win_tally)).toBeGreaterThanOrEqual(5)
       })
   })
 
@@ -47,4 +53,3 @@ describe('can add or take away user quant', () => {
       })
   })
 })
-

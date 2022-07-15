@@ -1,4 +1,4 @@
-const Dice = require('../actions/actions')
+const Dice = require('../../actions/actions')
 
 import '@testing-library/jest-dom'
 import '@babel/preset-typescript'

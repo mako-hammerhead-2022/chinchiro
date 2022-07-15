@@ -10,6 +10,10 @@ import GameBoard from './GameBoard'
 import { useAuth0 } from '@auth0/auth0-react'
 import { cacheUser } from '../auth0-utils'
 
+
+import Player from './Player'
+
+
 function App() {
   cacheUser(useAuth0)
   const dispatch = useDispatch()
