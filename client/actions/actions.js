@@ -99,46 +99,46 @@ export function scoreBust(newArray, pisser) {
   }
 }
 
-export function orderDice(D1, D2, D3) {
-  console.log('Old Order', D1, D2, D3)
-  let newD1 = D1
-  let newD2 = D2
-  let newD3 = D3
+export function orderDice(rollArray) {
+  console.log('Old Order', rollArray)
+  let newD1 = rollArray[0]
+  let newD2 = rollArray[1]
+  let newD3 = rollArray[2]
 
   //If first die is highest {5, 3, 1}
-  if (D1 >= D2 && D1 >= D3) {
-    if (D2 >= D3) {
-      newD1 = D3
-      newD2 = D2
-      newD3 = D1
-    } else if (D3 >= D2) {
-      newD1 = D2
-      newD2 = D3
-      newD3 = D1
+  if (rollArray[0] >= rollArray[1] && rollArray[0] >= rollArray[2]) {
+    if (rollArray[1] >= rollArray[2]) {
+      newD1 = rollArray[2]
+      newD2 = rollArray[1]
+      newD3 = rollArray[0]
+    } else if (rollArray[2] >= rollArray[1]) {
+      newD1 = rollArray[1]
+      newD2 = rollArray[2]
+      newD3 = rollArray[0]
     }
   }
   //if middle die is highest {1,5,2}
-  else if (D2 >= D1 && D2 >= D3) {
-    if (D1 >= D3) {
-      newD1 = D3
-      newD2 = D1
-      newD3 = D2
-    } else if (D3 >= D1) {
-      newD1 = D1
-      newD2 = D3
-      newD3 = D2
+  else if (rollArray[1] >= rollArray[0] && rollArray[1] >= rollArray[2]) {
+    if (rollArray[0] >= rollArray[2]) {
+      newD1 = rollArray[2]
+      newD2 = rollArray[0]
+      newD3 = rollArray[1]
+    } else if (rollArray[2] >= rollArray[0]) {
+      newD1 = rollArray[0]
+      newD2 = rollArray[2]
+      newD3 = rollArray[1]
     }
   }
   //if last die is highest {1, 4, 5}
-  else if (D3 >= D1 && D3 >= D2) {
-    if (D1 >= D2) {
-      newD1 = D2
-      newD2 = D1
-      newD3 = D3
-    } else if (D2 >= D1) {
-      newD1 = D1
-      newD2 = D2
-      newD3 = D3
+  else if (rollArray[2] >= rollArray[0] && rollArray[2] >= rollArray[1]) {
+    if (rollArray[0] >= rollArray[1]) {
+      newD1 = rollArray[1]
+      newD2 = rollArray[0]
+      newD3 = rollArray[2]
+    } else if (rollArray[1] >= rollArray[0]) {
+      newD1 = rollArray[0]
+      newD2 = rollArray[1]
+      newD3 = rollArray[2]
     }
   }
   console.log('New Order', newD1, newD2, newD3)
