@@ -1,30 +1,13 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import {
-  incrementCount,
-  plusFiveCount,
-  plusTenCount,
-  decrementCount,
-  resetCount,
-  minusFiveCount,
-  minusTenCount,
-  setInitialState,
-} from '../actions/actions'
+// import { useDispatch } from 'react-redux'
 
 const Counter = (props) => {
+  // const dispatch = useDispatch()
+  const [bet, setBet] = useState(0)
 
-  const count = useSelector((state) => state.counter)
-  
-
-  const [bet,setBet] = useState(0)
-
-  function handleSetBet(amount){
-    setBet(bet + amount)
-    props.func(bet)
-
+  function addBet(amount) {
+    setBet((bet) => (bet + amount > 0 ? bet + amount : 0))
   }
-
-  const dispatch = useDispatch()
 
   return (
     <div>
@@ -32,21 +15,17 @@ const Counter = (props) => {
         Amount: $<span>{bet}</span>
       </h2>
       <div>
-        <button onClick={() => handleSetBet(1)}>+1</button>
-        <button onClick={() => dispatch(plusFiveCount())}>+5</button>
-        <button onClick={() => dispatch(plusTenCount())}>+10</button>
-      
-        <button onClick={() => dispatch(decrementCount())}>-1</button>
-        <button onClick={() => dispatch(minusFiveCount())}>-5</button>
-        <button onClick={() => dispatch(minusTenCount())}>-10</button>
+        <button onClick={() => addBet(1)}>+1</button>
+        <button onClick={() => addBet(5)}>+5</button>
+        <button onClick={() => addBet(10)}>+10</button>
+
+        <button onClick={() => addBet(-1)}>{-1}</button>
+        <button onClick={() => addBet(-5)}>{-5}</button>
+        <button onClick={() => addBet(-10)}>{-10}</button>
       </div>
       <div>
         <div style={{ marginTop: 10 }}>
-          <button onClick={() => dispatch(setInitialState())}>
-            START GAME
-          </button>
-
-          <button onClick={() => dispatch(resetCount())}>Reset Amount</button>
+          <button onClick={() => setBet(0)}>Reset Amount</button>
         </div>
       </div>
     </div>
