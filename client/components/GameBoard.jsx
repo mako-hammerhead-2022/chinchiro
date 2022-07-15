@@ -14,8 +14,8 @@ export default function GameBoard() {
 
   return (
     <>
-      <section className="main">
-        <PlayerList players={players} />
+      <section className='main'>
+        {players && <PlayerList players={players} />}
       </section>
     </>
   )
