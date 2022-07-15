@@ -23,3 +23,43 @@ router.post('/', async (req, res) => {
     res.status(500).send(err.message)
   }
 })
+
+router.get('/:authId', (req, res) => {
+  let authId = req.params.authId
+  db.getUserByAuthId(authId)
+    .then((data) => {
+      res.json(data)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send({ message: 'Something went wrong' })
+    })
+})
+
+router.post('/tally', (req, res) => {
+  console.log(req.body)
+  let authId = req.body[0]
+  let amount = Number(req.body[1])
+  db.updateUserWins(authId, amount)
+    .then((data) => {
+      console.log('Updated Tally!')
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send({ message: 'Something went wrong' })
+    })
+})
+
+router.post('/earnings', (req, res) => {
+  console.log(req.body)
+  let authId = req.body[0]
+  let amount = Number(req.body[1])
+  db.updateUserEarnings(authId, amount)
+    .then((data) => {
+      console.log('Updated Earning!')
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send({ message: 'Something went wrong' })
+    })
+})
