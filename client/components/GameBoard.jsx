@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPlayers } from '../reducers/players'
 
-// import PlayerList from './PlayersList'
+import PlayerList from './PlayersList'
 
 export default function GameBoard() {
   const players = useSelector((state) => state.players)
@@ -12,12 +12,10 @@ export default function GameBoard() {
     dispatch(fetchPlayers())
   }, [])
 
-  console.log(players)
-
   return (
     <>
       <section className="main">
-        {/* <PlayerList players={players} /> */}
+        <PlayerList players={players} />
       </section>
     </>
   )

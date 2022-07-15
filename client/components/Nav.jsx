@@ -11,7 +11,6 @@ function Nav() {
   const { logout, loginWithRedirect } = useAuth0()
   const user = useSelector((state) => state.loggedInUser)
   const wallet = useSelector((state) => state.playerWallet)
-  console.log(wallet)
 
   const [userInfo, setUserInfo] = useState({})
 
@@ -58,7 +57,11 @@ function Nav() {
           <div className="nav-header-container">
             <div className="nav-item-container">
               <Link className="nav-item header" to="/">
-                Chinchiro - チンチロリン, チンチロ
+                <img
+                  className="logo"
+                  src="img/chinchirro-logo-1.png"
+                  alt="the logo"
+                />
               </Link>
             </div>
           </div>

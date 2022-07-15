@@ -24,7 +24,6 @@ export function rotateDealer() {
 }
 
 export function initiatePlayers(players) {
-  console.log(players)
   return {
     type: 'INITIATE_PLAYERS',
     players,
@@ -35,9 +34,8 @@ export function fetchPlayers() {
   return (dispatch) => {
     return api
       .getAllUsers()
-      .then((response) => {
-        const formattedPlayers = formatPlayers(response)
-        dispatch(initiatePlayers(formattedPlayers))
+      .then((players) => {
+        dispatch(initiatePlayers(players))
         return null
       })
       .catch((err) => {
@@ -45,17 +43,24 @@ export function fetchPlayers() {
       })
   }
 }
-// talking between components that are far away is hard
-// centralised place where state lives and everywhere talks to that
-// source of truth for information that changes frequently
-// that is needed by many places
 
-// where should responsibility live?
+function formatPlayers(players) {
+  const playersObject = {}
+  players.forEach((player) => {
+    playersObject[player.auth0_id] = player
+  })
+  return playersObject
+}
+
 export default function playersReducer(state = null, action) {
   switch (action.type) {
+    case 'INITIATE_PLAYERS':
+      return action.players
+    default:
+      return state
+
     case 'ADD_TO_WALLET':
       return {
-        // #immutability
         ...state, // other players - you HAVE to do this
         [action.id]: {
           // current player
@@ -63,6 +68,7 @@ export default function playersReducer(state = null, action) {
           wallet: state[action.id].wallet + action.amount, // their wallet
         },
       }
+
     case 'REMOVE_FROM_WALLET':
       return {
         ...state,
@@ -71,21 +77,10 @@ export default function playersReducer(state = null, action) {
           wallet: state[action.id].wallet - action.amount,
         },
       }
+
     case 'ROTATE_DEALER':
       return getNewDealer(state)
-    case 'INITIATE_PLAYERS':
-      return formatPlayers(action.players)
-    default:
-      return state
   }
-}
-// [{ id: 1 }, { id: 5 }] => { 1: {}, 5: {} }
-function formatPlayers(players) {
-  const playersObject = {}
-  players.forEach((player) => {
-    playersObject[player.auth0_id] = player
-  })
-  return playersObject
 }
 
 function getNewDealer(state) {
