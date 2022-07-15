@@ -57,14 +57,14 @@ export function scoreRun(newArray) {
   if (newArray[0] == 1) {
     if (newArray[1] == 2 && newArray[2] == 3) {
       console.log('lose double bet!')
-      return 'lose double bet!'
+      return '-x2'
     } else {
       return false
     }
   } else if (newArray[0] == 4) {
     if (newArray[1] == 5 && newArray[2] == 6) {
       console.log('Win double bet!')
-      return 'win double bet!'
+      return 'x2'
     } else {
       return false
     }
@@ -77,7 +77,7 @@ export function scoreRun(newArray) {
 export function checkPisser(pisser) {
   if (pisser == 99) {
     console.log('PISSER!')
-    return 'PISSER!'
+    return 'pisser'
   } else {
     return false
   }

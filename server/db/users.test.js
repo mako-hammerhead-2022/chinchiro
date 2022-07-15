@@ -12,6 +12,7 @@ beforeEach(() => {
   return testDb.seed.run()
 })
 
+
 describe('can get user data from db', () => {
   test('gets username and avatar from db', () => {
     return dbUsers.getUserByAuthId('auth0|123').then((user) => {
@@ -46,3 +47,4 @@ describe('can add or take away user quant', () => {
       })
   })
 })
+
