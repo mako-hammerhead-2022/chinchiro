@@ -1,20 +1,30 @@
 body {
   margin: 0;
-  background-image: url("../../server/public/under.png"); 
-  background-repeat: no-repeat;
-  background-size: cover;
+
+ 
   width: 100vw;
   height: 100vh;
 }
 
+.main{
+  background-image: url("https://64.media.tumblr.com/d68f2433a2ddecadd29370a49f97e993/tumblr_pnumy4U4iA1xqepp2o1_1280.gifv"); 
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
 .app-container{
   background-color: white;
-  
   height: 100%;
 }
 
 .navbar-container{
-  background: black;
+  background: #283941;
   opacity: 100;
     color: white;
     height: 4rem;
@@ -42,6 +52,11 @@ body {
   text-decoration: none;
   text-decoration: none;
     color: white;
+}
+
+.logo{
+  height: 1.2rem;
+  margin-left: 1rem;
 }
 
 .user-info-container{
@@ -113,6 +128,12 @@ body {
   margin: 10px;
   border: 2px solid black;
   border-radius: 5%;
+  background-color: white;
+}
+
+.play-container{
+  display: flex;
+  justify-content: center;
 
 }
 
