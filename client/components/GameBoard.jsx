@@ -4,10 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import PlayerList from './PlayersList'
 
-export default function GameBoard() {  
-  const loadPlayers = useSelector((state) => state.players)
-  console.log(loadPlayers)
-  
+
+export default function GameBoard() {
+
   return (
     <>
       <section className="main">

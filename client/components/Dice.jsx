@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Player from './Player.jsx'
 
 import {
   scoreDouble,
@@ -47,6 +48,7 @@ const Dice = () => {
     let score = calculateScore(roll)
     // round of betting
     // Store Roll
+
     setRollP1(roll)
     scoreDouble(newArray)
     scoreTriple(newArray)
@@ -55,6 +57,7 @@ const Dice = () => {
     scoreBust(newArray, pisser)
 
     dispatch(rotateDealer())
+
   }
 
   return (

@@ -11,9 +11,8 @@ import {
   setInitialState,
 } from '../actions/actions'
 
-
-
 const Counter = (props) => {
+
   const count = useSelector((state) => state.counter)
   
 
@@ -43,12 +42,11 @@ const Counter = (props) => {
       </div>
       <div>
         <div style={{ marginTop: 10 }}>
-          
-            <button onClick={() => dispatch(setInitialState())}>START GAME</button>
-          
-          <button onClick={() => dispatch(resetCount())}>
-            Reset Amount
+          <button onClick={() => dispatch(setInitialState())}>
+            START GAME
           </button>
+
+          <button onClick={() => dispatch(resetCount())}>Reset Amount</button>
         </div>
       </div>
     </div>

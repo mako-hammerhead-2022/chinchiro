@@ -46,14 +46,14 @@ test('dice rolls triple fails', () => {
 
 test('dice rolls run 1, 2, 3', () => {
   const roll = [1, 2, 3]
-  const expected = 'lose double bet!'
+  const expected = '-x2'
   const actual = Dice.scoreRun(roll)
   expect(actual).toBe(expected)
 })
 
 test('dice rolls run 4, 5, 6', () => {
   const roll = [4, 5, 6]
-  const expected = 'win double bet!'
+  const expected = 'x2'
   const actual = Dice.scoreRun(roll)
   expect(actual).toBe(expected)
 })
@@ -67,7 +67,7 @@ test('dice rolls run fails', () => {
 
 test('pisser hits', () => {
   const pisser = 99
-  const expected = 'PISSER!'
+  const expected = 'pisser'
   const actual = Dice.checkPisser(pisser)
   expect(actual).toBe(expected)
 })
@@ -84,13 +84,6 @@ test('dice rolls bust', () => {
   const pisser = 98
   const expected = 'bust'
   const actual = Dice.scoreBust(roll, pisser)
-  expect(actual).toBe(expected)
-})
-
-test('dice roll does not bust', () => {
-  const roll = [2, 2, 2]
-  const expected = false
-  const actual = Dice.scoreBust(roll)
   expect(actual).toBe(expected)
 })
 
