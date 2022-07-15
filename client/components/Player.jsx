@@ -9,7 +9,7 @@ import * as api from '../apiClient'
 function Player(props) {
   /*  const wallet = useSelector((state) => state.playerWallet)
   const amount = useSelector((state) => state.counter) */
-  const player = useSelector((state) => state.players[props.playerId])
+  // const player = useSelector((state) => state.players[props.playerId])
   const [amount, setAmount] = useState(0)
 
   const [individualWallet, setIndividualWallet] = useState(1000)
@@ -32,24 +32,7 @@ function Player(props) {
     } else {
       console.log('No user')
     }
-  }, [wallet, user])
-
-  useEffect(() => {
-    if (wallet === 0) {
-      let data = [user.auth0Id, -1]
-      api
-        .updateUserWins(data)
-        .then((result) => {
-          console.log(result)
-          return null
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    } else {
-      return
-    }
-  }, [wallet, user])
+  }, [user])
 
   //const value = Dice.rollDiceP1
   const value = 'x5'
