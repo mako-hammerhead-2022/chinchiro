@@ -5,6 +5,7 @@ module.exports = {
   getUserByName,
   createUser,
   getUserByAuthId,
+  getAllUsers,
   updateUserWins,
   updateUserEarnings,
 }
@@ -14,6 +15,10 @@ function getUserByAuthId(authId, db = connection) {
     .select('username', 'avatar', 'win_tally', 'total_earnings')
     .first()
     .where('auth0_id', authId)
+}
+
+function getAllUsers(db = connection) {
+  return db('users').select()
 }
 
 function userExists(username, db = connection) {

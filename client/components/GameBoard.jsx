@@ -1,13 +1,16 @@
-//external dependencies
-
 import React from 'react'
-import Player from './Player'
+import { useSelector, useDispatch } from 'react-redux'
+
+
+import PlayerList from './PlayersList'
+
 
 export default function GameBoard() {
+
   return (
     <>
       <section className="main">
-        <Player />
+        <PlayerList players= {loadPlayers} />
       </section>
     </>
   )

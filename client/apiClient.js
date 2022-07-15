@@ -38,6 +38,18 @@ export function getUserInfo(authId) {
     .catch(logError)
 }
 
+export function getAllUsers() {
+  return request
+    .get(`${url}/allusers`)
+    .then((response) => {
+      const users = response.body
+      return users
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
 export async function addUser(user) {
   console.log(user)
   return request.post(`${url}/users`).send(user).catch(logError)
