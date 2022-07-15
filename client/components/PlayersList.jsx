@@ -2,21 +2,20 @@ import React from 'react'
 import Player from './Player'
 import '../styles/index.scss'
 
-const PlayerList = (props) => {
-  console.log(props.players)
-  if (props.players == null) {
-    return null
-  } else {
+const PlayerList = ({players}) => {
+
     return (
       <div className="play-container">
-        {props.players.slice(0, 4).map((player) => {
+        {players && players.slice(0, 4).map((player) => {
+          console.log(player)
           return (
             <div className="card" key={player.id}>
               <Player
+                id={player.id}
                 name={player.username}
                 avatar={player.avatar}
                 isDealer={player.isDealer}
-                wallet={player.wallet}
+                wallet={1000}
               />
             </div>
           )
@@ -24,6 +23,5 @@ const PlayerList = (props) => {
       </div>
     )
   }
-}
 
 export default PlayerList

@@ -3,16 +3,17 @@ import React, { useState, useEffect } from 'react'
 import Counter from './Counter'
 import Dice from './Dice'
 import { useSelector, useDispatch } from 'react-redux'
-import { addToWallet, deductFromWallet } from '../actions/actions'
+import {addToWallet,} from '../reducers/players'
 import * as api from '../apiClient'
 
 function Player(props) {
-  /*  const wallet = useSelector((state) => state.playerWallet)
-  const amount = useSelector((state) => state.counter) */
-  // const player = useSelector((state) => state.players[props.playerId])
-  const [amount, setAmount] = useState(0)
+  
+  /* const amount = useSelector((state) => state.counter) */
 
-  const [individualWallet, setIndividualWallet] = useState(1000)
+  const [amount, setAmount] = useState(0)
+ 
+  const players = useSelector((state) => state.players)
+
 
   const user = useSelector((state) => state.loggedInUser)
 
@@ -62,8 +63,8 @@ function Player(props) {
     }
   }
 
-  function handleBetting(bet) {
-    console.log(bet)
+  function handleBetting() {
+    // console.log()
   }
 
   const results = calcResults(amount, multiplier)
@@ -85,11 +86,11 @@ function Player(props) {
         <h1>{props.name}</h1>
       </div>
       <div>
-        <h2>Wallet: {individualWallet}</h2>
-        <button onClick={() => setIndividualWallet(individualWallet + results)}>
+        <h2>Wallet: {props.wallet}</h2>
+        <button onClick={() => dispatch(addToWallet(props.id,200))}>
           ADD TO WINNINGS
         </button>
-        <button onClick={() => setIndividualWallet(individualWallet - results)}>
+        <button >
           DEDUCT FROM WALLET
         </button>
       </div>

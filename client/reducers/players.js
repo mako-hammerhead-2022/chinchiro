@@ -55,7 +55,7 @@ function formatPlayers(players) {
 export default function playersReducer(state = null, action) {
   switch (action.type) {
     case 'INITIATE_PLAYERS':
-      return action.players
+      return action.players.map((player) => ({ ...player, wallet: 0 }))
     default:
       return state
 
@@ -65,6 +65,7 @@ export default function playersReducer(state = null, action) {
         [action.id]: {
           // current player
           ...state[action.id], // rest of current players properties
+
           wallet: state[action.id].wallet + action.amount, // their wallet
         },
       }
