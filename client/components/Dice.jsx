@@ -29,12 +29,7 @@ const Dice = () => {
     return Math.floor(Math.random() * (max - min) + min)
   }
 
-  //generating player score
-  let P1score = 0
-
-  // initial dice value
-  // state for each dice
-
+  
   // state of all dice
   const [rollP1, setRollP1] = useState([1, 1, 1])
 
@@ -45,18 +40,19 @@ const Dice = () => {
 
     // calculate score and store as a value
 
-    let score = calculateScore(roll)
+    /* let score = calculateScore(roll) */
     // round of betting
     // Store Roll
-
-    setRollP1(roll)
-    scoreDouble(newArray)
-    scoreTriple(newArray)
-    scoreRun(newArray)
+    
+    
+    setRollP1(orderDice(roll))
+    scoreDouble(roll)
+    scoreTriple(roll)
+    scoreRun(roll)
     checkPisser(pisser)
-    scoreBust(newArray, pisser)
+    scoreBust(roll, pisser)
 
-    dispatch(rotateDealer())
+    /* dispatch(rotateDealer()) */
 
   }
 
