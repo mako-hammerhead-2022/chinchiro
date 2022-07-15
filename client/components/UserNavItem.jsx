@@ -1,7 +1,7 @@
 //external dependencies
 import React, { useEffect, useState } from 'react'
 
-import '../styles/index.scss'
+// import '../styles/index.scss'
 
 export default function UserNavItem({ userInfo }) {
   return (

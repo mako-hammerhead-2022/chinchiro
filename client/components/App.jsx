@@ -12,12 +12,10 @@ import { cacheUser } from '../auth0-utils'
 
 import Player from './Player'
 
-
 function App() {
   cacheUser(useAuth0)
   return (
     <>
-
       <Router>
         <Nav />
         <Routes>
@@ -25,7 +23,6 @@ function App() {
           <Route path="register" element={<Register />} />
         </Routes>
       </Router>
-
     </>
   )
 }

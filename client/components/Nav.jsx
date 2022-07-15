@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 
 import UserNavItem from './UserNavItem'
 import * as api from '../apiClient'
+
 function Nav() {
   const { logout, loginWithRedirect } = useAuth0()
   const user = useSelector((state) => state.loggedInUser)
