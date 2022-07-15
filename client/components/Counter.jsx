@@ -13,22 +13,30 @@ import {
 
 
 
-const Counter = () => {
+const Counter = (props) => {
   const count = useSelector((state) => state.counter)
-  const walletState = useSelector((state) => state.wallet)
+  
+
+  const [bet,setBet] = useState(0)
+
+  function handleSetBet(amount){
+    setBet(bet + amount)
+    props.func(bet)
+
+  }
+
   const dispatch = useDispatch()
 
   return (
     <div>
       <h2>
-        Amount: $<span>{count}</span>
+        Amount: $<span>{bet}</span>
       </h2>
       <div>
-        <button onClick={() => dispatch(incrementCount())}>+1</button>
+        <button onClick={() => handleSetBet(1)}>+1</button>
         <button onClick={() => dispatch(plusFiveCount())}>+5</button>
         <button onClick={() => dispatch(plusTenCount())}>+10</button>
-      </div>
-      <div>
+      
         <button onClick={() => dispatch(decrementCount())}>-1</button>
         <button onClick={() => dispatch(minusFiveCount())}>-5</button>
         <button onClick={() => dispatch(minusTenCount())}>-10</button>

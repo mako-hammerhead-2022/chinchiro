@@ -20,11 +20,6 @@ const Dice = () => {
     '/dice6.png',
   ]
 
-  useEffect(() => {
-    setDice1Value(1)
-    setDice2Value(1)
-    setDice3Value(1)
-  }, [])
 
   // Generate random number
   function getRandomNum(min, max) {
@@ -37,33 +32,29 @@ const Dice = () => {
   let P1score = 0
 
   // initial dice value
-  const [dice1Value, setDice1Value] = useState(0)
-  const [dice2Value, setDice2Value] = useState(0)
-  const [dice3Value, setDice3Value] = useState(0)
+  // state for each dice
 
+  // state of all dice
   const [rollP1, setRollP1] = useState([1, 1, 1])
 
-  let dice1 = dice1Value
-  let dice2 = dice2Value
-  let dice3 = dice3Value
-
   function rollDiceP1() {
-    let newArray = orderDice(dice1, dice2, dice3)
+    let roll = [getRandomNum(1, 7), getRandomNum(1, 7), getRandomNum(1, 7)]
+    
     let pisser = getRandomNum(1, 200)
 
-    // Set Dice Values
+    // calculate score and store as a value
 
-    setDice1Value(getRandomNum(1, 7))
-    setDice2Value(getRandomNum(1, 7))
-    setDice3Value(getRandomNum(1, 7))
-
+    let score = calculateScore(roll)
+    // round of betting
     // Store Roll
-    setRollP1([newArray[0], newArray[1], newArray[2]])
+    setRollP1(roll)
     scoreDouble(newArray)
     scoreTriple(newArray)
     scoreRun(newArray)
     checkPisser(pisser)
     scoreBust(newArray, pisser)
+
+    dispatch(rotateDealer())
   }
 
   return (

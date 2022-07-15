@@ -5,6 +5,7 @@ module.exports = {
   getUserByName,
   createUser,
   getUserByAuthId,
+  getAllUsers,
 }
 
 function getUserByAuthId(authId, db = connection) {
@@ -13,6 +14,10 @@ function getUserByAuthId(authId, db = connection) {
     .select('username', 'avatar')
     .first()
     .where('auth0_id', authId)
+}
+
+function getAllUsers(db = connection) {
+  return db('users').select()
 }
 
 function userExists(username, db = connection) {

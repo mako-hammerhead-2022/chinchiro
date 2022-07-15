@@ -23,3 +23,14 @@ router.post('/', async (req, res) => {
     res.status(500).send(err.message)
   }
 })
+
+router.get('/allusers', (req, res) => {
+  db.getAllUsers()
+    .then((result) => {
+      res.json(result)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).send(err.message)
+    })
+})
