@@ -40,7 +40,7 @@ export function getUserInfo(authId) {
 
 export function getAllUsers() {
   return request
-    .get(`${url}/allusers`)
+    .get(`${url}/users/allusers`)
     .then((response) => {
       const users = response.body
       return users

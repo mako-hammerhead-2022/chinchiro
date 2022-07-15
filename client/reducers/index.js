@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import * as types from './types'
 import loggedInUser from './loggedInUser'
+import players from './players'
 
 // COUNTER REDUCER
 const counterReducer = (state = 0, { type }) => {
@@ -53,7 +54,7 @@ const reducers = {
   counter: counterReducer,
   loggedInUser,
   playerWallet: playerWalletReducer,
-
+  players,
 }
 
 export default combineReducers(reducers)

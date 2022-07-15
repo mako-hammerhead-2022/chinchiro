@@ -1,38 +1,5 @@
 import request from 'superagent'
-// const players = {
-//   5: {
-//     id: '5',
-//     username: 'J Vince',
-//     avatar: '/img/punk5822.png',
-//     isDealer: false,
-//     isActive: false,
-//     wallet: 1000,
-//   },
-//   7: {
-//     id: '8',
-//     username: 'Timmy D',
-//     avatar: '/img/punk7971.png',
-//     isDealer: false,
-//     isActive: false,
-//     wallet: 1000,
-//   },
-//   3: {
-//     id: 1,
-//     username: 'Rupie',
-//     avatar: '/img/punk8857.png',
-//     isDealer: false,
-//     isActive: false,
-//     wallet: 1000,
-//   },
-//   4: {
-//     id: 1,
-//     username: 'Callum',
-//     avatar: '/img/punk5822.png',
-//     isDealer: false,
-//     isActive: false,
-//     wallet: 1000,
-//   },
-// }
+import * as api from '../apiClient'
 
 export function addToWallet(id, amount) {
   return {
@@ -57,6 +24,7 @@ export function rotateDealer() {
 }
 
 export function initiatePlayers(players) {
+  console.log(players)
   return {
     type: 'INITIATE_PLAYERS',
     players,
@@ -65,12 +33,18 @@ export function initiatePlayers(players) {
 
 export function fetchPlayers() {
   return (dispatch) => {
-    return request.get('/api/players').then((response) => {
-      dispatch(initiatePlayers(response.body.players))
-    })
+    return api
+      .getAllUsers()
+      .then((response) => {
+        const formattedPlayers = formatPlayers(response)
+        dispatch(initiatePlayers(formattedPlayers))
+        return null
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }
-
 // talking between components that are far away is hard
 // centralised place where state lives and everywhere talks to that
 // source of truth for information that changes frequently
@@ -109,7 +83,7 @@ export default function playersReducer(state = null, action) {
 function formatPlayers(players) {
   const playersObject = {}
   players.forEach((player) => {
-    playersObject[player.id] = player
+    playersObject[player.auth0_id] = player
   })
   return playersObject
 }

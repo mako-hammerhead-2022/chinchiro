@@ -1,48 +1,23 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPlayers } from '../reducers/players'
 
-import PlayerList from './PlayersList'
-
-const players = [
-  {
-    id: 1,
-    username: 'J Vince',
-    avatar: '/img/punk5822.png',
-    isDealer: false,
-    isActive: false,
-    wallet: 1000,
-  },
-  {
-    id: 2,
-    username: 'Timmy D',
-    avatar: '/img/punk7971.png',
-    isDealer: false,
-    isActive: false,
-    wallet: 1000,
-  },
-  {
-    id: 3,
-    username: 'Rupie',
-    avatar: '/img/punk8857.png',
-    isDealer: false,
-    isActive: false,
-    wallet: 1000,
-  },
-  {
-    id: 4,
-    username: 'Callum',
-    avatar: '/img/punk5822.png',
-    isDealer: false,
-    isActive: false,
-    wallet: 1000,
-  },
-]
+// import PlayerList from './PlayersList'
 
 export default function GameBoard() {
+  const players = useSelector((state) => state.players)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchPlayers())
+  }, [])
+
+  console.log(players)
+
   return (
     <>
       <section className="main">
-        <PlayerList players={players} />
+        {/* <PlayerList players={players} /> */}
       </section>
     </>
   )
