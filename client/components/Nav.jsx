@@ -15,22 +15,24 @@ function Nav() {
   const [userInfo, setUserInfo] = useState({})
 
   useEffect(() => {
-    api
-      .getUserInfo(user.auth0Id)
-      .then((userData) => {
-        const userObj = {
-          userName: userData.username,
-          avatar: userData.avatar,
-          win_tally: userData.win_tally,
-          total_earnings: userData.total_earnings,
-        }
-        setUserInfo(userObj)
+    if (user.auth0Id !== '') {
+      api
+        .getUserInfo(user.auth0Id)
+        .then((userData) => {
+          const userObj = {
+            userName: userData.username,
+            avatar: userData.avatar,
+            win_tally: userData.win_tally,
+            total_earnings: userData.total_earnings,
+          }
+          setUserInfo(userObj)
 
-        return null
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+          return null
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }, [user, wallet])
   // const auth0Id = user?.auth0Id,
 
@@ -52,42 +54,42 @@ function Nav() {
   }
   return (
     <>
-      <nav className="navbar-container">
-        <div className="navbar">
-          <div className="nav-header-container">
-            <div className="nav-item-container">
-              <Link className="nav-item header" to="/">
+      <nav className='navbar-container'>
+        <div className='navbar'>
+          <div className='nav-header-container'>
+            <div className='nav-item-container'>
+              <Link className='nav-item header' to='/'>
                 <img
-                  className="logo"
-                  src="img/chinchirro-logo-1.png"
-                  alt="the logo"
+                  className='logo'
+                  src='img/chinchirro-logo-1.png'
+                  alt='the logo'
                 />
               </Link>
             </div>
           </div>
 
-          <div className="nav-group">
-            <div className="nav-item-container">
-              <Link className="nav-item" to="/">
+          <div className='nav-group'>
+            <div className='nav-item-container'>
+              <Link className='nav-item' to='/'>
                 Home
               </Link>
             </div>
             <IfAuthenticated>
-              <div className="nav-item-container">
-                <a className="nav-item" href="/" onClick={handleLogoff}>
+              <div className='nav-item-container'>
+                <a className='nav-item' href='/' onClick={handleLogoff}>
                   Log off
                 </a>
               </div>
               <UserNavItem userInfo={userInfo} />
             </IfAuthenticated>
             <IfNotAuthenticated>
-              <div className="nav-item-container">
-                <a className="nav-item" href="/" onClick={handleRegister}>
+              <div className='nav-item-container'>
+                <a className='nav-item' href='/' onClick={handleRegister}>
                   Register
                 </a>
               </div>
-              <div className="nav-item-container">
-                <a className="nav-item" href="/" onClick={handleSignIn}>
+              <div className='nav-item-container'>
+                <a className='nav-item' href='/' onClick={handleSignIn}>
                   Sign in
                 </a>
               </div>
