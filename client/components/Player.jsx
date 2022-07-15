@@ -3,24 +3,18 @@ import React, { useState, useEffect } from 'react'
 import Counter from './Counter'
 import Dice from './Dice'
 import { useSelector, useDispatch } from 'react-redux'
-import { addToWallet, deductFromWallet } from '../actions/actions'
+import { addToWallet, removeFromWallet } from '../reducers/players'
 import * as api from '../apiClient'
 
 function Player(props) {
-  /*  const wallet = useSelector((state) => state.playerWallet)
-  const amount = useSelector((state) => state.counter) */
-  // const player = useSelector((state) => state.players[props.playerId])
-  const [amount, setAmount] = useState(0)
-
-  const [individualWallet, setIndividualWallet] = useState(1000)
-
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.loggedInUser)
 
   let multiplier = 1
 
   useEffect(() => {
     if (user !== '') {
-      let data = [user.auth0Id, amount]
+      let data = [user.auth0Id, 1000]
       api
         .updateUserEarnings(data)
         .then((result) => {
@@ -34,69 +28,61 @@ function Player(props) {
     }
   }, [user])
 
-  //const value = Dice.rollDiceP1
-  const value = 'x5'
-  const dispatch = useDispatch()
-
-  function calcResults(bet, result) {
-    switch (result) {
-      case (result = 1):
-      case (result = 2):
-      case (result = 3):
-      case (result = 4):
-      case (result = 5):
-      case (result = 6):
-        return bet
-      case (result = 'x3'):
-        return bet * 3
-      case (result = 'x5'):
-        return bet * 5
-      case (result = '-x2'):
-        return bet * 2 * -1
-      case (result = 'x2'):
-        return bet * 2
-      case (result = 'pisser'):
-        return 0
-      default:
-        return 0
-    }
+  function handleBetting() {
+    // console.log()
   }
-
-  function handleBetting(bet) {
-    console.log(bet)
-  }
-
-  const results = calcResults(amount, multiplier)
-
-  let dealerElement = props.isDealer ? (
-    <h1>YOU ARE THE DEALER</h1>
-  ) : (
-    <Counter func={handleBetting} />
-  )
 
   return (
     <div>
       <div>
         <img
-          className="avatar-container"
+          className='avatar-container'
           src={props.avatar}
-          alt="player avatar"
+          alt='player avatar'
         ></img>
         <h1>{props.name}</h1>
       </div>
       <div>
-        <h2>Wallet: {individualWallet}</h2>
-        <button onClick={() => setIndividualWallet(individualWallet + results)}>
+        <h2>Wallet: {props.wallet}</h2>
+        <button onClick={() => dispatch(addToWallet(props.id, 200))}>
           ADD TO WINNINGS
         </button>
-        <button onClick={() => setIndividualWallet(individualWallet - results)}>
+        <button onClick={() => dispatch(removeFromWallet(props.id, 200))}>
           DEDUCT FROM WALLET
         </button>
       </div>
       <Dice />
-      {dealerElement}
+      {props.isDealer ? (
+        <h1>YOU ARE THE DEALER</h1>
+      ) : (
+        <Counter func={handleBetting} />
+      )}
     </div>
   )
+}
+
+function calcResults(bet, result) {
+  switch (result) {
+    case (result = 1):
+    case (result = 2):
+    case (result = 3):
+    case (result = 4):
+    case (result = 5):
+    case (result = 6):
+      return bet
+    case (result = 'x3'):
+      return bet * 3
+    case (result = 'x5'):
+      return bet * 5
+    case (result = '-x2'):
+      return bet * 2 * -1
+    case (result = 'x2'):
+      return bet * 2
+    case (result = 'pisser'):
+      return 0
+    default:
+      return 0
+  }
 }
 
 export default Player
