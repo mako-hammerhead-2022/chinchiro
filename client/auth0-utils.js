@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { subscribe } from 'superagent'
 import { setLoggedInUser } from './actions/loggedInUser'
 
 // eslint-disable-next-line no-unused-vars
