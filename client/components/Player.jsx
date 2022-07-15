@@ -1,5 +1,4 @@
-
-import React, {useState, useEffect}  from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Counter from './Counter'
 import Dice from './Dice'
@@ -7,21 +6,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addToWallet, deductFromWallet } from '../actions/actions'
 import * as api from '../apiClient'
 
-
-
-
-
 function Player(props) {
-
- /*  const wallet = useSelector((state) => state.playerWallet)
+  /*  const wallet = useSelector((state) => state.playerWallet)
   const amount = useSelector((state) => state.counter) */
   const player = useSelector((state) => state.players[props.playerId])
   const [amount, setAmount] = useState(0)
 
   const [individualWallet, setIndividualWallet] = useState(1000)
-  
-  let multiplier = 2
-
 
   const user = useSelector((state) => state.loggedInUser)
 
@@ -59,7 +50,7 @@ function Player(props) {
       return
     }
   }, [wallet, user])
-  
+
   //const value = Dice.rollDiceP1
   const value = 'x5'
   const dispatch = useDispatch()
@@ -88,36 +79,41 @@ function Player(props) {
     }
   }
 
-
   function handleBetting(bet) {
     console.log(bet)
   }
 
   const results = calcResults(amount, multiplier)
 
-
-  let dealerElement = props.isDealer ? <h1>YOU ARE THE DEALER</h1> : <Counter func={handleBetting}/>
+  let dealerElement = props.isDealer ? (
+    <h1>YOU ARE THE DEALER</h1>
+  ) : (
+    <Counter func={handleBetting} />
+  )
 
   return (
     <div>
-      <div >
-        <img className='avatar-container' src={props.avatar} alt="player avatar"></img>
+      <div>
+        <img
+          className="avatar-container"
+          src={props.avatar}
+          alt="player avatar"
+        ></img>
         <h1>{props.name}</h1>
-        
       </div>
       <div>
         <h2>Wallet: {individualWallet}</h2>
-        <button onClick={()=> setIndividualWallet(individualWallet + results)}>ADD TO WINNINGS</button>
-        <button onClick={()=> setIndividualWallet(individualWallet - results)}>DEDUCT FROM WALLET</button>
+        <button onClick={() => setIndividualWallet(individualWallet + results)}>
+          ADD TO WINNINGS
+        </button>
+        <button onClick={() => setIndividualWallet(individualWallet - results)}>
+          DEDUCT FROM WALLET
+        </button>
       </div>
       <Dice />
       {dealerElement}
-      
     </div>
   )
 }
-    
-    
-
 
 export default Player

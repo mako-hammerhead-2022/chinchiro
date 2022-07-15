@@ -24,7 +24,6 @@ router.post('/', async (req, res) => {
   }
 })
 
-
 router.get('/allusers', (req, res) => {
   db.getAllUsers()
     .then((result) => {
@@ -33,6 +32,8 @@ router.get('/allusers', (req, res) => {
     .catch((err) => {
       console.error(err)
       res.status(500).send(err.message)
+    })
+})
 
 router.get('/:authId', (req, res) => {
   let authId = req.params.authId
@@ -71,6 +72,5 @@ router.post('/earnings', (req, res) => {
     .catch((err) => {
       console.log(err)
       res.status(500).send({ message: 'Something went wrong' })
-
     })
 })
