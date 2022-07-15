@@ -3,7 +3,6 @@ import request from 'superagent'
 const url = '/api/v1'
 
 export function updateUserWins(data) {
-  console.log(data)
   return request
     .post(`${url}/users/tally`)
     .send(data)
@@ -17,7 +16,6 @@ export function updateUserWins(data) {
 }
 
 export function updateUserEarnings(data) {
-  console.log(data)
   return request
     .post(`${url}/users/earnings`)
     .send(data)
@@ -31,7 +29,6 @@ export function updateUserEarnings(data) {
 }
 
 export function getUserInfo(authId) {
-  console.log(authId)
   return request
     .get(`${url}/users/${authId}`)
     .then((response) => {

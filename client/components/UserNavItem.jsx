@@ -3,19 +3,28 @@ import React, { useEffect, useState } from 'react'
 
 import '../styles/index.scss'
 
-export default function UserNavItem(props) {
-  const [userData, setUserData] = useState('')
-
+export default function UserNavItem({ userInfo }) {
   return (
     <>
       <div className="nav-item-container user-info-container">
         <div className="nav-user-info">
-          <img
-            alt="the user's avatar"
-            src="img/punk0561.png"
-            className="user-image"
-          />
-          <p className="username">Lorem</p>
+          <div className="nav-user-image">
+            <img
+              alt="the user's avatar"
+              src={userInfo.avatar}
+              className="user-image"
+            />
+          </div>
+
+          <div className="nav-user-textual">
+            <p className="subinfo username">{userInfo.userName}</p>
+            <div className="nav-tally-earnings">
+              <p className="subinfo tally">Wins: {userInfo.win_tally}</p>
+              <p className="subinfo earnings">
+                Earnings: {userInfo.total_earnings}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </>

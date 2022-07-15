@@ -17,7 +17,7 @@ body {
   background: black;
   opacity: 100;
     color: white;
-    height: 3rem;
+    height: 4rem;
     display: flex;
   align-items: center;
 }
@@ -31,7 +31,7 @@ body {
 }
 
 .nav-group{
-  width: 30%;
+  width: 40%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -44,10 +44,48 @@ body {
     color: white;
 }
 
+.user-info-container{
+  width: 50%;
+}
 
 .nav-user-info{
   display: flex;
     align-items: center;
+    width: 100%;
+ 
+}
+
+.nav-user-image{
+  width: 25%;
+}
+
+.user-image{
+  height: 100%;
+  width: 100%;
+}
+
+.nav-user-textual{
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.username{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-family: sans-serif;
+}
+
+.nav-tally-earnings{
+  display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: .9rem
+}
+
+.subinfo{
+  margin: 0 0 0 .25rem;
 }
 
 .avatar-collection-container{

@@ -42,7 +42,7 @@ router.post('/tally', (req, res) => {
   let amount = Number(req.body[1])
   db.updateUserWins(authId, amount)
     .then((data) => {
-      console.log(data)
+      console.log('Updated Tally!')
     })
     .catch((err) => {
       console.log(err)
@@ -56,7 +56,7 @@ router.post('/earnings', (req, res) => {
   let amount = Number(req.body[1])
   db.updateUserEarnings(authId, amount)
     .then((data) => {
-      console.log(data)
+      console.log('Updated Earning!')
     })
     .catch((err) => {
       console.log(err)

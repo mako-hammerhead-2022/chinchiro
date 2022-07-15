@@ -11,7 +11,7 @@ module.exports = {
 
 function getUserByAuthId(authId, db = connection) {
   return db('users')
-    .select('username', 'avatar')
+    .select('username', 'avatar', 'win_tally', 'total_earnings')
     .first()
     .where('auth0_id', authId)
 }

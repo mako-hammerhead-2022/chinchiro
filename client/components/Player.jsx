@@ -10,22 +10,40 @@ function Player() {
   const amount = useSelector((state) => state.counter)
   const user = useSelector((state) => state.loggedInUser)
 
-  let multiplier = 3
+  let multiplier = 1
 
   useEffect(() => {
-    let data = [user.auth0Id, wallet]
-    user != ''
-      ? api
-          .updateUserEarnings(data)
-          .then((result) => {
-            console.log(result)
-            return null
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-      : console.log('No user')
-  }, [wallet])
+    if (user !== '') {
+      let data = [user.auth0Id, amount]
+      api
+        .updateUserEarnings(data)
+        .then((result) => {
+          return null
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    } else {
+      console.log('No user')
+    }
+  }, [wallet, user])
+
+  useEffect(() => {
+    if (wallet === 0) {
+      let data = [user.auth0Id, -1]
+      api
+        .updateUserWins(data)
+        .then((result) => {
+          console.log(result)
+          return null
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    } else {
+      return
+    }
+  }, [wallet, user])
 
   const dispatch = useDispatch()
 

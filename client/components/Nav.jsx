@@ -10,26 +10,29 @@ import * as api from '../apiClient'
 function Nav() {
   const { logout, loginWithRedirect } = useAuth0()
   const user = useSelector((state) => state.loggedInUser)
-  const [userInfo, setUserInfo] = useState({
-    userName: '',
-    avatar: '',
-  })
+  const wallet = useSelector((state) => state.playerWallet)
+  console.log(wallet)
+
+  const [userInfo, setUserInfo] = useState({})
 
   useEffect(() => {
-    console.log(user.auth0Id)
     api
       .getUserInfo(user.auth0Id)
       .then((userData) => {
-        console.log(userData)
-        // setUserInfo(userInfo)
-        // console.log(userInfo)
+        const userObj = {
+          userName: userData.username,
+          avatar: userData.avatar,
+          win_tally: userData.win_tally,
+          total_earnings: userData.total_earnings,
+        }
+        setUserInfo(userObj)
+
         return null
       })
       .catch((err) => {
         console.log(err)
       })
-  }, [user])
-
+  }, [user, wallet])
   // const auth0Id = user?.auth0Id,
 
   function handleLogoff(e) {
@@ -47,7 +50,6 @@ function Nav() {
   function handleSignIn(e) {
     e.preventDefault()
     loginWithRedirect()
-    console.log()
   }
   return (
     <>
@@ -73,7 +75,7 @@ function Nav() {
                   Log off
                 </a>
               </div>
-              <UserNavItem />
+              <UserNavItem userInfo={userInfo} />
             </IfAuthenticated>
             <IfNotAuthenticated>
               <div className="nav-item-container">
