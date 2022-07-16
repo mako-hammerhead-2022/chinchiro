@@ -2,7 +2,18 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
+  font-family: sans-serif;
+  font-size: 1rem;
+}
 
+h1 {
+  font-family: sans-serif;
+  font-size: 1.4rem;
+}
+
+h2 {
+  font-family: sans-serif;
+  font-size: 1.2rem;
 }
 
 @font-face {
@@ -138,7 +149,16 @@ body {
 .play-container{
   display: flex;
   justify-content: center;
+}
 
+// modal
+
+.paragraph-container{
+  margin-top: .3rem;
+}
+
+.paragraph-header{
+  font-weight: 700;
 }
 
 
