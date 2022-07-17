@@ -1,3 +1,23 @@
+export const newUser = {
+  auth0_id: 'auth0|000',
+  email: 'alice@denton.com',
+  username: 'Alice',
+  win_tally: 22,
+  loss_tally: 5,
+  total_earnings: 84,
+  avatar: 'img/punk9052.png',
+}
+
+export const userInfo = {
+  auth0_id: 'auth0|000',
+  email: 'alice@denton.com',
+  username: 'Alice',
+  win_tally: 22,
+  loss_tally: 5,
+  total_earnings: 84,
+  avatar: 'img/punk9052.png',
+}
+
 export const arrTwoUsers = [
   {
     auth0_id: 'auth0|456',

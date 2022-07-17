@@ -4,11 +4,11 @@ import '../styles/index.scss'
 
 const PlayerList = ({ players }) => {
   return (
-    <div className='play-container'>
+    <div className="play-container">
       {players.slice(0, 4).map((player) => {
         console.log(player.isDealer)
         return (
-          <div className='card' key={player.auth0_id}>
+          <div className="card" key={player.auth0_id}>
             <Player
               id={player.id}
               name={player.username}

@@ -51,6 +51,7 @@ router.post('/tally', (req, res) => {
   console.log(req.body)
   let authId = req.body[0]
   let amount = Number(req.body[1])
+
   db.updateUserWins(authId, amount)
     .then((data) => {
       console.log('Updated Tally!')
