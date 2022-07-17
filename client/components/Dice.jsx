@@ -46,11 +46,11 @@ const Dice = () => {
     
     
     setRollP1(orderDice(roll))
-    scoreDouble(roll)
-    scoreTriple(roll)
-    scoreRun(roll)
+    scoreDouble(rollP1)
+    scoreTriple(rollP1)
+    scoreRun(rollP1)
     checkPisser(pisser)
-    scoreBust(roll, pisser)
+    scoreBust(rollP1, pisser)
 
     /* dispatch(rotateDealer()) */
 

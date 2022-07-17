@@ -16,6 +16,14 @@ export function removeFromWallet(id, amount) {
   }
 }
 
+export function addBet(id, amount) {
+  return {
+    type: 'ADD_BET',
+    id,
+    amount,
+  }
+}
+
 export function rotateDealer() {
   return {
     type: 'ROTATE_DEALER',
@@ -51,6 +59,7 @@ export default function playersReducer(state = null, action) {
         ...player,
         isDealer: false,
         wallet: 0,
+        bet: 0,
         id: index,
       }))
 
@@ -80,6 +89,15 @@ export default function playersReducer(state = null, action) {
               player.wallet - action.amount > 0
                 ? player.wallet - action.amount
                 : 0,
+          }
+        } else return player
+      })
+    case 'ADD_BET':
+      return state.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            bet: player.bet + action.amount,
           }
         } else return player
       })

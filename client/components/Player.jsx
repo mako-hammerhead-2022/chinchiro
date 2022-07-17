@@ -10,7 +10,6 @@ function Player(props) {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.loggedInUser)
 
-  let multiplier = 1
 
   useEffect(() => {
     if (user !== '') {
@@ -28,9 +27,7 @@ function Player(props) {
     }
   }, [user])
 
-  function handleBetting() {
-    // console.log()
-  }
+ 
 
   return (
     <div>
@@ -55,7 +52,7 @@ function Player(props) {
       {props.isDealer ? (
         <h1>YOU ARE THE DEALER</h1>
       ) : (
-        <Counter func={handleBetting} />
+        <Counter id={props.id} bet={props.bet} />
       )}
     </div>
   )
