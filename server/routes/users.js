@@ -53,8 +53,8 @@ router.post('/tally', (req, res) => {
   let amount = Number(req.body[1])
 
   db.updateUserWins(authId, amount)
-    .then((data) => {
-      console.log('Updated Tally!')
+    .then(() => {
+      res.sendStatus(204) // 🥳
     })
     .catch((err) => {
       console.log(err)
