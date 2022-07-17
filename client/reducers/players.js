@@ -52,6 +52,7 @@ export default function playersReducer(state = null, action) {
         wallet: 0,
         id: index,
       }))
+
     case 'START_GAME':
       return state.map((player) => {
         if (player.id === 0) {

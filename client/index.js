@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Auth0Provider } from '@auth0/auth0-react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import reducers from './reducers'
 import App from './components/App'

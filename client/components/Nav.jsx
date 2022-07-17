@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -53,44 +54,46 @@ function Nav() {
     e.preventDefault()
     loginWithRedirect()
   }
+
   return (
     <>
-      <nav className='navbar-container'>
-        <div className='navbar'>
-          <div className='nav-header-container'>
-            <div className='nav-item-container'>
-              <Link className='nav-item header' to='/'>
+      <nav className="navbar-container">
+        <div className="navbar">
+          <div className="nav-header-container">
+            <div className="nav-item-container">
+              <Link className="nav-item header" to="/">
                 <img
-                  className='logo'
-                  src='img/chinchirro-logo-1.png'
-                  alt='the logo'
+                  className="logo"
+                  src="img/chinchirro-logo-1.png"
+                  alt="the logo"
                 />
               </Link>
             </div>
           </div>
 
-          <div className='nav-group'>
-            <div className='nav-item-container'>
-              <Link className='nav-item' to='/'>
+          <div className="nav-group">
+            <div className="nav-item-container">
+              <Link className="nav-item" to="/">
                 Home
               </Link>
             </div>
+
             <IfAuthenticated>
-              <div className='nav-item-container'>
-                <a className='nav-item' href='/' onClick={handleLogoff}>
+              <div className="nav-item-container">
+                <a className="nav-item" href="/" onClick={handleLogoff}>
                   Log off
                 </a>
               </div>
               <UserNavItem userInfo={userInfo} />
             </IfAuthenticated>
             <IfNotAuthenticated>
-              <div className='nav-item-container'>
-                <a className='nav-item' href='/' onClick={handleRegister}>
+              <div className="nav-item-container">
+                <a className="nav-item" href="/" onClick={handleRegister}>
                   Register
                 </a>
               </div>
-              <div className='nav-item-container'>
-                <a className='nav-item' href='/' onClick={handleSignIn}>
+              <div className="nav-item-container">
+                <a className="nav-item" href="/" onClick={handleSignIn}>
                   Sign in
                 </a>
               </div>
