@@ -1,6 +1,6 @@
 import React from 'react'
 import Player from './Player'
-import '../styles/index.scss'
+// import '../styles/index.scss'
 
 const PlayerList = ({ players }) => {
   return (

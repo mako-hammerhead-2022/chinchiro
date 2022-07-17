@@ -17,10 +17,14 @@ export default function UserNavItem({ userInfo }) {
           </div>
 
           <div className="nav-user-textual">
-            <p className="subinfo username">{userInfo.userName}</p>
+            <p className="subinfo username" alt="username">
+              {userInfo.userName}
+            </p>
             <div className="nav-tally-earnings">
-              <p className="subinfo tally">Wins: {userInfo.win_tally}</p>
-              <p className="subinfo earnings">
+              <p className="subinfo tally" data-testid="win-tally">
+                Wins: {userInfo.win_tally}
+              </p>
+              <p className="subinfo earnings" data-testid="total-earnings">
                 Earnings: {userInfo.total_earnings}
               </p>
             </div>
