@@ -141,6 +141,7 @@ export function orderDice(rollArray) {
       newD3 = rollArray[2]
     }
   }
+
   console.log('New Order', newD1, newD2, newD3)
   return [newD1, newD2, newD3]
 }

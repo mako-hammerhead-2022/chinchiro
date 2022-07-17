@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -53,13 +54,28 @@ function Nav() {
     e.preventDefault()
     loginWithRedirect()
   }
+
   return (
     <>
+<<<<<<< HEAD
       <nav className="navbar-container">
         <div className="navbar" alt="navbar">
           <div className="nav-header-container">
             <div className="nav-item-container">
               <Link className="nav-item header" to="/">
+||||||| 9e74a41
+      <nav className='navbar-container'>
+        <div className='navbar'>
+          <div className='nav-header-container'>
+            <div className='nav-item-container'>
+              <Link className='nav-item header' to='/'>
+=======
+      <nav className="navbar-container">
+        <div className="navbar">
+          <div className="nav-header-container">
+            <div className="nav-item-container">
+              <Link className="nav-item header" to="/">
+>>>>>>> b6068d4b022b0c9c7c9e5c6fb8b5e1f66736f606
                 <img
                   className="logo"
                   src="img/chinchirro-logo-1.png"
@@ -75,6 +91,7 @@ function Nav() {
                 Home
               </Link>
             </div>
+
             <IfAuthenticated>
               <div className="nav-item-container">
                 <a className="nav-item" href="/" onClick={handleLogoff}>
