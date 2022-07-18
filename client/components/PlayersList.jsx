@@ -1,12 +1,11 @@
 import React from 'react'
 import Player from './Player'
-import '../styles/index.scss'
+// import '../styles/index.scss'
 
 const PlayerList = ({ players }) => {
   return (
     <div className="play-container">
-      {players.slice(0, 4).map((player) => {
-        console.log(player.isDealer)
+      {players.slice(0, 4).map((player, i) => {
         return (
           <div className="card" key={player.auth0_id}>
             <Player

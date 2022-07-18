@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addBet, removeBet } from '../reducers/players'
 
-function Counter(props){
+function Counter(props) {
   const dispatch = useDispatch()
 
   return (
@@ -22,6 +22,13 @@ function Counter(props){
       <div>
         <div style={{ marginTop: 10 }}>
           <button>Reset Bet</button>
+        </div>
+        <div>
+          <div style={{ marginTop: 10 }}>
+            <button className="bet-button" onClick={() => setBet(0)}>
+              Reset Amount
+            </button>
+          </div>
         </div>
       </div>
     </div>

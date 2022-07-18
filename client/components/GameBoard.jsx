@@ -14,7 +14,9 @@ export default function GameBoard() {
 
   return (
     <>
-      <div className="main">{players && <PlayerList players={players} />}</div>
+      <div className="main" data-testid="gameboard-testid">
+        {players && <PlayerList players={players} />}
+      </div>
     </>
   )
 }

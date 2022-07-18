@@ -11,21 +11,21 @@ function Player(props) {
   const user = useSelector((state) => state.loggedInUser)
 
 
-  useEffect(() => {
-    if (user !== '') {
-      let data = [user.auth0Id, 1000]
-      api
-        .updateUserEarnings(data)
-        .then((result) => {
-          return null
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    } else {
-      console.log('No user')
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if (user !== '') {
+  //     let data = [user.auth0Id, 1000]
+  //     api
+  //       .updateUserEarnings(data)
+  //       .then((result) => {
+  //         return null
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   } else {
+  //     console.log('No user')
+  //   }
+  // }, [user])
 
  
 
@@ -33,16 +33,16 @@ function Player(props) {
     <div>
       <div>
         <img
-          className='avatar-container'
+          className="avatar-container"
           src={props.avatar}
-          alt='player avatar'
+          alt="player avatar"
         ></img>
         <h1>{props.name}</h1>
       </div>
       <div>
         <h2>Wallet: {props.wallet}</h2>
-        <button onClick={() => dispatch(addToWallet(props.id, props.bet))}>
-          ADD TO WINNINGS
+        <button onClick={() => dispatch(addToWallet(props.id, calcResults(props.bet, props.result)))}>
+          ADD WINNINGS
         </button>
         <button onClick={() => dispatch(removeFromWallet(props.id, calcResults(props.bet, props.result)))}>
           DEDUCT FROM WALLET
