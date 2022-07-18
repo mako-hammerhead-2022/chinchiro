@@ -11,7 +11,6 @@ function Player(props) {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.loggedInUser)
 
-  let multiplier = 1
 
   // useEffect(() => {
   //   if (user !== '') {
@@ -29,9 +28,7 @@ function Player(props) {
   //   }
   // }, [user])
 
-  function handleBetting() {
-    // console.log()
-  }
+ 
 
   return (
     <div>
@@ -45,18 +42,18 @@ function Player(props) {
       </div>
       <div>
         <h2>Wallet: {props.wallet}</h2>
-        <button onClick={() => dispatch(addToWallet(props.id, 200))}>
+        <button onClick={() => dispatch(addToWallet(props.id, props.bet))}>
           ADD TO WINNINGS
         </button>
-        <button onClick={() => dispatch(removeFromWallet(props.id, 200))}>
+        <button onClick={() => dispatch(removeFromWallet(props.id, calcResults(props.bet, props.result)))}>
           DEDUCT FROM WALLET
         </button>
       </div>
-      <Dice />
+      <Dice id={props.id} dice={props.dice} />
       {props.isDealer ? (
         <h1>YOU ARE THE DEALER</h1>
       ) : (
-        <Counter func={handleBetting} />
+        <Counter id={props.id} bet={props.bet} />
       )}
     </div>
   )

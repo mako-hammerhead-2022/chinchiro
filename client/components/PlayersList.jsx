@@ -14,6 +14,8 @@ const PlayerList = ({ players }) => {
               avatar={player.avatar}
               isDealer={player.isDealer}
               wallet={player.wallet}
+              bet={player.bet}
+              dice={player.dice}
             />
           </div>
         )
