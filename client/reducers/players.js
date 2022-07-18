@@ -32,6 +32,14 @@ export function removeBet(id, amount) {
   }
 }
 
+export function diceResult(id, result) {
+  return {
+    type: 'DICE_RESULT',
+    id,
+    result,
+  }
+}
+
 export function rotateDealer() {
   return {
     type: 'ROTATE_DEALER',
@@ -117,6 +125,16 @@ export default function playersReducer(state = null, action) {
             ...player,
             bet:
               player.bet - action.amount > 0 ? player.bet - action.amount : 0,
+          }
+        } else return player
+      })
+
+    case 'DICE_RESULT':
+      return state.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            result: action.result,
           }
         } else return player
       })

@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { diceResult } from '../reducers/players'
 import Player from './Player.jsx'
 
 import {
@@ -10,7 +12,10 @@ import {
   orderDice,
 } from '../actions/actions.js'
 
-const Dice = () => {
+const Dice = (props) => {
+
+  const dispatch = useDispatch()
+
   const diceImage = [
     '',
     '/dice1.png',
@@ -34,27 +39,30 @@ const Dice = () => {
   const [rollP1, setRollP1] = useState([1, 1, 1])
 
   function rollDiceP1() {
-    let roll = [getRandomNum(1, 7), getRandomNum(1, 7), getRandomNum(1, 7)]
-    
+    let roll = orderDice([getRandomNum(1, 7), getRandomNum(1, 7), getRandomNum(1, 7)])
     let pisser = getRandomNum(1, 200)
-
-    // calculate score and store as a value
-
-    /* let score = calculateScore(roll) */
-    // round of betting
-    // Store Roll
-    
-    
-    setRollP1(orderDice(roll))
-    scoreDouble(rollP1)
-    scoreTriple(rollP1)
-    scoreRun(rollP1)
-    checkPisser(pisser)
-    scoreBust(rollP1, pisser)
-
-    /* dispatch(rotateDealer()) */
-
+    return calcResult(roll, pisser)
   }
+  
+  function calcResult(roll, pisser){
+    // calculate score and store as a value    
+    setRollP1(roll)
+    if(scoreDouble(roll) != false){
+      return scoreDouble(roll)
+    } else if(scoreTriple(roll) == 'x3'){
+      return 'x3'
+    }else if(scoreTriple(roll) == 'x5'){
+      return 'x5'
+    }else if(scoreRun(roll) == '-x2'){
+      return '-x2'
+    }else if(scoreRun(roll) == 'x2'){
+      return 'x2'
+    }else if(checkPisser(pisser) == 'pisser'){
+      return 'pisser'
+    }else {
+      return 'bust'
+    }
+    }
 
   return (
     <div>
@@ -79,7 +87,7 @@ const Dice = () => {
             height={'50px'}
           />
         </div>
-        <button onClick={rollDiceP1}>ROLL THE DICE</button>
+        <button onClick={()=>dispatch(diceResult(props.id, rollDiceP1()))}>ROLL THE DICE</button>
       </div>
     </div>
   )
