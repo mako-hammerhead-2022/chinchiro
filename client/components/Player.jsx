@@ -41,7 +41,7 @@ function Player(props) {
       </div>
       <div>
         <h2>Wallet: {props.wallet}</h2>
-        <button onClick={() => dispatch(addToWallet(props.id, props.bet))}>
+        <button onClick={() => dispatch(addToWallet(props.id, calcResults(props.bet, props.result)))}>
           ADD TO WINNINGS
         </button>
         <button onClick={() => dispatch(removeFromWallet(props.id, calcResults(props.bet, props.result)))}>
