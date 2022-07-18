@@ -7,10 +7,10 @@ const PlayerList = ({ players }) => {
     <div className="play-container">
       {players.slice(0, 4).map((player, i) => {
         return (
-          <div className="card" key={player.auth0Id}>
+          <div className="card" key={player.auth0_id}>
             <Player
-              id={player.auth0Id}
-              name={player.userName}
+              id={player.id}
+              name={player.username}
               avatar={player.avatar}
               isDealer={player.isDealer}
               wallet={player.wallet}

@@ -94,7 +94,6 @@ describe('test dice rolls', () => {
     const D3 = 4
     const expected = [2, 4, 6]
     const actual = Dice.orderDice([D1, D2, D3])
-    console.log(actual)
     expect(actual).toEqual(expected)
   })
 })
