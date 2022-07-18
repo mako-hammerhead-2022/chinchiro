@@ -33,4 +33,5 @@ describe('player reducer', () => {
     const newState = playersReducer(state, action)
     expect(newState[0].result).toBe(5)
   })
+  test.todo('makes next player active')
 })

@@ -73,6 +73,7 @@ export default function playersReducer(state = null, action) {
       return action.players.map((player, index) => ({
         ...player,
         isDealer: false,
+        isActive: false,
         wallet: 0,
         bet: 0,
         id: index,
@@ -141,6 +142,10 @@ export default function playersReducer(state = null, action) {
 
     case 'ROTATE_DEALER':
       return getNewDealer(state)
+
+    case 'CHANGE_PLAYER':
+      return makePlayerActive(state)
+
     default:
       return state
   }
@@ -158,4 +163,8 @@ function getNewDealer(state) {
       return { ...player, isDealer: true }
     } else return player
   })
+}
+
+function makePlayerActive(state) {
+  console.log(state)
 }
