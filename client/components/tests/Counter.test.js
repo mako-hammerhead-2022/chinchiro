@@ -9,9 +9,12 @@ import { useDispatch } from 'react-redux'
 
 import Counter from '../Counter'
 
+
 jest.mock('react-redux')
 
-describe('<Counter />', () => {
+
+describe.skip('<Counter />', () => {
+
   test('Counter header rendered', () => {
     const myFakeDispatch = jest.fn()
     useDispatch.mockReturnValue(myFakeDispatch)
@@ -26,7 +29,7 @@ describe('<Counter />', () => {
     expect(buttons).toHaveLength(8)
   })
 
-  describe('check button clicks', () => {
+  describe.skip('check button clicks', () => {
     test('Clicking add +1 adds $1 to bet', () => {
       render(<Counter />)
       fireEvent(

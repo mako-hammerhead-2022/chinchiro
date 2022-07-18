@@ -13,7 +13,6 @@ import {
 } from '../actions/actions.js'
 
 const Dice = (props) => {
-
   const dispatch = useDispatch()
 
   const diceImage = [
@@ -26,7 +25,6 @@ const Dice = (props) => {
     '/dice6.png',
   ]
 
-
   // Generate random number
   function getRandomNum(min, max) {
     min = Math.ceil(min)
@@ -34,35 +32,38 @@ const Dice = (props) => {
     return Math.floor(Math.random() * (max - min) + min)
   }
 
-  
   // state of all dice
   const [rollP1, setRollP1] = useState([1, 1, 1])
 
   function rollDiceP1() {
-    let roll = orderDice([getRandomNum(1, 7), getRandomNum(1, 7), getRandomNum(1, 7)])
+    let roll = orderDice([
+      getRandomNum(1, 7),
+      getRandomNum(1, 7),
+      getRandomNum(1, 7),
+    ])
     let pisser = getRandomNum(1, 200)
     return calcResult(roll, pisser)
   }
-  
-  function calcResult(roll, pisser){
-    // calculate score and store as a value    
+
+  function calcResult(roll, pisser) {
+    // calculate score and store as a value
     setRollP1(roll)
-    if(scoreDouble(roll) != false){
+    if (scoreDouble(roll) != false) {
       return scoreDouble(roll)
-    } else if(scoreTriple(roll) == 'x3'){
+    } else if (scoreTriple(roll) == 'x3') {
       return 'x3'
-    }else if(scoreTriple(roll) == 'x5'){
+    } else if (scoreTriple(roll) == 'x5') {
       return 'x5'
-    }else if(scoreRun(roll) == '-x2'){
+    } else if (scoreRun(roll) == '-x2') {
       return '-x2'
-    }else if(scoreRun(roll) == 'x2'){
+    } else if (scoreRun(roll) == 'x2') {
       return 'x2'
-    }else if(checkPisser(pisser) == 'pisser'){
+    } else if (checkPisser(pisser) == 'pisser') {
       return 'pisser'
-    }else {
+    } else {
       return 'bust'
     }
-    }
+  }
 
   return (
     <div>
@@ -87,7 +88,9 @@ const Dice = (props) => {
             height={'50px'}
           />
         </div>
-        <button onClick={()=>dispatch(diceResult(props.id, rollDiceP1()))}>ROLL THE DICE</button>
+        <button onClick={() => dispatch(diceResult(props.id, rollDiceP1()))}>
+          ROLL THE DICE
+        </button>
       </div>
     </div>
   )

@@ -5,12 +5,11 @@ import Dice from './Dice'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToWallet, removeFromWallet } from '../reducers/players'
 import * as api from '../apiClient'
+// import '../styles/index.scss'
 
 function Player(props) {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.loggedInUser)
-
-
   // useEffect(() => {
   //   if (user !== '') {
   //     let data = [user.auth0Id, 1000]
@@ -27,28 +26,42 @@ function Player(props) {
   //   }
   // }, [user])
 
- 
-
   return (
     <div>
-      <div>
-        <img
-          className="avatar-container"
-          src={props.avatar}
-          alt="player avatar"
-        ></img>
-        <h1>{props.name}</h1>
+      <div className="card-top">
+        <div className="user-info">
+          <img
+            className="avatar-container"
+            src={props.avatar}
+            alt="player avatar"
+          ></img>
+          <h1>{props.name}</h1>
+        </div>
+        <div className="dice-result">{props.result}</div>
       </div>
       <div>
         <h2>Wallet: {props.wallet}</h2>
-        <button onClick={() => dispatch(addToWallet(props.id, calcResults(props.bet, props.result)))}>
+        <button
+          onClick={() =>
+            dispatch(
+              addToWallet(props.id, calcResults(props.bet, props.result))
+            )
+          }
+        >
           ADD WINNINGS
         </button>
-        <button onClick={() => dispatch(removeFromWallet(props.id, calcResults(props.bet, props.result)))}>
+        <button
+          onClick={() =>
+            dispatch(
+              removeFromWallet(props.id, calcResults(props.bet, props.result))
+            )
+          }
+        >
           DEDUCT FROM WALLET
         </button>
       </div>
       <Dice id={props.id} dice={props.dice} />
+      {/* or dice? */}
       {props.isDealer ? (
         <h1>YOU ARE THE DEALER</h1>
       ) : (

@@ -3,9 +3,6 @@
 import React from 'react'
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { useSelector } from 'react-redux'
-import { MemoryRouter } from 'react-router-dom'
-import { getUserInfo } from '../../apiClient'
 import { player } from '../../../test/fakeData'
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -25,10 +22,12 @@ describe('<Player />', () => {
     render(
       <Player
         id={player.id}
-        name={player.userName}
+        name={player.username}
         avatar={player.avatar}
         isDealer={player.isDealer}
         wallet={player.wallet}
+        bet={player.bet}
+        result={player.result}
       />
     )
     const userName = screen.getByText('Vince').textContent
