@@ -5,6 +5,7 @@ import Dice from './Dice'
 import { useDispatch , useSelector } from 'react-redux'
 import { addToWallet, removeFromWallet } from '../reducers/players'
 
+
 function Player(props) {
 
   const players = useSelector((state) => state.players)
@@ -29,19 +30,22 @@ function Player(props) {
 
   return (
     <div>
-      <div>
-        <img
-          className="avatar-container"
-          src={props.avatar}
-          alt="player avatar"
-        ></img>
-        <h1>{props.name}</h1>
+      <div className="card-top">
+        <div className="user-info">
+          <img
+            className="avatar-container"
+            src={props.avatar}
+            alt="player avatar"
+          ></img>
+          <h1>{props.name}</h1>
+        </div>
+        <div className="dice-result">{props.result}</div>
       </div>
       <div>
         <h2>Wallet: {props.wallet}</h2>
-        
       </div>
       <Dice id={props.id} dice={props.dice} />
+      {/* or dice? */}
       {props.isDealer ? (
         <h1>YOU ARE THE DEALER</h1>
       ) : (<>

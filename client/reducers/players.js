@@ -76,6 +76,7 @@ export default function playersReducer(state = null, action) {
         wallet: 1000,
         bet: 0,
         id: index,
+        result: null, // should change to something, idk how it's being used, maybe 0?
       }))
 
     case 'START_GAME':

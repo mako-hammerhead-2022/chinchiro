@@ -1,5 +1,4 @@
 //external dependencies
-import React from 'react'
 import { useState } from 'react'
 import '../styles/index.scss'
 
@@ -31,8 +30,6 @@ const avatarArr = [
 ]
 
 export default function Avatars({ handleAddAvatar }) {
-  const [avatar, setAvatar] = useState('')
-
   const handleClick = (data) => {
     console.log(data)
     const avatarData = {
@@ -49,7 +46,7 @@ export default function Avatars({ handleAddAvatar }) {
         className="avatar-container"
         name={avatar.loc}
         value={avatar.loc}
-        onClick={(e) => {
+        onClick={() => {
           handleClick(avatar.loc)
         }}
       >

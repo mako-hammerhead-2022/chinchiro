@@ -1,7 +1,9 @@
+import { orderDice } from '../client/actions/actions'
+
 export const newUser = {
-  auth0Id: 'auth0|000',
+  auth0_id: 'auth0|000',
   email: 'alice@denton.com',
-  userName: 'Alice',
+  username: 'Alice',
   win_tally: 22,
   loss_tally: 5,
   total_earnings: 84,
@@ -9,9 +11,9 @@ export const newUser = {
 }
 
 export const userInfo = {
-  auth0Id: 'auth0|000',
+  auth0_id: 'auth0|000',
   email: 'alice@denton.com',
-  userName: 'Alice',
+  username: 'Alice',
   win_tally: 22,
   loss_tally: 5,
   total_earnings: 84,
@@ -20,36 +22,36 @@ export const userInfo = {
 
 export const arrUsers = [
   {
-    auth0Id: 'auth0|456',
+    auth0_id: 'auth0|456',
     email: 'henry@denton.com',
-    userName: 'henry',
+    username: 'henry',
     win_tally: 10,
     loss_tally: 5,
     total_earnings: 84,
     avatar: 'img/punk9052.png',
   },
   {
-    auth0Id: 'auth0|789',
+    auth0_id: 'auth0|789',
     email: 'margaux@denton.com',
-    userName: 'margaux',
+    username: 'margaux',
     win_tally: 15,
     loss_tally: 22,
     total_earnings: 50,
     avatar: 'img/punk9052.png',
   },
   {
-    auth0Id: 'auth0|000',
+    auth0_id: 'auth0|000',
     email: 'alice@denton.com',
-    userName: 'Alice',
+    username: 'Alice',
     win_tally: 22,
     loss_tally: 5,
     total_earnings: 84,
     avatar: 'img/punk9052.png',
   },
   {
-    auth0Id: 'auth0|999',
+    auth0_id: 'auth0|999',
     email: 'boris@johnson.com',
-    userName: 'Boris',
+    username: 'Boris',
     win_tally: 12,
     loss_tally: 53,
     total_earnings: 24,
@@ -58,40 +60,62 @@ export const arrUsers = [
 ]
 
 export const player = {
-  auth0Id: 1,
-  userName: 'Vince',
+  auth0_id: 1,
+  username: 'Vince',
   avatar: 'img/punk9052.png',
   isDealer: 'False',
   wallet: 0,
+  bet: 0,
+  result: 0,
 }
 
 export const arrPlayers = [
   {
-    auth0Id: 1,
-    userName: 'Vince',
+    auth0_id: 1,
+    username: 'Vince',
     avatar: 'img/punk9052.png',
     isDealer: 'False',
     wallet: 0,
+    bet: 0,
+    result: 0,
   },
   {
-    auth0Id: 2,
-    userName: 'Rupert',
+    auth0_id: 2,
+    username: 'Rupert',
     avatar: 'img/punk9052.png',
     isDealer: 'True',
     wallet: 0,
+    bet: 0,
+    result: 0,
   },
   {
-    auth0Id: 3,
-    userName: 'Tim',
+    auth0_id: 3,
+    username: 'Tim',
     avatar: 'img/punk9052.png',
     isDealer: 'False',
     wallet: 0,
+    bet: 0,
+    result: 0,
   },
   {
-    auth0Id: 4,
-    userName: 'Mike',
+    auth0_id: 4,
+    username: 'Mike',
     avatar: 'img/punk9052.png',
     isDealer: 'False',
     wallet: 0,
+    bet: 0,
+    result: 0,
   },
 ]
+
+function getRandomNum(min, max) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
+export const fakeDiceRoll = orderDice([
+  getRandomNum(1, 7),
+  getRandomNum(1, 7),
+  getRandomNum(1, 7),
+])
