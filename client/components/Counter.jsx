@@ -11,6 +11,7 @@ function Counter(props){
         Bet: $<span>{props.bet}</span>
       </h2>
       <div>
+
         <button onClick={() => dispatch(addBet(props.id, 1))}>+1</button>
         <button onClick={() => dispatch(addBet(props.id, 5))}>+5</button>
         <button onClick={() => dispatch(addBet(props.id, 10))}>+10</button>
@@ -22,6 +23,13 @@ function Counter(props){
       <div>
         <div style={{ marginTop: 10 }}>
           <button>Reset Bet</button>
+      </div>
+      <div>
+        <div style={{ marginTop: 10 }}>
+          <button className="bet-button" onClick={() => setBet(0)}>
+            Reset Amount
+          </button>
+
         </div>
       </div>
     </div>

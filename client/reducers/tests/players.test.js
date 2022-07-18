@@ -3,11 +3,13 @@ import { arrUsers } from '../../../test/fakeData'
 
 const players = arrUsers
 
+console.log(players)
+
 describe('player reducer', () => {
   test('it should get players ready for a game', () => {
     const action = initiatePlayers(players)
     const newState = playersReducer(undefined, action)
-    expect(newState[0].username).toBe('henry')
+    expect(newState[0].userName).toBe('henry')
   })
 
   test.todo('starts the game')

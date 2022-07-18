@@ -7,25 +7,26 @@ import { addToWallet, removeFromWallet } from '../reducers/players'
 import * as api from '../apiClient'
 
 function Player(props) {
+  console.log(props)
   const dispatch = useDispatch()
   const user = useSelector((state) => state.loggedInUser)
 
 
-  useEffect(() => {
-    if (user !== '') {
-      let data = [user.auth0Id, 1000]
-      api
-        .updateUserEarnings(data)
-        .then((result) => {
-          return null
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    } else {
-      console.log('No user')
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if (user !== '') {
+  //     let data = [user.auth0Id, 1000]
+  //     api
+  //       .updateUserEarnings(data)
+  //       .then((result) => {
+  //         return null
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   } else {
+  //     console.log('No user')
+  //   }
+  // }, [user])
 
  
 
@@ -33,9 +34,9 @@ function Player(props) {
     <div>
       <div>
         <img
-          className='avatar-container'
+          className="avatar-container"
           src={props.avatar}
-          alt='player avatar'
+          alt="player avatar"
         ></img>
         <h1>{props.name}</h1>
       </div>
