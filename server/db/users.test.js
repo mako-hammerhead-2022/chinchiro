@@ -16,7 +16,7 @@ describe('can get user data from db', () => {
   test('gets all the users from the db', () => {
     return dbUsers.getAllUsers().then((users) => {
       expect(users[0]).toHaveProperty('email')
-      expect(users).toHaveLength(6)
+      expect(users).toHaveLength(4)
     })
   })
 
