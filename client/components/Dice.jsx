@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { diceResult } from '../reducers/players'
-import Player from './Player.jsx'
+
 
 import {
   scoreDouble,
   scoreRun,
   scoreTriple,
   checkPisser,
-  scoreBust,
   orderDice,
 } from '../actions/actions.js'
 
