@@ -54,12 +54,13 @@ describe('GET /api/v1/users', () => {
 
   test('get specific user by authId from db', () => {
     db.getUserByAuthId.mockReturnValue(Promise.resolve(newUser))
-    const userId = newUser.auth0Id
+    const userId = newUser.auth0_id
+
     return request(server)
       .get(`/api/v1/users/${userId}`)
       .then((res) => {
         expect(db.getUserByAuthId).toHaveBeenCalledWith(userId)
-        expect(res.body.auth0Id).toBe(userId)
+        expect(res.body.auth0_id).toBe(userId)
       })
   })
 })
