@@ -9,7 +9,7 @@ const PlayerList = ({ players }) => {
           <div className="card" key={player.auth0_id}>
             <Player
               id={player.id}
-              name={player.userName}
+              name={player.username}
               avatar={player.avatar}
               isDealer={player.isDealer}
               wallet={player.wallet}

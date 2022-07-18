@@ -73,7 +73,7 @@ export default function playersReducer(state = null, action) {
       return action.players.map((player, index) => ({
         ...player,
         isDealer: false,
-        wallet: 0,
+        wallet: 1000,
         bet: 0,
         id: index,
       }))
@@ -143,18 +143,18 @@ export default function playersReducer(state = null, action) {
     default:
       return state
   }
-}
 
-function getNewDealer(state) {
-  const currentDealerId = state.find((player) => player.isDealer).id
+  function getNewDealer(state) {
+    const currentDealerId = state.find((player) => player.isDealer).id
 
-  const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
+    const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
 
-  return state.map((player) => {
-    if (player.id === currentDealerId) {
-      return { ...player, isDealer: false }
-    } else if (player.id === nextDealerId) {
-      return { ...player, isDealer: true }
-    } else return player
-  })
+    return state.map((player) => {
+      if (player.id === currentDealerId) {
+        return { ...player, isDealer: false }
+      } else if (player.id === nextDealerId) {
+        return { ...player, isDealer: true }
+      } else return player
+    })
+  }
 }
