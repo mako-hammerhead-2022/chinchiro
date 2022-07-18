@@ -21,14 +21,7 @@ function Counter(props) {
       </div>
       <div>
         <div style={{ marginTop: 10 }}>
-          <button>Reset Bet</button>
-        </div>
-        <div>
-          <div style={{ marginTop: 10 }}>
-            <button className="bet-button" onClick={() => setBet(0)}>
-              Reset Amount
-            </button>
-          </div>
+          <button onClick={() => dispatch(removeBet(props.id, props.bet))}>Reset Bet</button>
         </div>
       </div>
     </div>

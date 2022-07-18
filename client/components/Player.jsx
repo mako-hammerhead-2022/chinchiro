@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import Counter from './Counter'
 import Dice from './Dice'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch , useSelector } from 'react-redux'
 import { addToWallet, removeFromWallet } from '../reducers/players'
-import * as api from '../apiClient'
-// import '../styles/index.scss'
+
 
 function Player(props) {
+
+  const players = useSelector((state) => state.players)
+
+  
+  
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.loggedInUser)
-  // useEffect(() => {
-  //   if (user !== '') {
-  //     let data = [user.auth0Id, 1000]
-  //     api
-  //       .updateUserEarnings(data)
-  //       .then((result) => {
-  //         return null
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   } else {
-  //     console.log('No user')
-  //   }
-  // }, [user])
+  
+  const PlayerWin = () => {
+    const currentDealer = players.find((player) => player.isDealer)
+    
+    dispatch(addToWallet(props.id, calcResults(props.bet, props.result)))
+    dispatch(removeFromWallet(currentDealer.id, calcResults(props.bet, props.result)))
+  }
+
+  const DealerWin = () => {
+    const currentDealer = players.find((player) => player.isDealer)
+    console.log(currentDealer.result)
+    dispatch(addToWallet(currentDealer.id, calcResults(props.bet, currentDealer.result)))
+    dispatch(removeFromWallet(props.id, calcResults(props.bet, currentDealer.result)))
+  }
 
   return (
     <div>
@@ -41,31 +43,20 @@ function Player(props) {
       </div>
       <div>
         <h2>Wallet: {props.wallet}</h2>
-        <button
-          onClick={() =>
-            dispatch(
-              addToWallet(props.id, calcResults(props.bet, props.result))
-            )
-          }
-        >
-          ADD WINNINGS
-        </button>
-        <button
-          onClick={() =>
-            dispatch(
-              removeFromWallet(props.id, calcResults(props.bet, props.result))
-            )
-          }
-        >
-          DEDUCT FROM WALLET
-        </button>
       </div>
       <Dice id={props.id} dice={props.dice} />
       {/* or dice? */}
       {props.isDealer ? (
         <h1>YOU ARE THE DEALER</h1>
-      ) : (
+      ) : (<>
         <Counter id={props.id} bet={props.bet} />
+        <button onClick={PlayerWin}>
+          WINNER
+        </button>
+        <button onClick={DealerWin}>
+          LOSER
+        </button>
+        </>
       )}
     </div>
   )
@@ -85,13 +76,13 @@ function calcResults(bet, result) {
     case (result = 'x5'):
       return bet * 5
     case (result = '-x2'):
-      return bet * 2 * -1
+      return bet * 2 
     case (result = 'x2'):
       return bet * 2
     case (result = 'pisser'):
-      return 0
+      return bet
     default:
-      return 0
+      return bet
   }
 }
 
