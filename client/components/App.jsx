@@ -9,7 +9,6 @@ import GameBoard from './GameBoard'
 
 import { useAuth0 } from '@auth0/auth0-react'
 import { cacheUser } from '../auth0-utils'
-import { Button } from 'react-bootstrap'
 import AppModal from './widgets/AppModal'
 
 function App() {
