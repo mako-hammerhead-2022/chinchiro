@@ -45,7 +45,6 @@ function Player(props) {
         <h2>Wallet: {props.wallet}</h2>
       </div>
       <Dice id={props.id} dice={props.dice} />
-      {/* or dice? */}
       {props.isDealer ? (
         <h1>YOU ARE THE DEALER</h1>
       ) : (<>
@@ -57,6 +56,10 @@ function Player(props) {
           LOSER
         </button>
         </>
+      )}
+        {props.isActive ? (
+       <p>YOUR TURN</p>
+      ) : ( <p>NOT YOUR TURN</p>
       )}
     </div>
   )
