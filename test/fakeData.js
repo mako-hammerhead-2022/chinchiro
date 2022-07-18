@@ -58,9 +58,40 @@ export const arrUsers = [
 ]
 
 export const player = {
-  id: 1,
+  auth0Id: 1,
   userName: 'Vince',
   avatar: 'img/punk9052.png',
   isDealer: 'False',
   wallet: 0,
 }
+
+export const arrPlayers = [
+  {
+    auth0Id: 1,
+    userName: 'Vince',
+    avatar: 'img/punk9052.png',
+    isDealer: 'False',
+    wallet: 0,
+  },
+  {
+    auth0Id: 2,
+    userName: 'Rupert',
+    avatar: 'img/punk9052.png',
+    isDealer: 'True',
+    wallet: 0,
+  },
+  {
+    auth0Id: 3,
+    userName: 'Tim',
+    avatar: 'img/punk9052.png',
+    isDealer: 'False',
+    wallet: 0,
+  },
+  {
+    auth0Id: 4,
+    userName: 'Mike',
+    avatar: 'img/punk9052.png',
+    isDealer: 'False',
+    wallet: 0,
+  },
+]
