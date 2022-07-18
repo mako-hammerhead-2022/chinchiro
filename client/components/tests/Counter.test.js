@@ -23,7 +23,7 @@ describe('<Counter />', () => {
   test('Buttons rendered', () => {
     render(<Counter />)
     let buttons = screen.getAllByRole('button')
-    expect(buttons).toHaveLength(7)
+    expect(buttons).toHaveLength(8)
   })
 
   describe('check button clicks', () => {
@@ -37,6 +37,7 @@ describe('<Counter />', () => {
         })
       )
       let betAmount = screen.getByRole('heading').textContent
+      console.log(betAmount)
       expect(betAmount).toBe('Bet: $1')
     })
     test('Clicking add +5 adds $5 to bet', () => {
