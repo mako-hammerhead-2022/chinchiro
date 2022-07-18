@@ -72,7 +72,7 @@ function calcResults(bet, result) {
     case (result = 'x5'):
       return bet * 5
     case (result = '-x2'):
-      return bet * 2 * -1
+      return bet * 2 
     case (result = 'x2'):
       return bet * 2
     case (result = 'pisser'):

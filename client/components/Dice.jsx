@@ -46,13 +46,13 @@ const Dice = (props) => {
   function calcResult(roll, pisser){
     // calculate score and store as a value    
     setRollP1(roll)
-    if(scoreDouble(roll) != false){
-      return scoreDouble(roll)
-    } else if(scoreTriple(roll) == 'x3'){
+    if(scoreTriple(roll) == 'x3'){
       return 'x3'
     }else if(scoreTriple(roll) == 'x5'){
       return 'x5'
-    }else if(scoreRun(roll) == '-x2'){
+    }else if(scoreDouble(roll) != false){
+      return scoreDouble(roll)
+    } else if(scoreRun(roll) == '-x2'){
       return '-x2'
     }else if(scoreRun(roll) == 'x2'){
       return 'x2'
