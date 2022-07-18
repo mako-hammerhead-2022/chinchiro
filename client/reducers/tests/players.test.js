@@ -3,8 +3,6 @@ import { arrUsers } from '../../../test/fakeData'
 
 const players = arrUsers
 
-console.log(players)
-
 describe('player reducer', () => {
   test('it should get players ready for a game', () => {
     const action = initiatePlayers(players)

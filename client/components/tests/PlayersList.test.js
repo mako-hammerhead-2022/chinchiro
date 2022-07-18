@@ -4,19 +4,30 @@ import React from 'react'
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { useSelector, Provider } from 'react-redux'
-import { MemoryRouter } from 'react-router-dom'
-import { getUserInfo } from '../../apiClient'
 import { arrPlayers } from '../../../test/fakeData'
+import Player from '../Player'
 
 import PlayersList from '../PlayersList'
 
+jest.mock('../Player')
+Player.mockImplementation(({ id }) => {
+  return <div>Player {id}</div>
+})
+
 describe('<PlayersList />', () => {
-  test.skip('array of 4 players is rendered onto cards', () => {
+  const fakeStore = {
+    getState: () => ({}), // make this a function that returns an object of state if you want
+    dispatch: jest.fn(),
+    subscribe: jest.fn(),
+  }
+  test('array of 4 players is rendered onto cards', () => {
     render(
-      <Provider>
+      <Provider store={fakeStore}>
+        {/* fake props are passed */}
         <PlayersList players={arrPlayers} />
       </Provider>
     )
-    screen.debug()
+    const players = screen.getAllByText(/Player/i)
+    expect(players).toHaveLength(4)
   })
 })

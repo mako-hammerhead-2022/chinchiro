@@ -7,7 +7,6 @@ import { addToWallet, removeFromWallet } from '../reducers/players'
 import * as api from '../apiClient'
 
 function Player(props) {
-  console.log(props)
   const dispatch = useDispatch()
   const user = useSelector((state) => state.loggedInUser)
 

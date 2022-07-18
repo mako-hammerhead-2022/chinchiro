@@ -44,7 +44,6 @@ export function fetchPlayers() {
 }
 
 export default function playersReducer(state = null, action) {
-  console.log(action)
   switch (action.type) {
     case 'INITIATE_PLAYERS':
       return action.players.map((player, index) => ({
