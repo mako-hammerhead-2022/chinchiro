@@ -3,8 +3,7 @@
 import React from 'react'
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { arrUsers } from '../../../test/fakeData'
+import { useDispatch } from 'react-redux'
 
 import GameBoard from '../GameBoard'
 

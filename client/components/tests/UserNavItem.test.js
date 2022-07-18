@@ -19,18 +19,21 @@ describe('<UserNavItem />', () => {
     const UserAvatarElement = screen.getByRole('img')
     expect(UserAvatarElement).toHaveAttribute('src')
   })
+
   test('check username is rendered', () => {
     useSelector.mockReturnValue()
     render(<UserNavItem userInfo={user} />)
     const userName = screen.getByText('Alice')
     expect(userName.textContent).toBe('Alice')
   })
+
   test('check users win tally is rendered', () => {
     useSelector.mockReturnValue()
     render(<UserNavItem userInfo={user} />)
     const userWins = screen.getByTestId('win-tally')
     expect(userWins.textContent).toBe('Wins: 22')
   })
+
   test('check users earnings are rendered', () => {
     useSelector.mockReturnValue()
     render(<UserNavItem userInfo={user} />)

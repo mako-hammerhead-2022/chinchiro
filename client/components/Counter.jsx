@@ -15,17 +15,31 @@ const Counter = (props) => {
         Amount: $<span>{bet}</span>
       </h2>
       <div>
-        <button onClick={() => addBet(1)}>+1</button>
-        <button onClick={() => addBet(5)}>+5</button>
-        <button onClick={() => addBet(10)}>+10</button>
+        <button className="bet-button" onClick={() => addBet(1)}>
+          +1
+        </button>
+        <button className="bet-button" onClick={() => addBet(5)}>
+          +5
+        </button>
+        <button className="bet-button" onClick={() => addBet(10)}>
+          +10
+        </button>
 
-        <button onClick={() => addBet(-1)}>{-1}</button>
-        <button onClick={() => addBet(-5)}>{-5}</button>
-        <button onClick={() => addBet(-10)}>{-10}</button>
+        <button className="bet-button" onClick={() => addBet(-1)}>
+          {-1}
+        </button>
+        <button className="bet-button" onClick={() => addBet(-5)}>
+          {-5}
+        </button>
+        <button className="bet-button" onClick={() => addBet(-10)}>
+          {-10}
+        </button>
       </div>
       <div>
         <div style={{ marginTop: 10 }}>
-          <button onClick={() => setBet(0)}>Reset Amount</button>
+          <button className="bet-button" onClick={() => setBet(0)}>
+            Reset Amount
+          </button>
         </div>
       </div>
     </div>

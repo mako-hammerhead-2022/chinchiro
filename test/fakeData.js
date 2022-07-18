@@ -56,3 +56,11 @@ export const arrUsers = [
     avatar: 'img/punk9052.png',
   },
 ]
+
+export const player = {
+  id: 1,
+  userName: 'Vince',
+  avatar: 'img/punk9052.png',
+  isDealer: 'False',
+  wallet: 0,
+}
