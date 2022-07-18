@@ -4,6 +4,8 @@ import * as types from './types'
 import loggedInUser from './loggedInUser'
 import playersReducer from '../reducers/players'
 
+//I would move all reducers to their own folders
+
 // COUNTER REDUCER
 const counterReducer = (state = 0, { type }) => {
   switch (type) {

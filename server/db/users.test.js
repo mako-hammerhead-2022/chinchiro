@@ -14,6 +14,7 @@ beforeEach(() => {
 
 describe('can get user data from db', () => {
   test('gets all the users from the db', () => {
+    //this should pass in the test db as an argument
     return dbUsers.getAllUsers().then((users) => {
       expect(users[0]).toHaveProperty('email')
       expect(users).toHaveLength(6)
@@ -21,6 +22,7 @@ describe('can get user data from db', () => {
   })
 
   test('gets username and avatar from db', () => {
+    //this should pass in the test db as an argument
     return dbUsers.getUserByAuthId('auth0|123').then((user) => {
       expect(user).toHaveProperty('username')
       expect(user).toHaveProperty('avatar')
@@ -46,6 +48,7 @@ describe('can add or take away user quant', () => {
     return dbUsers
       .updateUserEarnings('auth0|123', 100, testDb)
       .then(() => {
+        //don't forget to pass testDb to every db call
         return testDb('users').select().first().where('auth0_id', 'auth0|123')
       })
       .then((userDetails) => {

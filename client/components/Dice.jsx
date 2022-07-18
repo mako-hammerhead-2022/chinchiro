@@ -38,6 +38,10 @@ const Dice = (props) => {
   // state of all dice
   const [rollP1, setRollP1] = useState([1, 1, 1])
 
+  // this is an ok starting point but you never want to do random number generation on the client side as 
+  // what happens if you paste the following code into your console and then roll the dice? 
+  // Math.random = () => 0.99 
+  // a better way to do this is to do the random dice rolling on the server and use an api call to get the roll
   function rollDiceP1() {
     let roll = orderDice([getRandomNum(1, 7), getRandomNum(1, 7), getRandomNum(1, 7)])
     let pisser = getRandomNum(1, 200)

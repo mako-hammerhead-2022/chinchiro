@@ -1,5 +1,7 @@
 import * as types from '../reducers/types'
 
+//there is a lot of logic in this file, I would definitely want it under test to ensure it is correct
+
 // INCREMENT COUNTER BY 1
 export const incrementCount = () => ({ type: types.INCREMENT })
 
