@@ -20,6 +20,10 @@ function App() {
     setShow(true)
   }
 
+  function startGame() {
+    dispatch({ type: 'START_GAME' })
+    dispatch({ type: 'START_ACTIVE' })
+  }
   return (
     <>
       <AppModal onClose={() => setShow(false)} show={show} />
@@ -29,7 +33,7 @@ function App() {
         <button onClick={() => dispatch({ type: 'ROTATE_DEALER' })}>
           Rotate Dealer
         </button>
-        <button onClick={() => dispatch({ type: 'START_GAME' })}>
+        <button onClick={startGame}>
           START GAME
         </button>
         <button onClick={handleShow}>Rules</button>
