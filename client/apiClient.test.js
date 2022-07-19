@@ -1,6 +1,6 @@
 import nock from 'nock'
-import { getAllUsers } from './apiClient'
-import { arrPlayers } from '../test/fakeData'
+import { getAllUsers, getUserInfo } from './apiClient'
+import { arrPlayers, userInfo } from '../test/fakeData'
 
 //on line 3 import user info from fakedata
 // create scope variable like in the get all users test
@@ -24,7 +24,16 @@ describe('test GET API', () => {
     })
   })
 
-  test.todo('get userinfo')
+  test('get userinfo', () => {
+    const scope = nock('http://localhost')
+      .get('/api/v1/users/allusers/${authId}')
+      .reply(200, userInfo[0])
+    return getUserInfo().then((users) => {
+      expect(users).toEqual(arrPlayers)
+      scope.done()
+      return null
+    })
+  })
 })
 
 describe('test POST API', () => {
