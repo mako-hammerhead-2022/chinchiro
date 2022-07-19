@@ -34,18 +34,38 @@ function Player(props) {
     dispatch(
       removeFromWallet(props.id, calcResults(props.bet, currentDealer.result))
     )
-
   }
 
-  let diceRoll
+  let diceRoll = displayRoll()
 
-  if (props.result == 2) {
-    diceRoll = 'bust'
-  } else {
-    diceRoll = props.result
-
+  function displayRoll() {
+    switch (props.result) {
+      case 0:
+        return '-2x'
+      case 1:
+        return 'Pisser'
+      case 2:
+        return 'Bust'
+      case 3:
+        return '1'
+      case 4:
+        return '2'
+      case 5:
+        return '3'
+      case 6:
+        return '4'
+      case 7:
+        return '5'
+      case 8:
+        return '6'
+      case 9:
+        return 'x2'
+      case 10:
+        return 'x3'
+      case 11:
+        return 'x5'
+    }
   }
-
   return (
     <div>
       {props.wallet !== 0 ? (
@@ -83,6 +103,8 @@ function Player(props) {
     </div>
   )
 }
+
+//Scores order [123, pisser, bust, 1, 2, 3, 4, 5, 6, 456, 222, 111]
 
 function calcResults(bet, result) {
   switch (result) {

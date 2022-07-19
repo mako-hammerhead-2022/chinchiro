@@ -2,13 +2,13 @@
 export function scoreDouble(newArray) {
   if (newArray[0] == newArray[1]) {
     console.log(newArray[2], 'points')
-    return newArray[2]
+    return newArray[2] + 2
   } else if (newArray[0] == newArray[2]) {
     console.log(newArray[1], 'points')
-    return newArray[1]
+    return newArray[1] + 2
   } else if (newArray[1] == newArray[2]) {
     console.log(newArray[0], 'points')
-    return newArray[0]
+    return newArray[0] + 2
   } else {
     return false
   }
