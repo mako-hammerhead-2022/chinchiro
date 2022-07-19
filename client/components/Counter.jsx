@@ -14,21 +14,16 @@ function Counter(props) {
         <button onClick={() => dispatch(addBet(props.id, 1))}>+1</button>
         <button onClick={() => dispatch(addBet(props.id, 5))}>+5</button>
         <button onClick={() => dispatch(addBet(props.id, 10))}>+10</button>
+        <button onClick={() => dispatch(addBet(props.id, 50))}>+50</button>
 
         <button onClick={() => dispatch(removeBet(props.id, 1))}>-1</button>
         <button onClick={() => dispatch(removeBet(props.id, 5))}>-5</button>
         <button onClick={() => dispatch(removeBet(props.id, 10))}>-10</button>
+        <button onClick={() => dispatch(removeBet(props.id, 50))}>-50</button>
       </div>
       <div>
         <div style={{ marginTop: 10 }}>
-          <button>Reset Bet</button>
-        </div>
-        <div>
-          <div style={{ marginTop: 10 }}>
-            <button className="bet-button" onClick={() => setBet(0)}>
-              Reset Amount
-            </button>
-          </div>
+          <button onClick={() => dispatch(removeBet(props.id, props.bet))}>Reset Bet</button>
         </div>
       </div>
     </div>

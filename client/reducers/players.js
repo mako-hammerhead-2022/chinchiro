@@ -73,7 +73,8 @@ export default function playersReducer(state = null, action) {
       return action.players.map((player, index) => ({
         ...player,
         isDealer: false,
-        wallet: 0,
+        isActive: false,
+        wallet: 1000,
         bet: 0,
         id: index,
         result: null, // should change to something, idk how it's being used, maybe 0?
@@ -84,6 +85,14 @@ export default function playersReducer(state = null, action) {
         if (player.id === 0) {
           return { ...player, isDealer: true }
         } else return { ...player, isDealer: false }
+      })
+
+    case 'START_ACTIVE':
+      return state.map((player) => {
+        console.log(player)
+        if (player.id === 1) {
+          return { ...player, isActive: true }
+        } else return { ...player, isActive: false }
       })
 
     case 'ADD_TO_WALLET':
@@ -142,20 +151,45 @@ export default function playersReducer(state = null, action) {
     case 'ROTATE_DEALER':
       console.log(state)
       return getNewDealer(state)
+
+    case 'CHANGE_PLAYER':
+      return makeNextPlayerActive(state)
+
     default:
       return state
   }
+
+  function getNewDealer(state) {
+    const currentDealerId = state.find((player) => player.isDealer).id
+
+    const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
+
+    return state.map((player) => {
+      if (player.id === currentDealerId) {
+        return { ...player, isDealer: false }
+      } else if (player.id === nextDealerId) {
+        return { ...player, isDealer: true }
+      } else return player
+    })
+  }
 }
+
 
 function getNewDealer(state) {
   const currentDealerId = state.find((player) => player.isDealer).id
   const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
 
+function makeNextPlayerActive(state) {
+  const currentActiveId = state.find((player) => player.isActive).id
+
+  const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
+
+
   return state.map((player) => {
-    if (player.id === currentDealerId) {
-      return { ...player, isDealer: false }
-    } else if (player.id === nextDealerId) {
-      return { ...player, isDealer: true }
+    if (player.id === currentActiveId) {
+      return { ...player, isActive: false }
+    } else if (player.id === nextActiveId) {
+      return { ...player, isActive: true }
     } else return player
   })
 }

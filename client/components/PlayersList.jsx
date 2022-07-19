@@ -1,11 +1,10 @@
 import React from 'react'
 import Player from './Player'
-// import '../styles/index.scss'
 
 const PlayerList = ({ players }) => {
   return (
     <div className="play-container">
-      {players.slice(0, 4).map((player, i) => {
+      {players.slice(0, 4).map((player) => {
         return (
           <div className="card" key={player.auth0_id}>
             <Player
@@ -13,6 +12,7 @@ const PlayerList = ({ players }) => {
               name={player.username}
               avatar={player.avatar}
               isDealer={player.isDealer}
+              isActive={player.isActive}
               wallet={player.wallet}
               bet={player.bet}
               result={player.result}

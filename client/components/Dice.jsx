@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { diceResult } from '../reducers/players'
-import Player from './Player.jsx'
 
 import {
   scoreDouble,
   scoreRun,
   scoreTriple,
   checkPisser,
-  scoreBust,
   orderDice,
 } from '../actions/actions.js'
 
@@ -48,20 +46,20 @@ const Dice = (props) => {
   function calcResult(roll, pisser) {
     // calculate score and store as a value
     setRollP1(roll)
-    if (scoreDouble(roll) != false) {
-      return scoreDouble(roll)
-    } else if (scoreTriple(roll) == 'x3') {
-      return 'x3'
+    if (scoreTriple(roll) == 'x3') {
+      return 10
     } else if (scoreTriple(roll) == 'x5') {
-      return 'x5'
+      return 11
+    } else if (scoreDouble(roll) != false) {
+      return scoreDouble(roll)
     } else if (scoreRun(roll) == '-x2') {
-      return '-x2'
+      return 0
     } else if (scoreRun(roll) == 'x2') {
-      return 'x2'
+      return 9
     } else if (checkPisser(pisser) == 'pisser') {
-      return 'pisser'
+      return 1
     } else {
-      return 'bust'
+      return 2
     }
   }
 
