@@ -6,7 +6,7 @@ import Dice from './Dice'
 import PlayerDead from './widgets/PlayerDead'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { addToWallet, removeFromWallet } from '../reducers/players'
+import { addToWallet, removeFromWallet, rotateActive, setRoll } from '../reducers/players'
 
 function Player(props) {
   const players = useSelector((state) => state.players)
@@ -34,17 +34,51 @@ function Player(props) {
     dispatch(
       removeFromWallet(props.id, calcResults(props.bet, currentDealer.result))
     )
+  }
+
+  let diceRoll = displayRoll()
+
+  function displayRoll() {
+    switch (props.result) {
+      case 0:
+        return '-2x'
+      case 1:
+        return 'Pisser'
+      case 2:
+        return 'Bust'
+      case 3:
+        return '1'
+      case 4:
+        return '2'
+      case 5:
+        return '3'
+      case 6:
+        return '4'
+      case 7:
+        return '5'
+      case 8:
+        return '6'
+      case 9:
+        return 'x2'
+      case 10:
+        return 'x3'
+      case 11:
+        return 'x5'
+    }
+  }
+
+  function checkNumRolls(roll, result) {
+    console.log('roll count is : '+ roll)
+    console.log('result code is: ' + result)
+    if(roll === 3) {
+      return dispatch(rotateActive())
+    }else if(result === 2) {
+      console.log("this should be bust")
+      dispatch(setRoll(props.id,props.roll))
+    }else return dispatch(rotateActive())
 
   }
 
-  let diceRoll
-
-  if (props.result == 2) {
-    diceRoll = 'bust'
-  } else {
-    diceRoll = props.result
-
-  }
 
   return (
     <div>
@@ -64,7 +98,7 @@ function Player(props) {
           <div>
             <h2>Wallet: {props.wallet}</h2>
           </div>
-          <Dice id={props.id} dice={props.dice} />
+          <Dice id={props.id} dice={props.dice} checkRoll={checkNumRolls} roll={props.roll} result={props.result}/>
           {/* or dice? */}
           {props.isDealer ? (
             <h1>YOU ARE THE DEALER</h1>
@@ -83,6 +117,8 @@ function Player(props) {
     </div>
   )
 }
+
+//Scores order [123, pisser, bust, 1, 2, 3, 4, 5, 6, 456, 222, 111]
 
 function calcResults(bet, result) {
   switch (result) {

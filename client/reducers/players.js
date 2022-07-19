@@ -40,9 +40,23 @@ export function diceResult(id, result) {
   }
 }
 
+export function setRoll(id, roll) {
+  return {
+    type: 'SET_ROLL',
+    id,
+    roll,
+  }
+}
+
 export function rotateDealer() {
   return {
     type: 'ROTATE_DEALER',
+  }
+}
+
+export function rotateActive() {
+  return {
+    type: 'CHANGE_PLAYER',
   }
 }
 
@@ -76,6 +90,7 @@ export default function playersReducer(state = null, action) {
         isActive: false,
         wallet: 1000,
         bet: 0,
+        roll: 0,
         id: index,
         result: null, // should change to something, idk how it's being used, maybe 0?
       }))
@@ -144,6 +159,16 @@ export default function playersReducer(state = null, action) {
           return {
             ...player,
             result: action.result,
+          }
+        } else return player
+      })
+
+    case 'SET_ROLL':
+      return state.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            roll: action.roll + 1,
           }
         } else return player
       })
