@@ -14,12 +14,13 @@ describe('player reducer', () => {
       bet: 0,
       email: 'henry@denton.com',
       id: 0,
+      isActive: false,
       isDealer: false,
       loss_tally: 5,
       result: null,
       total_earnings: 84,
       username: 'henry',
-      wallet: 0,
+      wallet: 1000,
       win_tally: 10,
     })
   })
