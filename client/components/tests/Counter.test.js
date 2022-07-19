@@ -35,14 +35,13 @@ describe('<Counter />', () => {
     beforeEach(() => {
       render(<Counter bet={1} id={1} />)
     })
-    // when i click the right button, the right action is dispatched
-    // []  []    []
+
     test('Clicking add +1 adds $1 to bet', () => {
       userEvent.click(screen.getByRole('button', { name: '+1' }))
       expect(myFakeDispatch).toHaveBeenCalledWith(addBet(1, 1))
     })
+
     test('Clicking add -1 removes $1 from bet', () => {
-      screen.debug()
       userEvent.click(screen.getByRole('button', { name: '-1' }))
       expect(myFakeDispatch).toHaveBeenCalledWith(removeBet(1, 1))
     })
