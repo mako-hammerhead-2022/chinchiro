@@ -76,7 +76,7 @@ export const arrPlayers = [
     username: 'Vince',
     avatar: 'img/punk9052.png',
     isDealer: true,
-    isActive: false,
+    isActive: true,
     wallet: 1000,
     bet: 0,
     result: 0,
