@@ -41,7 +41,7 @@ h2 {
 }
 
 .navbar-container{
-  background: #283941;
+  background: #1c1037;
   opacity: 100;
     color: white;
     height: 4rem;
@@ -72,12 +72,29 @@ h2 {
 }
 
 .logo{
+  font-family: 'Press Start 2P';
+  font-size: 1.5rem;
   height: 1.2rem;
   margin-left: 1rem;
+  color: #ffffe9;
+}
+
+.logo:hover{
+  text-decoration: underline;
+  color: #ffffe9;
 }
 
 .user-info-container{
   width: 50%;
+}
+
+.user-info{
+  display: flex;
+  align-items: center;
+}
+
+.username-wallet{
+  margin-left: 0.5rem;
 }
 
 .nav-user-info{
@@ -139,10 +156,15 @@ h2 {
 .avatar-container{
   height: 5.5rem;
   width: 5.5rem;
-  background-color: #ee8816;
+  background-color: #ffffe9;
   margin: 0.1rem;
   border-style: solid;
   border-width: 0.25rem;
+}
+
+.card-avatar{
+  height: 6.75rem;
+  width: 6.75rem;
 }
 
 .grayed{
@@ -150,44 +172,80 @@ h2 {
 }
 .avatar-container:hover{
   cursor: pointer;
-  background-color: #fe0106;
+  background-color: #ee0ce7;
 }
 
 .avatar-img{
   height: 100%;
 }
 
+.card-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card {
-  display: inline-block;
-  padding: 8px;
-  margin: 10px;
-  border: 2px solid black;
-  border-radius: 5%;
-  background-color: white;
+  display: flex;
+  padding: .5rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
 }
 
 .card-top{
   display: flex;
-  flex-direction: row;
+    margin-top: 1.5rem;
+    flex-direction: row;
+}
+
+.card-dice{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .dice-result{
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3.2em;
   font-family: "Press Start 2P", cursive;
   color: #ee0ce7;
+  height: 10rem;
+  border-style: solid;
+  border-radius: 0.25rem;
+  background: #ee0ce71a;
+}
+
+.card-bottom{
+  display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.bet-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
 }
 
 .game-over{
+  font-family: "Press Start 2P", cursive;
   color:#fe0106;
 }
 
 .play-container{
   display: flex;
   justify-content: center;
+  background-color: #110b1f61;
 }
 
 // modal
@@ -200,7 +258,7 @@ h2 {
   font-weight: 700;
 }
 
-<<<<<<< HEAD
+
 // registration
 
 .registration-container{
@@ -208,7 +266,7 @@ h2 {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-image: url('https://pbs.twimg.com/media/EVLyO8VVAAIt1ru?format=jpg&name=large');
+  background-image: url('https://i.pinimg.com/originals/aa/25/a1/aa25a1bd28c0cb0fcc844afdce6bf27d.gif');
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -219,7 +277,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   width: 70%;
-  background-color: #b8b4b4de;
+  background-color: rgb(77 81 93 / 71%);
   height: 75%;
   border-radius: 1rem;
 }
@@ -233,11 +291,17 @@ h2 {
 
 // player container
 .player-name{
+  font-family: 'PRESS START 2P';
+    color: #ffffe9;
+    font-size: .95rem;
 }
-||||||| b90bc70
-=======
-//homepage
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.subhead{
+  font-family: 'PRESS START 2P';
+  color: #ffffe9;
+  font-size: .9rem;
+}
+
 .homepage{
   background-image: url("https://i.pinimg.com/originals/ce/ca/ba/cecabaac30736b17f7f278422ef861c0.gif");
   height: 100%;
@@ -246,6 +310,12 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.homepage-buttons{
+  display: flex;
+  flex-direction: column;
+
 }
 
 .start-btn{
@@ -264,7 +334,9 @@ h2 {
   text-decoration: underline;
 }
 
->>>>>>> homepage
+.music{
+  font-size: 1.25rem;
+}
 
 
 

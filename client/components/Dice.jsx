@@ -8,6 +8,7 @@ import {
   scoreTriple,
   checkPisser,
   orderDice,
+  playAudio,
 } from '../actions/actions.js'
 
 const Dice = (props) => {
@@ -29,21 +30,18 @@ const Dice = (props) => {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min) + min)
   }
-  
+
   // state of all dice
   const [rollP1, setRollP1] = useState([1, 1, 1])
 
-  
-
   function rollDiceP1() {
-    
     let roll = orderDice([
       getRandomNum(1, 7),
       getRandomNum(1, 7),
       getRandomNum(1, 7),
     ])
     let pisser = getRandomNum(1, 200)
-    
+
     props.checkRoll(props.roll, calcResult(roll, pisser))
     return calcResult(roll, pisser)
   }
@@ -67,7 +65,7 @@ const Dice = (props) => {
       return 2
     }
   }
-  
+
   return (
     <div>
       <div>

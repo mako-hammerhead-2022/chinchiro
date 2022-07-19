@@ -62,11 +62,7 @@ function Nav() {
           <div className="nav-header-container">
             <div className="nav-item-container">
               <Link className="nav-item header" to="/">
-                <img
-                  className="logo"
-                  src="img/chinchirro-logo-1.png"
-                  alt="the logo"
-                />
+                <h1 className="logo">CHINCHIRRO</h1>
               </Link>
             </div>
           </div>

@@ -9,8 +9,8 @@ function Counter(props) {
   const dispatch = useDispatch()
 
   return (
-    <div>
-      <h2>
+    <div className="bet-container">
+      <h2 className="subhead">
         Bet: $<span>{props.bet}</span>
       </h2>
       <div>

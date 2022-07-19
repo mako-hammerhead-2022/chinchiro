@@ -105,3 +105,9 @@ export function orderDice(rollArray) {
   console.log('New Order', newD1, newD2, newD3)
   return [newD1, newD2, newD3]
 }
+
+export function playAudio(route) {
+  let audio
+  audio = new Audio(route)
+  audio.play()
+}
