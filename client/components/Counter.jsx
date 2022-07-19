@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { addBet, removeBet } from '../reducers/players'
 
 function Counter(props) {
+  console.log(props)
   const dispatch = useDispatch()
 
   return (
@@ -23,7 +24,9 @@ function Counter(props) {
       </div>
       <div>
         <div style={{ marginTop: 10 }}>
-          <button onClick={() => dispatch(removeBet(props.id, props.bet))}>Reset Bet</button>
+          <button onClick={() => dispatch(removeBet(props.id, props.bet))}>
+            Reset Bet
+          </button>
         </div>
       </div>
     </div>
