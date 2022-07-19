@@ -87,6 +87,14 @@ export default function playersReducer(state = null, action) {
         } else return { ...player, isDealer: false }
       })
 
+    case 'START_ACTIVE':
+      return state.map((player) => {
+        console.log(player)
+        if (player.id === 1) {
+          return { ...player, isActive: true }
+        } else return { ...player, isActive: false }
+      })
+
     case 'ADD_TO_WALLET':
       return state.map((player) => {
         if (player.id === action.id) {
@@ -141,10 +149,11 @@ export default function playersReducer(state = null, action) {
       })
 
     case 'ROTATE_DEALER':
+      console.log(state)
       return getNewDealer(state)
 
     case 'CHANGE_PLAYER':
-      return makePlayerActive(state)
+      return makeNextPlayerActive(state)
 
     default:
       return state
@@ -165,6 +174,22 @@ export default function playersReducer(state = null, action) {
   }
 }
 
-function makePlayerActive(state) {
-  console.log(state)
+
+function getNewDealer(state) {
+  const currentDealerId = state.find((player) => player.isDealer).id
+  const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
+
+function makeNextPlayerActive(state) {
+  const currentActiveId = state.find((player) => player.isActive).id
+
+  const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
+
+
+  return state.map((player) => {
+    if (player.id === currentActiveId) {
+      return { ...player, isActive: false }
+    } else if (player.id === nextActiveId) {
+      return { ...player, isActive: true }
+    } else return player
+  })
 }
