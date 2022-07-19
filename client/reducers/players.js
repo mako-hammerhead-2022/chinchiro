@@ -104,7 +104,6 @@ export default function playersReducer(state = null, action) {
 
     case 'START_ACTIVE':
       return state.map((player) => {
-        console.log(player)
         if (player.id === 1) {
           return { ...player, isActive: true }
         } else return { ...player, isActive: false }
@@ -174,7 +173,6 @@ export default function playersReducer(state = null, action) {
       })
 
     case 'ROTATE_DEALER':
-      console.log(state)
       return getNewDealer(state)
 
     case 'CHANGE_PLAYER':
@@ -199,8 +197,9 @@ function getNewDealer(state) {
   })
 }
 
-function makeNextPlayerActive(state) {
+export function makeNextPlayerActive(state) {
   const currentActiveId = state.find((player) => player.isActive).id
+  console.log(currentActiveId)
   const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
 
   return state.map((player) => {
