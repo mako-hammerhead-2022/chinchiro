@@ -26,3 +26,7 @@ describe('test GET API', () => {
 
   test.todo('get userinfo')
 })
+
+describe('test POST API', () => {
+  test('POST /api', () => {})
+})
