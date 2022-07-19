@@ -174,16 +174,9 @@ function getNewDealer(state) {
   })
 }
 
-
-function getNewDealer(state) {
-  const currentDealerId = state.find((player) => player.isDealer).id
-  const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
-
 function makeNextPlayerActive(state) {
   const currentActiveId = state.find((player) => player.isActive).id
-
   const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
-
 
   return state.map((player) => {
     if (player.id === currentActiveId) {
