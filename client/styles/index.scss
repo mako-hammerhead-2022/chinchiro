@@ -24,7 +24,7 @@ h2 {
 }
 
 .main{
-  background-image: url("https://64.media.tumblr.com/d68f2433a2ddecadd29370a49f97e993/tumblr_pnumy4U4iA1xqepp2o1_1280.gifv"); 
+  background-image: url("https://i.pinimg.com/originals/99/8e/05/998e055aba57c24138220937cc5166ab.gif"); 
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -177,8 +177,8 @@ h2 {
   align-items: center;
   justify-content: center;
   font-size: 3.2em;
-  color: #ee8816;
-  font-family: streetfighter;
+  font-family: "Press Start 2P", cursive;
+  color: #ee0ce7;
 }
 
 .game-over{
@@ -200,6 +200,7 @@ h2 {
   font-weight: 700;
 }
 
+<<<<<<< HEAD
 // registration
 
 .registration-container{
@@ -233,6 +234,37 @@ h2 {
 // player container
 .player-name{
 }
+||||||| b90bc70
+=======
+//homepage
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.homepage{
+  background-image: url("https://i.pinimg.com/originals/ce/ca/ba/cecabaac30736b17f7f278422ef861c0.gif");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-btn{
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.5rem;
+  color: #ffffe9;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.start-btn:hover{
+  text-decoration: underline;
+}
+
+>>>>>>> homepage
 
 
 
