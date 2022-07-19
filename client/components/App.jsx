@@ -33,9 +33,7 @@ function App() {
         <button onClick={() => dispatch({ type: 'ROTATE_DEALER' })}>
           Rotate Dealer
         </button>
-        <button onClick={startGame}>
-          START GAME
-        </button>
+        <button onClick={startGame}>START GAME</button>
         <button onClick={() => dispatch({ type: 'CHANGE_PLAYER' })}>
           Rotate Player
         </button>
