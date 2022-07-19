@@ -18,6 +18,7 @@ describe('player reducer', () => {
       isDealer: false,
       loss_tally: 5,
       result: null,
+      roll: 0,
       total_earnings: 84,
       username: 'henry',
       wallet: 1000,
