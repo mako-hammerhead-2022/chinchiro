@@ -12,6 +12,7 @@ const PlayerList = ({ players }) => {
               name={player.username}
               avatar={player.avatar}
               isDealer={player.isDealer}
+              isActive={player.isActive}
               wallet={player.wallet}
               bet={player.bet}
               result={player.result}
