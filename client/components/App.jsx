@@ -36,6 +36,9 @@ function App() {
         <button onClick={startGame}>
           START GAME
         </button>
+        <button onClick={() => dispatch({ type: 'CHANGE_PLAYER' })}>
+          Rotate Player
+        </button>
         <button onClick={handleShow}>Rules</button>
 
         <Routes>

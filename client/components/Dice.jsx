@@ -30,7 +30,7 @@ const Dice = (props) => {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min) + min)
   }
-
+  const rollRank = ['1-2-3','pisser', 'bust', '1','2','3','4','5','6','4-5-6','2-2-2','3-3-3','4-4-4','5-5-5','6-6-6','1-1-1']
   // state of all dice
   const [rollP1, setRollP1] = useState([1, 1, 1])
 

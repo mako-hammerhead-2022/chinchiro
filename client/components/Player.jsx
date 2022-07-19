@@ -44,9 +44,15 @@ function Player(props) {
       <div>
         <h2>Wallet: {props.wallet}</h2>
       </div>
-      <Dice id={props.id} dice={props.dice} />
+      {props.isActive ? (
+       <Dice id={props.id} dice={props.dice} />
+      ) : ( <p>NOT YOUR TURN</p>
+      )}
       {props.isDealer ? (
+        <React.Fragment>
         <h1>YOU ARE THE DEALER</h1>
+        <Dice id={props.id} dice={props.dice} />
+        </React.Fragment>
       ) : (<>
         <Counter id={props.id} bet={props.bet} />
         <button onClick={PlayerWin}>
@@ -57,10 +63,7 @@ function Player(props) {
         </button>
         </>
       )}
-        {props.isActive ? (
-       <p>YOUR TURN</p>
-      ) : ( <p>NOT YOUR TURN</p>
-      )}
+   
     </div>
   )
 }
