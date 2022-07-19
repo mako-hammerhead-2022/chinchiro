@@ -140,6 +140,7 @@ export default function playersReducer(state = null, action) {
       })
 
     case 'ROTATE_DEALER':
+      console.log(state)
       return getNewDealer(state)
     default:
       return state
@@ -148,7 +149,6 @@ export default function playersReducer(state = null, action) {
 
 function getNewDealer(state) {
   const currentDealerId = state.find((player) => player.isDealer).id
-
   const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
 
   return state.map((player) => {
