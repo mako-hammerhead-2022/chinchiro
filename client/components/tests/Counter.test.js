@@ -2,19 +2,15 @@
 
 import React from 'react'
 import { screen, render, fireEvent } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 
 import '@testing-library/jest-dom'
 import { useDispatch } from 'react-redux'
 
 import Counter from '../Counter'
 
-
 jest.mock('react-redux')
 
-
-describe.skip('<Counter />', () => {
-
+describe('<Counter />', () => {
   test('Counter header rendered', () => {
     const myFakeDispatch = jest.fn()
     useDispatch.mockReturnValue(myFakeDispatch)
@@ -26,10 +22,12 @@ describe.skip('<Counter />', () => {
   test('Buttons rendered', () => {
     render(<Counter />)
     let buttons = screen.getAllByRole('button')
-    expect(buttons).toHaveLength(8)
+    expect(buttons).toHaveLength(9)
   })
 
-  describe.skip('check button clicks', () => {
+  // .change(getByLabelText(/username/i), {target: {value: 'a'}})
+
+  describe('check button clicks', () => {
     test('Clicking add +1 adds $1 to bet', () => {
       render(<Counter />)
       fireEvent(
@@ -43,7 +41,7 @@ describe.skip('<Counter />', () => {
       console.log(betAmount)
       expect(betAmount).toBe('Bet: $1')
     })
-    test('Clicking add +5 adds $5 to bet', () => {
+    test.skip('Clicking add +5 adds $5 to bet', () => {
       render(<Counter />)
       fireEvent(
         screen.getByRole('button', { name: '+5' }),
@@ -55,7 +53,7 @@ describe.skip('<Counter />', () => {
       let betAmount = screen.getByRole('heading').textContent
       expect(betAmount).toBe('Bet: $5')
     })
-    test('Clicking add +10 adds $10 to bet', () => {
+    test.skip('Clicking add +10 adds $10 to bet', () => {
       render(<Counter />)
       fireEvent(
         screen.getByRole('button', { name: '+10' }),
