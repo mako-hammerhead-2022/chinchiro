@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { addUser } from '../apiClient'
 import '../styles/index.scss'
 import Avatars from './Avatars'
-import { GridForm, ColOne, ColTwo, Button } from './Styled'
 
 function Register() {
   const user = useSelector((state) => state.loggedInUser)
@@ -48,43 +47,37 @@ function Register() {
   }
 
   return (
-    <>
-      <h2>Register</h2>
-      <GridForm>
-        <ColOne htmlFor="username">Auth0 Id:</ColOne>
-        <ColTwo
-          type="text"
-          id="auth0Id"
-          name="auth0Id"
-          value={form.auth0Id}
-          disabled={true}
-        />
+    <div className="registration-container">
+      <div className="details-container">
+        <div className="details">
+          <h2>Register</h2>
+          <div htmlFor="email">Email:</div>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            value={form.email}
+            disabled={true}
+          />
 
-        <ColOne htmlFor="email">Email:</ColOne>
-        <ColTwo
-          type="text"
-          id="email"
-          name="email"
-          value={form.email}
-          disabled={true}
-        />
+          <div htmlFor="userName">Username:</div>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={setForm.userName}
+            onChange={(e) => handleFormUpdate(e)}
+          />
+        </div>
+        <div className="character-selection-container">
+          <Avatars handleAddAvatar={handleAddAvatar} />
+        </div>
 
-        <ColOne htmlFor="userName">Username:</ColOne>
-        <ColTwo
-          type="text"
-          id="username"
-          name="username"
-          value={setForm.userName}
-          onChange={(e) => handleFormUpdate(e)}
-        />
-
-        <Avatars handleAddAvatar={handleAddAvatar} />
-
-        <Button type="button" onClick={handleClick}>
+        <button type="button" onClick={handleClick}>
           Register
-        </Button>
-      </GridForm>
-    </>
+        </button>
+      </div>
+    </div>
   )
 }
 

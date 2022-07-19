@@ -2,13 +2,15 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addBet, removeBet } from '../reducers/players'
 
+// store with bets to work
+// parent that gets those bet values
 function Counter(props) {
   console.log(props)
   const dispatch = useDispatch()
 
   return (
-    <div>
-      <h2>
+    <div className="bet-container">
+      <h2 className="subhead">
         Bet: $<span>{props.bet}</span>
       </h2>
       <div>

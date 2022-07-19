@@ -4,9 +4,14 @@ import Counter from './Counter'
 import Dice from './Dice'
 
 import PlayerDead from './widgets/PlayerDead'
-
+import { playAudio } from '../actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToWallet, removeFromWallet, rotateActive, setRoll } from '../reducers/players'
+import {
+  addToWallet,
+  removeFromWallet,
+  rotateActive,
+  setRoll,
+} from '../reducers/players'
 
 function Player(props) {
   const players = useSelector((state) => state.players)
@@ -41,79 +46,103 @@ function Player(props) {
   function displayRoll() {
     switch (props.result) {
       case 0:
+        playAudio('sounds/bust.wav')
         return '-2x'
       case 1:
+        playAudio('sounds/bust.wav')
         return 'Pisser'
       case 2:
+        playAudio('sounds/bust.wav')
         return 'Bust'
       case 3:
+        playAudio('sounds/roll-number.wav')
         return '1'
       case 4:
+        playAudio('sounds/roll-number.wav')
         return '2'
+
       case 5:
+        playAudio('sounds/roll-number.wav')
         return '3'
       case 6:
+        playAudio('sounds/roll-number.wav')
         return '4'
       case 7:
+        playAudio('sounds/roll-number.wav')
         return '5'
       case 8:
+        playAudio('sounds/roll-number.wav')
         return '6'
       case 9:
+        playAudio('sounds/bonus.wav')
         return 'x2'
       case 10:
+        playAudio('sounds/bonus.wav')
         return 'x3'
       case 11:
+        playAudio('sounds/bonus.wav')
         return 'x5'
     }
   }
 
   function checkNumRolls(roll, result) {
-    console.log('roll count is : '+ roll)
+    console.log('roll count is : ' + roll)
     console.log('result code is: ' + result)
-    if(roll === 3) {
+    if (roll === 3) {
       return dispatch(rotateActive())
-    }else if(result === 2) {
-      console.log("this should be bust")
-      dispatch(setRoll(props.id,props.roll))
-    }else return dispatch(rotateActive())
-
+    } else if (result === 2) {
+      console.log('this should be bust')
+      dispatch(setRoll(props.id, props.roll))
+    } else return dispatch(rotateActive())
   }
 
-
   return (
-    <div>
+    <div className="card-container">
       {props.wallet !== 0 ? (
         <React.Fragment>
+          <div className="dice-result">{diceRoll}</div>
           <div className="card-top">
             <div className="user-info">
               <img
-                className="avatar-container"
+                className="avatar-container card-avatar"
                 src={props.avatar}
                 alt="player avatar"
               ></img>
-              <h1>{props.name}</h1>
+              <div className="username-wallet">
+                <h1 className="player-name">{props.name}</h1>
+                <h2 className="subhead">Wallet: {props.wallet}</h2>
+              </div>
             </div>
-            <div className="dice-result">{diceRoll}</div>
           </div>
-          <div>
-            <h2>Wallet: {props.wallet}</h2>
+          <div className="card-dice">
+            <Dice
+              id={props.id}
+              dice={props.dice}
+              checkRoll={checkNumRolls}
+              roll={props.roll}
+              result={props.result}
+            />
           </div>
-          <Dice id={props.id} dice={props.dice} checkRoll={checkNumRolls} roll={props.roll} result={props.result}/>
+
           {/* or dice? */}
           {props.isDealer ? (
-            <h1>YOU ARE THE DEALER</h1>
+            <h1 className="player-name">DEALER</h1>
           ) : (
-            <>
+            <div className="card-bottom">
               <Counter id={props.id} bet={props.bet} />
               <button onClick={PlayerWin}>WINNER</button>
               <button onClick={DealerWin}>LOSER</button>
-            </>
+            </div>
           )}
         </React.Fragment>
       ) : (
         <PlayerDead username={props.name} avatar={props.avatar} />
       )}
-      {props.isActive ? <p>YOUR TURN</p> : <p>NOT YOUR TURN</p>}
+      {props.isActive ? (
+        <p className="subhead">YOUR TURN</p>
+      ) : (
+        <p className="subhead">NOT YOUR TURN</p>
+      )}
     </div>
   )
 }

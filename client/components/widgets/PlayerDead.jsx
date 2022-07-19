@@ -1,10 +1,11 @@
 import React from 'react'
+import { playAudio } from '../../actions/actions'
 
 export default function PlayerDead(props) {
+  playAudio('sounds/game-over.wav')
   console.log(props)
   return (
     <div className="gameover-container">
-      {' '}
       <div className="card-top">
         <div className="user-info">
           <img

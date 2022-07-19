@@ -1,5 +1,5 @@
 //external dependencies
-import { useState } from 'react'
+import React, { useState } from 'react'
 import '../styles/index.scss'
 
 const avatarArr = [
@@ -26,6 +26,50 @@ const avatarArr = [
   {
     img: 6,
     loc: 'img/punk9953.png',
+  },
+  {
+    img: 7,
+    loc: 'img/punk2890.png',
+  },
+  {
+    img: 8,
+    loc: 'img/punk0009.png',
+  },
+  {
+    img: 9,
+    loc: 'img/punk0062.png',
+  },
+  {
+    img: 10,
+    loc: 'img/punk0090.png',
+  },
+  {
+    img: 11,
+    loc: 'img/punk0092.png',
+  },
+  {
+    img: 12,
+    loc: 'img/punk0101.png',
+  },
+  {
+    img: 13,
+    loc: 'img/punk0149.png',
+  },
+  {
+    img: 14,
+    loc: 'img/punk0303.png',
+  },
+  {
+    img: 15,
+    loc: 'img/punk0363.png',
+  },
+  {
+    img: 16,
+    loc: 'img/punk0393.png',
+  },
+  {
+    img: 17,
+    loc: 'img/punk0514.png',
   },
 ]
 
