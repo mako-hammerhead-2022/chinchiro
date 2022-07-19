@@ -16,6 +16,7 @@ const PlayerList = ({ players }) => {
               wallet={player.wallet}
               bet={player.bet}
               result={player.result}
+              roll={player.roll}
             />
           </div>
         )

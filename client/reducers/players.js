@@ -40,9 +40,23 @@ export function diceResult(id, result) {
   }
 }
 
+export function setRoll(id, roll) {
+  return {
+    type: 'SET_ROLL',
+    id,
+    roll,
+  }
+}
+
 export function rotateDealer() {
   return {
     type: 'ROTATE_DEALER',
+  }
+}
+
+export function rotateActive() {
+  return {
+    type: 'CHANGE_PLAYER',
   }
 }
 
@@ -76,6 +90,7 @@ export default function playersReducer(state = null, action) {
         isActive: false,
         wallet: 1000,
         bet: 0,
+        roll: 0,
         id: index,
         result: null, // should change to something, idk how it's being used, maybe 0?
       }))
@@ -148,7 +163,18 @@ export default function playersReducer(state = null, action) {
         } else return player
       })
 
+    case 'SET_ROLL':
+      return state.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            roll: action.roll + 1,
+          }
+        } else return player
+      })
+
     case 'ROTATE_DEALER':
+      console.log(state)
       return getNewDealer(state)
 
     case 'CHANGE_PLAYER':
@@ -157,25 +183,24 @@ export default function playersReducer(state = null, action) {
     default:
       return state
   }
+}
 
-  function getNewDealer(state) {
-    const currentDealerId = state.find((player) => player.isDealer).id
+function getNewDealer(state) {
+  const currentDealerId = state.find((player) => player.isDealer).id
 
-    const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
+  const nextDealerId = currentDealerId + 1 > 3 ? 0 : currentDealerId + 1
 
-    return state.map((player) => {
-      if (player.id === currentDealerId) {
-        return { ...player, isDealer: false }
-      } else if (player.id === nextDealerId) {
-        return { ...player, isDealer: true }
-      } else return player
-    })
-  }
+  return state.map((player) => {
+    if (player.id === currentDealerId) {
+      return { ...player, isDealer: false }
+    } else if (player.id === nextDealerId) {
+      return { ...player, isDealer: true }
+    } else return player
+  })
 }
 
 function makeNextPlayerActive(state) {
   const currentActiveId = state.find((player) => player.isActive).id
-
   const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
 
   return state.map((player) => {

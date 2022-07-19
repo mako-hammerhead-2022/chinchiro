@@ -33,6 +33,6 @@ describe('<Player />', () => {
     const userName = screen.getByText('Vince').textContent
     expect(userName).toBe('Vince')
     const wallet = screen.getAllByRole('heading')[1].textContent
-    expect(wallet).toContain('Wallet: 0')
+    expect(wallet).toContain('Wallet: 1000')
   })
 })

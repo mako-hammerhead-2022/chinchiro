@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { diceResult } from '../reducers/players'
 
-
 import {
   scoreDouble,
   scoreRun,
@@ -30,40 +29,45 @@ const Dice = (props) => {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min) + min)
   }
-  const rollRank = ['1-2-3','pisser', 'bust', '1','2','3','4','5','6','4-5-6','2-2-2','3-3-3','4-4-4','5-5-5','6-6-6','1-1-1']
+  
   // state of all dice
   const [rollP1, setRollP1] = useState([1, 1, 1])
 
+  
+
   function rollDiceP1() {
+    
     let roll = orderDice([
       getRandomNum(1, 7),
       getRandomNum(1, 7),
       getRandomNum(1, 7),
     ])
     let pisser = getRandomNum(1, 200)
+    
+    props.checkRoll(props.roll, calcResult(roll, pisser))
     return calcResult(roll, pisser)
   }
 
   function calcResult(roll, pisser) {
     // calculate score and store as a value
     setRollP1(roll)
-    if(scoreTriple(roll) == 'x3'){
-      return 'x3'
+    if (scoreTriple(roll) == 'x3') {
+      return 10
     } else if (scoreTriple(roll) == 'x5') {
-      return 'x5'
-    }else if(scoreDouble(roll) != false){
+      return 11
+    } else if (scoreDouble(roll) != false) {
       return scoreDouble(roll)
-    } else if(scoreRun(roll) == '-x2'){
-      return '-x2'
+    } else if (scoreRun(roll) == '-x2') {
+      return 0
     } else if (scoreRun(roll) == 'x2') {
-      return 'x2'
+      return 9
     } else if (checkPisser(pisser) == 'pisser') {
-      return 'pisser'
+      return 1
     } else {
-      return 'bust'
+      return 2
     }
   }
-
+  
   return (
     <div>
       <div>
