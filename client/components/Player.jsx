@@ -6,7 +6,12 @@ import Dice from './Dice'
 import PlayerDead from './widgets/PlayerDead'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { addToWallet, removeFromWallet, rotateActive, setRoll } from '../reducers/players'
+import {
+  addToWallet,
+  removeFromWallet,
+  rotateActive,
+  setRoll,
+} from '../reducers/players'
 
 function Player(props) {
   const players = useSelector((state) => state.players)
@@ -68,17 +73,15 @@ function Player(props) {
   }
 
   function checkNumRolls(roll, result) {
-    console.log('roll count is : '+ roll)
+    console.log('roll count is : ' + roll)
     console.log('result code is: ' + result)
-    if(roll === 3) {
+    if (roll === 3) {
       return dispatch(rotateActive())
-    }else if(result === 2) {
-      console.log("this should be bust")
-      dispatch(setRoll(props.id,props.roll))
-    }else return dispatch(rotateActive())
-
+    } else if (result === 2) {
+      console.log('this should be bust')
+      dispatch(setRoll(props.id, props.roll))
+    } else return dispatch(rotateActive())
   }
-
 
   return (
     <div>
@@ -91,14 +94,20 @@ function Player(props) {
                 src={props.avatar}
                 alt="player avatar"
               ></img>
-              <h1>{props.name}</h1>
+              <h1 className="player-name">{props.name}</h1>
             </div>
             <div className="dice-result">{diceRoll}</div>
           </div>
           <div>
             <h2>Wallet: {props.wallet}</h2>
           </div>
-          <Dice id={props.id} dice={props.dice} checkRoll={checkNumRolls} roll={props.roll} result={props.result}/>
+          <Dice
+            id={props.id}
+            dice={props.dice}
+            checkRoll={checkNumRolls}
+            roll={props.roll}
+            result={props.result}
+          />
           {/* or dice? */}
           {props.isDealer ? (
             <h1>YOU ARE THE DEALER</h1>
