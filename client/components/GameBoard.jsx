@@ -12,11 +12,22 @@ export default function GameBoard() {
   const players = useSelector((state) => state.players)
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
+  const currentUser = useSelector((state) => state.loggedInUser)
+
+  let playerList
+  function setUpPlayers() {
+    const userPlayer = players.filter(
+      (player) => player.auth0_id === currentUser.auth0Id
+    )
+    playerList = [...userPlayer, ...players]
+  }
 
   useEffect(() => {
     dispatch(fetchPlayers())
   }, [])
-  console.log(players)
+  players ? setUpPlayers() : ''
+
+  console.log(currentUser.auth0Id)
 
   function handleShow() {
     setShow(true)
@@ -39,8 +50,13 @@ export default function GameBoard() {
       </button>
       <button onClick={handleShow}>Rules</button>
       <AppModal onClose={() => setShow(false)} show={show} />
+
       <div className="main" data-testid="gameboard-testid">
-        {players && <PlayerList players={players} />}
+        {currentUser.auth0Id === '' ? (
+          <p className="start-btn">Loading Gameboard...</p>
+        ) : (
+          players && <PlayerList players={playerList} />
+        )}
       </div>
     </>
   )
