@@ -11,6 +11,11 @@ import {
   removeFromWallet,
   rotateActive,
   setRoll,
+  resetRoll,
+  removeBet,
+  completeTurn,
+  rotateDealer,
+  resetTurn,
 } from '../reducers/players'
 
 function Player(props) {
@@ -25,6 +30,8 @@ function Player(props) {
     dispatch(
       removeFromWallet(currentDealer.id, calcResults(props.bet, props.result))
     )
+    dispatch(removeBet(props.id, props.bet))
+    dispatch(rotateActive())
   }
 
   const DealerWin = () => {
@@ -39,8 +46,34 @@ function Player(props) {
     dispatch(
       removeFromWallet(props.id, calcResults(props.bet, currentDealer.result))
     )
+    dispatch(removeBet(props.id, props.bet))
+    dispatch(rotateActive())
   }
 
+  const PlayerDraw = () => {
+    dispatch(removeBet(props.id, props.bet))
+    dispatch(rotateActive())
+  }
+
+  const checkComplete = () => {
+    
+    const currentActiveId = players.find((player) => player.isActive).id
+    const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
+    
+    const checkedPlayer = players[nextActiveId]
+
+    console.log(checkedPlayer, "checked PLayer")
+
+    if(checkedPlayer.completeTurn == true) {
+      dispatch(resetTurn())
+      dispatch(rotateDealer())
+      console.log('set complete turn to false')
+    }else{
+      dispatch(completeTurn(props.id))
+    }
+  }
+
+// todo create instant loss function to call if player or dealer result is equal to '-x2'
   let diceRoll = displayRoll()
 
   function displayRoll() {
@@ -85,16 +118,49 @@ function Player(props) {
     }
   }
 
-  function checkNumRolls(roll, result) {
-    console.log('roll count is : ' + roll)
-    console.log('result code is: ' + result)
-    if (roll === 3) {
-      return dispatch(rotateActive())
-    } else if (result === 2) {
-      console.log('this should be bust')
-      dispatch(setRoll(props.id, props.roll))
-    } else return dispatch(rotateActive())
+  function compareResults(activePlayerResult) {
+    const currentDealer = players.find((player) => player.isDealer)
+    console.log(currentDealer.result, "current result dealer")
+    console.log(activePlayerResult, "current Active Player result")
+    if(currentDealer.result == activePlayerResult) {
+      return PlayerDraw()
+    }else if(currentDealer.result > activePlayerResult) {
+      return DealerWin()
+    }else if (currentDealer.result < activePlayerResult){
+      return PlayerWin()
+    }else return dispatch(removeBet(props.id, props.bet))
   }
+
+      
+
+  function checkNumRolls(rollCount, result) {
+    
+    if(props.isDealer == true) {
+      if (rollCount === 2) {
+        dispatch(resetRoll(props.id))  
+        checkComplete()
+      } else if (result === 2) {
+        dispatch(setRoll(props.id, props.roll))
+      } else{ 
+      dispatch(resetRoll(props.id))
+      checkComplete()
+      }
+    } else if(props.isDealer == false) {
+      if (rollCount === 2) {
+        dispatch(resetRoll(props.id))
+        checkComplete()
+        return compareResults(result)
+      } else if (result === 2) {
+        dispatch(setRoll(props.id, props.roll))
+      } else{ 
+      dispatch(resetRoll(props.id))
+      checkComplete()
+      return  compareResults(result) 
+      }
+
+    }
+  }
+    
 
   return (
     <div className="card-container">
@@ -130,8 +196,6 @@ function Player(props) {
           ) : (
             <div className="card-bottom">
               <Counter id={props.id} bet={props.bet} />
-              <button onClick={PlayerWin}>WINNER</button>
-              <button onClick={DealerWin}>LOSER</button>
             </div>
           )}
         </React.Fragment>
@@ -176,3 +240,6 @@ function calcResults(bet, result) {
 }
 
 export default Player
+    
+    
+

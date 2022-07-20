@@ -48,6 +48,26 @@ export function setRoll(id, roll) {
   }
 }
 
+export function resetRoll(id) {
+  return {
+    type: 'RESET_ROLL',
+    id,
+  }
+}
+
+export function completeTurn(id) {
+  return {
+    type: 'COMPLETE_TURN',
+    id,
+  }
+}
+
+export function resetTurn() {
+  return {
+    type: 'RESET_TURN',
+  }
+}
+
 export function rotateDealer() {
   return {
     type: 'ROTATE_DEALER',
@@ -88,6 +108,7 @@ export default function playersReducer(state = null, action) {
         ...player,
         isDealer: false,
         isActive: false,
+        completeTurn: false,
         wallet: 1000,
         bet: 0,
         roll: 0,
@@ -104,7 +125,8 @@ export default function playersReducer(state = null, action) {
 
     case 'START_ACTIVE':
       return state.map((player) => {
-        if (player.id === 1) {
+        const currentDealerId = state.find((player) => player.isDealer).id
+        if (player.id === currentDealerId + 1) {
           return { ...player, isActive: true }
         } else return { ...player, isActive: false }
       })
@@ -172,6 +194,35 @@ export default function playersReducer(state = null, action) {
         } else return player
       })
 
+    case 'RESET_ROLL':
+      return state.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            roll: 0,
+          }
+        } else return player
+      })
+
+    case 'COMPLETE_TURN':
+      return state.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            completeTurn: true,
+          }
+        } else return player
+      })
+    case 'RESET_TURN':
+      return state.map((player) => {
+        if (player.completeTurn === true) {
+          return {
+            ...player,
+            completeTurn: false,
+          }
+        } else return player
+      })
+
     case 'ROTATE_DEALER':
       return getNewDealer(state)
 
@@ -199,7 +250,7 @@ function getNewDealer(state) {
 
 export function makeNextPlayerActive(state) {
   const currentActiveId = state.find((player) => player.isActive).id
-  console.log(currentActiveId)
+
   const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
 
   return state.map((player) => {
