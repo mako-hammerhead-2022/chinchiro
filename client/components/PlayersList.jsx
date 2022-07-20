@@ -17,6 +17,7 @@ const PlayerList = ({ players }) => {
               bet={player.bet}
               result={player.result}
               roll={player.roll}
+              completeTurn={player.completeTurn}
             />
           </div>
         )
