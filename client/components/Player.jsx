@@ -217,6 +217,12 @@ function Player(props) {
 
 function calcResults(bet, result) {
   switch (result) {
+    case (result = 0):
+      return bet * 2
+    case (result = 1):
+      return bet
+    case (result = 2):
+      return bet
     case (result = 3):
     case (result = 4):
     case (result = 5):
@@ -224,18 +230,12 @@ function calcResults(bet, result) {
     case (result = 7):
     case (result = 8):
       return bet
+    case (result = 9):
+      return bet * 2
     case (result = 10):
       return bet * 3
     case (result = 11):
       return bet * 5
-    case (result = 0):
-      return bet * 2
-    case (result = 9):
-      return bet * 2
-    case (result = 1):
-      return bet
-    case (result = 2):
-      return bet
     default:
       return bet
   }
