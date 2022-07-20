@@ -1,4 +1,5 @@
 import * as api from '../apiClient'
+import * as helper from '../helpers'
 
 export function addToWallet(id, amount) {
   return {
@@ -140,6 +141,7 @@ export default function playersReducer(state = null, action) {
     case 'ADD_TO_WALLET':
       return state.map((player) => {
         if (player.id === action.id) {
+          helper.postWinningsToDB(player.auth0_id, action.amount)
           return {
             ...player,
             wallet: player.wallet + action.amount,
@@ -150,6 +152,7 @@ export default function playersReducer(state = null, action) {
     case 'REMOVE_FROM_WALLET':
       return state.map((player) => {
         if (player.id === action.id) {
+          helper.postWinningsToDB(player.auth0_id, `-${action.amount}`)
           return {
             ...player,
             wallet:

@@ -68,7 +68,7 @@ const Dice = (props) => {
 
   return (
     <div>
-      <div>
+      <div className="dice-container">
         <div>
           <img
             src={diceImage[rollP1[0]]}
@@ -89,8 +89,11 @@ const Dice = (props) => {
             height={'50px'}
           />
         </div>
-        <button onClick={() => dispatch(diceResult(props.id, rollDiceP1()))}>
-          ROLL THE DICE
+        <button
+          className="card-btn"
+          onClick={() => dispatch(diceResult(props.id, rollDiceP1()))}
+        >
+          ROLL
         </button>
       </div>
     </div>

@@ -54,6 +54,7 @@ function Player(props) {
     dispatch(removeBet(props.id, props.bet))
     dispatch(rotateActive())
   }
+  // todo create instant loss function to call if player or dealer result is equal to '-x2'
 
   const checkComplete = () => {
     
@@ -122,13 +123,19 @@ function Player(props) {
 
   function compareResults(activePlayerResult) {
     const currentDealer = players.find((player) => player.isDealer)
+
+    console.log(currentDealer)
+    console.log(currentDealer.result, 'current result dealer')
+    console.log(activePlayerResult, 'current Active Player result')
+
     console.log(currentDealer.result, "current result dealer")
     console.log(activePlayerResult, "current Active Player result")
     if(currentDealer.result == activePlayerResult) {
+
       return PlayerDraw()
-    }else if(currentDealer.result > activePlayerResult) {
+    } else if (currentDealer.result > activePlayerResult) {
       return DealerWin()
-    }else if (currentDealer.result < activePlayerResult){
+    } else if (currentDealer.result < activePlayerResult) {
       return PlayerWin()
     }else return dispatch(removeBet(props.id, props.bet))
   }
@@ -136,7 +143,7 @@ function Player(props) {
       
 
   function checkNumRolls(rollCount, result) {
-    
+
     if(props.isDealer == true) {
       if (rollCount === 2) {
         dispatch(resetRoll(props.id))  
@@ -159,10 +166,8 @@ function Player(props) {
       checkComplete()
       return  compareResults(result) 
       }
-
     }
   }
-    
 
   return (
     <div className="card-container">
@@ -242,6 +247,3 @@ function calcResults(bet, result) {
 }
 
 export default Player
-    
-    
-

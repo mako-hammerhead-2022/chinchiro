@@ -7,6 +7,7 @@ const isAuthenticated = () => {
 }
 
 export function IfAuthenticated({ children }) {
+  console.log(children)
   return isAuthenticated() ? <>{children}</> : null
 }
 

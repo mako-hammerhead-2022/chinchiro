@@ -9,8 +9,8 @@ function Register() {
   const user = useSelector((state) => state.loggedInUser)
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    auth0Id: '',
-    email: '',
+    auth0Id: user?.auth0Id,
+    email: user?.email,
     userName: '',
     avatar: '',
   })
@@ -20,7 +20,6 @@ function Register() {
       auth0Id: user?.auth0Id,
       email: user?.email,
     })
-    console.log(form)
   }, [user])
 
   const handleFormUpdate = (e) => {
@@ -32,7 +31,6 @@ function Register() {
   }
 
   const handleAddAvatar = (data) => {
-    console.log(data)
     let key = 'avatar'
     let value = data.value
     let prev = { ...form }
@@ -43,24 +41,20 @@ function Register() {
 
   async function handleClick() {
     await addUser(form)
-    navigate('/')
+    navigate('/game')
   }
 
   return (
     <div className="registration-container">
       <div className="details-container">
         <div className="details">
-          <h2>Register</h2>
-          <div htmlFor="email">Email:</div>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={form.email}
-            disabled={true}
-          />
+          <div className="details-header">
+            <h2 className="header">Register</h2>
+          </div>
 
-          <div htmlFor="userName">Username:</div>
+          <div className="subhead" htmlFor="userName">
+            Username:
+          </div>
           <input
             type="text"
             id="username"
@@ -73,8 +67,8 @@ function Register() {
           <Avatars handleAddAvatar={handleAddAvatar} />
         </div>
 
-        <button type="button" onClick={handleClick}>
-          Register
+        <button className="start-btn small" type="button" onClick={handleClick}>
+          Start Game
         </button>
       </div>
     </div>

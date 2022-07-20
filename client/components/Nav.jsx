@@ -38,11 +38,6 @@ function Nav() {
   }, [user, wallet])
   // const auth0Id = user?.auth0Id,
 
-  function handleLogoff(e) {
-    e.preventDefault()
-    logout()
-  }
-
   function handleRegister(e) {
     e.preventDefault()
     loginWithRedirect({
@@ -53,6 +48,11 @@ function Nav() {
   function handleSignIn(e) {
     e.preventDefault()
     loginWithRedirect()
+  }
+
+  function handleLogoff(e) {
+    e.preventDefault()
+    logout()
   }
 
   return (
