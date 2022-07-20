@@ -8,7 +8,7 @@ import {
   scoreTriple,
   checkPisser,
   orderDice,
-  playAudio,
+  
 } from '../actions/actions.js'
 
 const Dice = (props) => {

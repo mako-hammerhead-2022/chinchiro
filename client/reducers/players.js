@@ -80,6 +80,12 @@ export function rotateActive() {
   }
 }
 
+export function setActive() {
+  return {
+    type: 'SET_ACTIVE',
+  }
+}
+
 export function initiatePlayers(players) {
   return {
     type: 'INITIATE_PLAYERS',

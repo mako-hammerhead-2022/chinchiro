@@ -67,6 +67,8 @@ function Player(props) {
     if(checkedPlayer.completeTurn == true) {
       dispatch(resetTurn())
       dispatch(rotateDealer())
+      dispatch(rotateActive())
+      dispatch(rotateActive())
       console.log('set complete turn to false')
     }else{
       dispatch(completeTurn(props.id))
