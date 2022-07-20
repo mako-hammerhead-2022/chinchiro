@@ -13,6 +13,9 @@ import {
   setRoll,
   resetRoll,
   removeBet,
+  completeTurn,
+  rotateDealer,
+  resetTurn,
 } from '../reducers/players'
 
 function Player(props) {
@@ -51,6 +54,25 @@ function Player(props) {
     dispatch(removeBet(props.id, props.bet))
     dispatch(rotateActive())
   }
+
+  const checkComplete = () => {
+    
+    const currentActiveId = players.find((player) => player.isActive).id
+    const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
+    
+    const checkedPlayer = players[nextActiveId]
+
+    console.log(checkedPlayer, "checked PLayer")
+
+    if(checkedPlayer.completeTurn == true) {
+      dispatch(resetTurn())
+      dispatch(rotateDealer())
+      console.log('set complete turn to false')
+    }else{
+      dispatch(completeTurn(props.id))
+    }
+  }
+
 // todo create instant loss function to call if player or dealer result is equal to '-x2'
   let diceRoll = displayRoll()
 
@@ -101,40 +123,38 @@ function Player(props) {
     console.log(currentDealer.result, "current result dealer")
     console.log(activePlayerResult, "current Active Player result")
     if(currentDealer.result == activePlayerResult) {
-      
       return PlayerDraw()
     }else if(currentDealer.result > activePlayerResult) {
       return DealerWin()
     }else if (currentDealer.result < activePlayerResult){
       return PlayerWin()
     }else return dispatch(removeBet(props.id, props.bet))
-
   }
+
+      
 
   function checkNumRolls(rollCount, result) {
     
     if(props.isDealer == true) {
-      console.log('roll count is : ' + rollCount)
-      console.log('result code is: ' + result)
       if (rollCount === 2) {
         dispatch(resetRoll(props.id))  
+        checkComplete()
       } else if (result === 2) {
-        console.log('this should be bust')
         dispatch(setRoll(props.id, props.roll))
       } else{ 
       dispatch(resetRoll(props.id))
+      checkComplete()
       }
     } else if(props.isDealer == false) {
-      console.log('roll count is : ' + rollCount)
-      console.log('result code is: ' + result)
       if (rollCount === 2) {
         dispatch(resetRoll(props.id))
+        checkComplete()
         return compareResults(result)
       } else if (result === 2) {
-        console.log('this should be bust')
         dispatch(setRoll(props.id, props.roll))
       } else{ 
       dispatch(resetRoll(props.id))
+      checkComplete()
       return  compareResults(result) 
       }
 
@@ -176,8 +196,6 @@ function Player(props) {
           ) : (
             <div className="card-bottom">
               <Counter id={props.id} bet={props.bet} />
-              <button onClick={PlayerWin}>WINNER</button>
-              <button onClick={DealerWin}>LOSER</button>
             </div>
           )}
         </React.Fragment>
