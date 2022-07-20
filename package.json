@@ -19,6 +19,9 @@
     "knex": "knex --knexfile ./server/db/knexfile.js",
     "lint": "eslint --ext .js,.jsx ."
   },
+  "engines": {
+    "node": "16.x"
+  },
   "keywords": [
     "fullstack"
   ],
