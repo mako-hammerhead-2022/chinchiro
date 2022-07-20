@@ -47,6 +47,11 @@ function Player(props) {
     dispatch(rotateActive())
   }
 
+  const PlayerDraw = () => {
+    dispatch(removeBet(props.id, props.bet))
+    dispatch(rotateActive())
+  }
+// todo create instant loss function to call if player or dealer result is equal to '-x2'
   let diceRoll = displayRoll()
 
   function displayRoll() {
@@ -96,7 +101,8 @@ function Player(props) {
     console.log(currentDealer.result, "current result dealer")
     console.log(activePlayerResult, "current Active Player result")
     if(currentDealer.result == activePlayerResult) {
-      return dispatch(removeBet(props.id, props.bet))
+      
+      return PlayerDraw()
     }else if(currentDealer.result > activePlayerResult) {
       return DealerWin()
     }else if (currentDealer.result < activePlayerResult){
