@@ -1,4 +1,3 @@
-import { useAuth0 } from '@auth0/auth0-react'
 import * as api from './apiClient'
 
 export function postWinningsToDB(id, amount) {
@@ -7,7 +6,7 @@ export function postWinningsToDB(id, amount) {
   let data = [id, amount]
   api
     .updateUserEarnings(data)
-    .then((result) => {
+    .then(() => {
       return null
     })
     .catch((err) => {

@@ -18,6 +18,5 @@ describe('logged in user reducers', () => {
     const action = clearLoggedInUser()
     const newState = user(undefined, action)
     expect(newState.email).toBe('')
-    console.log(newState)
   })
 })

@@ -1,4 +1,13 @@
-import playersReducer, { initiatePlayers, diceResult, addToWallet, removeFromWallet, rotateDealer, makeNextPlayerActive, addBet, removeBet } from '../players'
+import playersReducer, {
+  initiatePlayers,
+  diceResult,
+  addToWallet,
+  removeFromWallet,
+  rotateDealer,
+  makeNextPlayerActive,
+  addBet,
+  removeBet,
+} from '../players'
 import { arrUsers, arrPlayers } from '../../../test/fakeData'
 
 const players = arrUsers
@@ -37,15 +46,14 @@ describe('player reducer', () => {
     const state = arrPlayers
     const action = removeFromWallet(arrPlayers[0].id)
     const newState = playersReducer(state, action)
-    expect(newState[0].result).toEqual(0)
+    expect(newState[0].result).toBe(0)
   })
 
   test('rotates the dealer', () => {
     const state = arrPlayers
     const action = rotateDealer()
     const newState = playersReducer(state, action)
-    expect(newState[1].isDealer)
-      .toBe(true)
+    expect(newState[1].isDealer).toBe(true)
   })
 
   test('displays the result of the player roll', () => {
@@ -56,10 +64,8 @@ describe('player reducer', () => {
   })
 
   test('makes next player active', () => {
-    const state = arrPlayers
     const action = makeNextPlayerActive(arrPlayers)
-    console.log(action)
-    expect(action[1].isActive).toEqual(true)
+    expect(action[1].isActive).toBe(true)
   })
 
   test('add bet', () => {

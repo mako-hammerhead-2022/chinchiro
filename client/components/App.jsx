@@ -1,7 +1,7 @@
 //external dependencies
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import React, { useState } from 'react'
+
+import React from 'react'
 import { cacheUser } from '../auth0-utils'
 import { useAuth0 } from '@auth0/auth0-react'
 

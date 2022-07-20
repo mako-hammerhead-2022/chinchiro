@@ -30,13 +30,6 @@ export default function ProfilePage() {
     }
   }, [user])
 
-  console.log(userInfo)
-
-  const wins = userInfo.win_tally
-  const losses = userInfo.loss_tally
-  const totalGames = Number(wins) + Number(losses)
-  const percentage = wins / totalGames
-
   return (
     <div className="profile-page-container">
       <MinimalNav />

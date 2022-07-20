@@ -62,7 +62,9 @@ function Nav() {
           <div className="nav-header-container">
             <div className="nav-item-container">
               <Link className="nav-item header" to="/">
-                <h1 className="logo">CHINCHIRRO</h1>
+                <h1 data-testid="nav-logo" className="logo">
+                  CHINCHIRRO
+                </h1>
               </Link>
             </div>
           </div>

@@ -36,7 +36,6 @@ function Register() {
     let prev = { ...form }
     prev[key] = value
     setForm(prev)
-    console.log(form)
   }
 
   async function handleClick() {

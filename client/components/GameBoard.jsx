@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPlayers } from '../reducers/players'
 
 import { useAuth0 } from '@auth0/auth0-react'
 import { cacheUser } from '../auth0-utils'
-import AppModal from './widgets/AppModal'
 
 import PlayerList from './PlayersList'
-import MenuModal from './widgets/MenuModal'
-import { Link } from 'react-router-dom'
 import MinimalNav from '../components/widgets/MinimalNav'
 
 export default function GameBoard() {

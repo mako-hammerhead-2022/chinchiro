@@ -37,7 +37,6 @@ router.get('/allusers', (req, res) => {
 
 router.get('/:authId', (req, res) => {
   let authId = req.params.authId
-  console.log(authId)
   db.getUserByAuthId(authId)
     .then((data) => {
       res.json(data)

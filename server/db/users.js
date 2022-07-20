@@ -35,7 +35,6 @@ function getUserByName(username, db = connection) {
 }
 
 function createUser(user, db = connection) {
-  console.log(user)
   return db('users').insert(user)
 }
 

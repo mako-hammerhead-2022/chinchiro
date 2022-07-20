@@ -7,7 +7,6 @@ import { createMemoryHistory } from 'history'
 import HomePage from '../HomePage'
 
 import { cacheUser } from '../../../auth0-utils'
-import { useAuth0 } from '@auth0/auth0-react'
 
 jest.mock('../../../auth0-utils')
 jest.mock('@auth0/auth0-react')
