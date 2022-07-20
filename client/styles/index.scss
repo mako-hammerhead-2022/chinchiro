@@ -266,6 +266,34 @@ h2 {
   background: #ee0ce71a;
 }
 
+.dice-container{
+  display: flex;
+    flex-direction: column;
+}
+
+.card-btn{
+  font-family: "Press Start 2P", cursive;
+  border-style: solid;
+  background:rgba(238, 12, 230, 0.281);
+  color:#ffffe9;
+  border-color: #241924;
+}
+
+.card-btn:hover{
+  cursor: pointer;
+  background-color: rgba(238, 12, 230, 0.434);
+  opacity: 80;
+  color:#ffffe9;
+}
+
+.bet-btn-container{
+  display: flex;
+    font-size: .75rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .card-bottom{
   display: flex;
     flex-direction: column;
@@ -338,6 +366,7 @@ h2 {
   cursor: pointer;
   background-color: rgb(238 12 231 / 38%);
   opacity: 80;
+  color:#ffffe9;
 }
 
 .menu-item{
@@ -356,6 +385,24 @@ h2 {
   font-weight: 700;
 }
 
+.no-dec{
+  text-decoration: none;
+  color: #ffffe9;
+}
+
+//profile page
+
+.profile-page-container{
+  background-image: url("https://cdn.dribbble.com/users/3671336/screenshots/15703273/dribbble-bedroom.gif"); 
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 0.5rem;
+}
+
+.no-back{
+  background-image: none !important;
+}
 
 // registration
 
@@ -420,7 +467,6 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .start-btn{
@@ -448,6 +494,23 @@ h2 {
   font-size: 1.2rem;
 }
 
+.profile-details{
+  display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: stretch;
+}
 
+.profile-info{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
+.profile-stats{
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+}
 

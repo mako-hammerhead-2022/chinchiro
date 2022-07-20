@@ -9,10 +9,10 @@ import AppModal from './widgets/AppModal'
 import PlayerList from './PlayersList'
 import MenuModal from './widgets/MenuModal'
 import { Link } from 'react-router-dom'
+import MinimalNav from '../components/widgets/MinimalNav'
 
 export default function GameBoard() {
   const players = useSelector((state) => state.players)
-  const [show, setShow] = useState(false)
   const dispatch = useDispatch()
   const currentUser = useSelector((state) => state.loggedInUser)
 
@@ -27,45 +27,13 @@ export default function GameBoard() {
   useEffect(() => {
     dispatch(fetchPlayers())
   }, [])
-<<<<<<< HEAD
   players ? setUpPlayers() : ''
 
-  console.log(currentUser.auth0Id)
-||||||| fb46f00
-  console.log(players)
-=======
-
->>>>>>> dev
-
-  function handleShow() {
-    setShow(true)
-  }
   cacheUser(useAuth0)
-
-  function startGame() {
-    dispatch({ type: 'START_GAME' })
-    dispatch({ type: 'START_ACTIVE' })
-  }
 
   return (
     <div className="gameboard-page-container">
-      <div className="menu-buttons">
-        <div className="logo-container">
-          <Link to="/" className="logo">
-            CHINCHIRO PUNK
-          </Link>
-        </div>
-        <div className="buttons-container">
-          <div className="nav-btn " onClick={handleShow}>
-            MENU
-          </div>
-          <div className="nav-btn" onClick={startGame}>
-            RESTART GAME
-          </div>
-        </div>
-      </div>
-
-      <MenuModal onClose={() => setShow(false)} show={show} />
+      <MinimalNav />
       <div className="main" data-testid="gameboard-testid">
         {currentUser.auth0Id === '' ? (
           <p className="start-btn">Loading Gameboard...</p>

@@ -18,7 +18,9 @@ export default function HomePage() {
 
   function handleSignIn(e) {
     e.preventDefault()
-    loginWithRedirect()
+    loginWithRedirect({
+      redirectUri: `${window.location.origin}/game`,
+    })
   }
 
   function handleLogoff(e) {
@@ -38,8 +40,11 @@ export default function HomePage() {
           </Link>
         </IfAuthenticated>
         <IfNotAuthenticated>
-          <Link to="/" onClick={handleRegister}>
+          <Link to="/" onClick={handleSignIn}>
             <button className="start-btn">SIGN IN TO PLAY</button>
+          </Link>
+          <Link to="/" onClick={handleRegister}>
+            <button className="start-btn small">REGISTER</button>
           </Link>
         </IfNotAuthenticated>
         <button

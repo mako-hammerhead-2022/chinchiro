@@ -51,7 +51,7 @@ function Player(props) {
     dispatch(removeBet(props.id, props.bet))
     dispatch(rotateActive())
   }
-// todo create instant loss function to call if player or dealer result is equal to '-x2'
+  // todo create instant loss function to call if player or dealer result is equal to '-x2'
   let diceRoll = displayRoll()
 
   function displayRoll() {
@@ -98,33 +98,31 @@ function Player(props) {
 
   function compareResults(activePlayerResult) {
     const currentDealer = players.find((player) => player.isDealer)
-    console.log(currentDealer.result, "current result dealer")
-    console.log(activePlayerResult, "current Active Player result")
-    if(currentDealer.result == activePlayerResult) {
-      
+    console.log(currentDealer)
+    console.log(currentDealer.result, 'current result dealer')
+    console.log(activePlayerResult, 'current Active Player result')
+    if (currentDealer.result == activePlayerResult) {
       return PlayerDraw()
-    }else if(currentDealer.result > activePlayerResult) {
+    } else if (currentDealer.result > activePlayerResult) {
       return DealerWin()
-    }else if (currentDealer.result < activePlayerResult){
+    } else if (currentDealer.result < activePlayerResult) {
       return PlayerWin()
-    }else return dispatch(removeBet(props.id, props.bet))
-
+    } else return dispatch(removeBet(props.id, props.bet))
   }
 
   function checkNumRolls(rollCount, result) {
-    
-    if(props.isDealer == true) {
+    if (props.isDealer == true) {
       console.log('roll count is : ' + rollCount)
       console.log('result code is: ' + result)
       if (rollCount === 2) {
-        dispatch(resetRoll(props.id))  
+        dispatch(resetRoll(props.id))
       } else if (result === 2) {
         console.log('this should be bust')
         dispatch(setRoll(props.id, props.roll))
-      } else{ 
-      dispatch(resetRoll(props.id))
+      } else {
+        dispatch(resetRoll(props.id))
       }
-    } else if(props.isDealer == false) {
+    } else if (props.isDealer == false) {
       console.log('roll count is : ' + rollCount)
       console.log('result code is: ' + result)
       if (rollCount === 2) {
@@ -133,14 +131,12 @@ function Player(props) {
       } else if (result === 2) {
         console.log('this should be bust')
         dispatch(setRoll(props.id, props.roll))
-      } else{ 
-      dispatch(resetRoll(props.id))
-      return  compareResults(result) 
+      } else {
+        dispatch(resetRoll(props.id))
+        return compareResults(result)
       }
-
     }
   }
-    
 
   return (
     <div className="card-container">
@@ -222,6 +218,3 @@ function calcResults(bet, result) {
 }
 
 export default Player
-    
-    
-

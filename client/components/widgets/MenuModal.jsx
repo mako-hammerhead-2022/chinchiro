@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useAuth0 } from '@auth0/auth0-react'
+import { Link } from 'react-router-dom'
 
 export default function MenuModal(props) {
   const [show, setShow] = useState(false)
@@ -25,9 +26,12 @@ export default function MenuModal(props) {
         </Modal.Header>
         <Modal.Body>
           <div className="menu-container">
-            <div className="menu-item-container">
-              <div className="menu-item">PROFILE</div>
-            </div>
+            <Link className="no-dec" to="/profile">
+              <div className="menu-item-container">
+                <div className="menu-item">PROFILE</div>
+              </div>
+            </Link>
+
             <div className="menu-item-container">
               <div className="menu-item">RULES</div>
             </div>
