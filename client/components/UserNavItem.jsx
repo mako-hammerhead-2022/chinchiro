@@ -1,5 +1,5 @@
 //external dependencies
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 // import '../styles/index.scss'
 
@@ -18,7 +18,7 @@ export default function UserNavItem({ userInfo }) {
 
           <div className="nav-user-textual">
             <p className="subinfo username" alt="username">
-              {userInfo.userName}
+              {userInfo.username}
             </p>
             <div className="nav-tally-earnings">
               <p className="subinfo tally" data-testid="win-tally">

@@ -3,7 +3,7 @@
 import React from 'react'
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { useSelector, Provider } from 'react-redux'
+import { Provider } from 'react-redux'
 import { arrPlayers } from '../../../test/fakeData'
 import Player from '../Player'
 

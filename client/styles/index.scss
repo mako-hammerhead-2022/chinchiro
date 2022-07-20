@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
   margin: 0;
   width: 100vw;
@@ -21,11 +23,16 @@ h2 {
   src: url('../../server/public/fonts/game-font/SINGLE\ FIGHTER.woff');
 }
 
-.main{
-  background-image: url("https://64.media.tumblr.com/d68f2433a2ddecadd29370a49f97e993/tumblr_pnumy4U4iA1xqepp2o1_1280.gifv"); 
+.gameboard-page-container{
+  background-image: url("https://i.pinimg.com/originals/99/8e/05/998e055aba57c24138220937cc5166ab.gif"); 
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-top: 0.5rem;
+}
+
+.main{
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,8 +45,38 @@ h2 {
   height: 100%;
 }
 
+.menu-buttons{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttons-container{
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.nav-btn{
+  margin-left: 1rem;
+  font-size: 1rem;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: #ffffe9;
+  cursor: pointer;
+  outline: inherit;
+}
+
+
+.nav-btn:hover{
+  text-decoration: underline;
+}
 .navbar-container{
-  background: #283941;
+  background: #1c1037;
   opacity: 100;
     color: white;
     height: 4rem;
@@ -70,12 +107,38 @@ h2 {
 }
 
 .logo{
-  height: 1.2rem;
+  font-family: 'Press Start 2P';
+  font-size: 1.5rem;
   margin-left: 1rem;
+  color: #ffffe9;
 }
+
+.logo:hover{
+  text-decoration: underline;
+  color: #ffffe9;
+  cursor: pointer;
+}
+
+.header{
+    
+    font-family: 'Press Start 2P';
+    font-size: 1.5rem;
+    height: 1.2rem;
+    color: #ffffe9;
+}
+
 
 .user-info-container{
   width: 50%;
+}
+
+.user-info{
+  display: flex;
+  align-items: center;
+}
+
+.username-wallet{
+  margin-left: 0.5rem;
 }
 
 .nav-user-info{
@@ -118,40 +181,201 @@ h2 {
   margin: 0 0 0 .25rem;
 }
 
+.character-selection-container{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
 .avatar-collection-container{
   margin: 1rem;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 80%;
+  justify-content: center;
 }
 
 .avatar-container{
-  height: 5rem;
-  width: 5rem;
+  height: 5.5rem;
+  width: 5.5rem;
+  background-color: #ffffe9;
+  margin: 0.1rem;
+  border-style: solid;
+  border-width: 0.25rem;
 }
 
+.card-avatar{
+  height: 6.75rem;
+  width: 6.75rem;
+}
+
+.grayed{
+  filter: opacity(50%) grayscale(100%);
+}
 .avatar-container:hover{
   cursor: pointer;
-  border-style: solid;
+  background-color: #ee0ce7;
 }
 
 .avatar-img{
   height: 100%;
 }
 
+.card-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card {
-  display: inline-block;
-  padding: 8px;
-  margin: 10px;
-  border: 2px solid black;
-  border-radius: 5%;
-  background-color: white;
+  display: flex;
+  padding: .5rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.card-top{
+  display: flex;
+    margin-top: 1.5rem;
+    flex-direction: row;
+}
+
+.card-dice{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.dice-result{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2em;
+  font-family: "Press Start 2P", cursive;
+  color: #ee0ce7;
+  height: 10rem;
+  border-style: solid;
+  border-radius: 0.25rem;
+  background: #ee0ce71a;
+}
+
+.dice-container{
+  display: flex;
+    flex-direction: column;
+}
+
+.card-btn{
+  font-family: "Press Start 2P", cursive;
+  border-style: solid;
+  background:rgba(238, 12, 230, 0.281);
+  color:#ffffe9;
+  border-color: #241924;
+}
+
+.card-btn:hover{
+  cursor: pointer;
+  background-color: rgba(238, 12, 230, 0.434);
+  opacity: 80;
+  color:#ffffe9;
+}
+
+.bet-btn-container{
+  display: flex;
+    font-size: .75rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-bottom{
+  display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.bet-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.game-over{
+  font-family: "Press Start 2P", cursive;
+  color:#fe0106;
 }
 
 .play-container{
   display: flex;
   justify-content: center;
+  background-color: #110b1f61;
 }
 
 // modal
+
+.modal-dialog{
+  height: 50%;
+}
+
+.modal-content{
+  height: 100%;
+  font-family: "Press Start 2P", cursive;
+  color: #ffffe9;
+  border-style: solid;
+    border-radius: 0.25rem;
+    background: rgba(238, 12, 231, 0.1019607843);
+    border-color: #ee0ce7;
+}
+
+.modal-header{
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #ee0ce7;
+  border-top-left-radius: calc(0.3rem - 1px);
+  border-top-right-radius: calc(0.3rem - 1px);
+  flex-direction: column;
+}
+
+.modal-body{
+  padding: 0rem;
+}
+
+.menu-container{
+  height: 100%
+}
+
+.menu-item-container{
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-item-container:hover{
+  cursor: pointer;
+  background-color: rgb(238 12 231 / 38%);
+  opacity: 80;
+  color:#ffffe9;
+}
+
+.menu-item{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
 
 .paragraph-container{
   margin-top: .3rem;
@@ -161,7 +385,132 @@ h2 {
   font-weight: 700;
 }
 
+.no-dec{
+  text-decoration: none;
+  color: #ffffe9;
+}
 
+//profile page
 
+.profile-page-container{
+  background-image: url("https://cdn.dribbble.com/users/3671336/screenshots/15703273/dribbble-bedroom.gif"); 
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 0.5rem;
+}
 
+.no-back{
+  background-image: none !important;
+}
+
+// registration
+
+.registration-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('https://i.pinimg.com/originals/aa/25/a1/aa25a1bd28c0cb0fcc844afdce6bf27d.gif');
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.details-header{
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.details-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  background-color: #110b1f61;
+  height: 70%;
+  border-radius: 1rem;
+}
+
+.details{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: stretch;
+}
+
+// player container
+.player-name{
+  font-family: 'PRESS START 2P';
+    color: #ffffe9;
+    font-size: .95rem;
+}
+
+.subhead{
+  font-family: 'PRESS START 2P';
+  color: #ffffe9;
+  font-size: .9rem;
+}
+
+.homepage{
+  background-image: url("https://i.pinimg.com/originals/ce/ca/ba/cecabaac30736b17f7f278422ef861c0.gif");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage-buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.start-btn{
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.5rem;
+  color: #ffffe9;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.start-btn:hover{
+  text-decoration: underline;
+}
+
+.small{
+  font-size: 1.5rem;
+}
+
+.music{
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.profile-details{
+  display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: stretch;
+}
+
+.profile-info{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-stats{
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+}
 

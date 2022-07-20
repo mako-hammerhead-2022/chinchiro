@@ -11,7 +11,6 @@ const emptyUser = {
 
 export default function user(state = emptyUser, action) {
   const { type, payload } = action
-
   switch (type) {
     case SET_LOGGED_IN_USER:
       return payload

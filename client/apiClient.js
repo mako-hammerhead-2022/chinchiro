@@ -16,9 +16,6 @@ export function updateUserWins(data) {
 }
 
 export function updateUserEarnings(data) {
-  return Promise.resolve('Successfully updated user earnings')
-  // TODO: fix me
-  // eslint-disable-next-line no-unreachable
   return request
     .post(`${url}/users/earnings`)
     .send(data)
@@ -32,6 +29,7 @@ export function updateUserEarnings(data) {
 }
 
 export function getUserInfo(authId) {
+  console.log(authId)
   return request
     .get(`${url}/users/${authId}`)
     .then((response) => {

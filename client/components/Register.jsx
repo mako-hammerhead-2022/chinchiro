@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { addUser } from '../apiClient'
 import '../styles/index.scss'
 import Avatars from './Avatars'
-import { GridForm, ColOne, ColTwo, Button } from './Styled'
 
 function Register() {
   const user = useSelector((state) => state.loggedInUser)
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    auth0Id: '',
-    email: '',
+    auth0Id: user?.auth0Id,
+    email: user?.email,
     userName: '',
     avatar: '',
   })
@@ -21,7 +20,6 @@ function Register() {
       auth0Id: user?.auth0Id,
       email: user?.email,
     })
-    console.log(form)
   }, [user])
 
   const handleFormUpdate = (e) => {
@@ -33,58 +31,46 @@ function Register() {
   }
 
   const handleAddAvatar = (data) => {
-    console.log(data)
     let key = 'avatar'
     let value = data.value
     let prev = { ...form }
     prev[key] = value
     setForm(prev)
-    console.log(form)
   }
 
   async function handleClick() {
     await addUser(form)
-    navigate('/')
+    navigate('/game')
   }
 
   return (
-    <>
-      <h2>Register</h2>
-      <GridForm>
-        <ColOne htmlFor="username">Auth0 Id:</ColOne>
-        <ColTwo
-          type="text"
-          id="auth0Id"
-          name="auth0Id"
-          value={form.auth0Id}
-          disabled={true}
-        />
+    <div className="registration-container">
+      <div className="details-container">
+        <div className="details">
+          <div className="details-header">
+            <h2 className="header">Register</h2>
+          </div>
 
-        <ColOne htmlFor="email">Email:</ColOne>
-        <ColTwo
-          type="text"
-          id="email"
-          name="email"
-          value={form.email}
-          disabled={true}
-        />
+          <div className="subhead" htmlFor="userName">
+            Username:
+          </div>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={setForm.userName}
+            onChange={(e) => handleFormUpdate(e)}
+          />
+        </div>
+        <div className="character-selection-container">
+          <Avatars handleAddAvatar={handleAddAvatar} />
+        </div>
 
-        <ColOne htmlFor="userName">Username:</ColOne>
-        <ColTwo
-          type="text"
-          id="username"
-          name="username"
-          value={setForm.userName}
-          onChange={(e) => handleFormUpdate(e)}
-        />
-
-        <Avatars handleAddAvatar={handleAddAvatar} />
-
-        <Button type="button" onClick={handleClick}>
-          Register
-        </Button>
-      </GridForm>
-    </>
+        <button className="start-btn small" type="button" onClick={handleClick}>
+          Start Game
+        </button>
+      </div>
+    </div>
   )
 }
 

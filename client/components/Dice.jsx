@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { diceResult } from '../reducers/players'
-import Player from './Player.jsx'
 
 import {
   scoreDouble,
   scoreRun,
   scoreTriple,
   checkPisser,
-  scoreBust,
   orderDice,
+  
 } from '../actions/actions.js'
 
 const Dice = (props) => {
-
   const dispatch = useDispatch()
 
   const diceImage = [
@@ -26,7 +24,6 @@ const Dice = (props) => {
     '/dice6.png',
   ]
 
-
   // Generate random number
   function getRandomNum(min, max) {
     min = Math.ceil(min)
@@ -34,39 +31,44 @@ const Dice = (props) => {
     return Math.floor(Math.random() * (max - min) + min)
   }
 
-  
   // state of all dice
   const [rollP1, setRollP1] = useState([1, 1, 1])
 
   function rollDiceP1() {
-    let roll = orderDice([getRandomNum(1, 7), getRandomNum(1, 7), getRandomNum(1, 7)])
+    let roll = orderDice([
+      getRandomNum(1, 7),
+      getRandomNum(1, 7),
+      getRandomNum(1, 7),
+    ])
     let pisser = getRandomNum(1, 200)
+
+    props.checkRoll(props.roll, calcResult(roll, pisser))
     return calcResult(roll, pisser)
   }
-  
-  function calcResult(roll, pisser){
-    // calculate score and store as a value    
+
+  function calcResult(roll, pisser) {
+    // calculate score and store as a value
     setRollP1(roll)
-    if(scoreDouble(roll) != false){
+    if (scoreTriple(roll) == 'x3') {
+      return 10
+    } else if (scoreTriple(roll) == 'x5') {
+      return 11
+    } else if (scoreDouble(roll) != false) {
       return scoreDouble(roll)
-    } else if(scoreTriple(roll) == 'x3'){
-      return 'x3'
-    }else if(scoreTriple(roll) == 'x5'){
-      return 'x5'
-    }else if(scoreRun(roll) == '-x2'){
-      return '-x2'
-    }else if(scoreRun(roll) == 'x2'){
-      return 'x2'
-    }else if(checkPisser(pisser) == 'pisser'){
-      return 'pisser'
-    }else {
-      return 'bust'
+    } else if (scoreRun(roll) == '-x2') {
+      return 0
+    } else if (scoreRun(roll) == 'x2') {
+      return 9
+    } else if (checkPisser(pisser) == 'pisser') {
+      return 1
+    } else {
+      return 2
     }
-    }
+  }
 
   return (
     <div>
-      <div>
+      <div className="dice-container">
         <div>
           <img
             src={diceImage[rollP1[0]]}
@@ -87,7 +89,12 @@ const Dice = (props) => {
             height={'50px'}
           />
         </div>
-        <button onClick={()=>dispatch(diceResult(props.id, rollDiceP1()))}>ROLL THE DICE</button>
+        <button
+          className="card-btn"
+          onClick={() => dispatch(diceResult(props.id, rollDiceP1()))}
+        >
+          ROLL
+        </button>
       </div>
     </div>
   )

@@ -38,11 +38,6 @@ function Nav() {
   }, [user, wallet])
   // const auth0Id = user?.auth0Id,
 
-  function handleLogoff(e) {
-    e.preventDefault()
-    logout()
-  }
-
   function handleRegister(e) {
     e.preventDefault()
     loginWithRedirect({
@@ -55,6 +50,11 @@ function Nav() {
     loginWithRedirect()
   }
 
+  function handleLogoff(e) {
+    e.preventDefault()
+    logout()
+  }
+
   return (
     <>
       <nav className="navbar-container">
@@ -62,11 +62,9 @@ function Nav() {
           <div className="nav-header-container">
             <div className="nav-item-container">
               <Link className="nav-item header" to="/">
-                <img
-                  className="logo"
-                  src="img/chinchirro-logo-1.png"
-                  alt="the logo"
-                />
+                <h1 data-testid="nav-logo" className="logo">
+                  CHINCHIRRO
+                </h1>
               </Link>
             </div>
           </div>

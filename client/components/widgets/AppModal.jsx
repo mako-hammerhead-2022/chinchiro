@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
 export default function AppModal(props) {
@@ -44,7 +43,7 @@ export default function AppModal(props) {
               Each player rolls the dice. If two of the dice have the same
               number, that number is the score of the player. For example, the
               player rolls 1-3-3, then the score is 3. If the score is higher
-              than the dealer's, the player wins.
+              than the dealer`&apos;`s, the player wins.
             </div>
           </div>
           <div className="paragraph-container">

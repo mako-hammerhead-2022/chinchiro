@@ -34,7 +34,7 @@ describe('<Nav />', () => {
     })
 
     test('logo is displayed', async () => {
-      expect(screen.getByAltText('the logo')).toBeInTheDocument()
+      expect(screen.getByTestId('the logo')).toBeInTheDocument()
     })
     test('links are displayed', () => {
       expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument()

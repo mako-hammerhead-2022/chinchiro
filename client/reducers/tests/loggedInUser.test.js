@@ -1,5 +1,5 @@
 import user from '../loggedInUser'
-import { setLoggedInUser } from '../../actions/loggedInUser'
+import { clearLoggedInUser, setLoggedInUser } from '../../actions/loggedInUser'
 import { newUser } from '../../../test/fakeData'
 
 describe('logged in user reducers', () => {
@@ -14,5 +14,9 @@ describe('logged in user reducers', () => {
     expect(newState.email).toBe('alice@denton.com')
   })
 
-  test.todo('check clear logged in user')
+  test('check clear logged in user', () => {
+    const action = clearLoggedInUser()
+    const newState = user(undefined, action)
+    expect(newState.email).toBe('')
+  })
 })
