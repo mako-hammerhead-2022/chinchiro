@@ -11,6 +11,8 @@ import {
   removeFromWallet,
   rotateActive,
   setRoll,
+  resetRoll,
+  removeBet,
 } from '../reducers/players'
 
 function Player(props) {
@@ -25,6 +27,8 @@ function Player(props) {
     dispatch(
       removeFromWallet(currentDealer.id, calcResults(props.bet, props.result))
     )
+    dispatch(removeBet(props.id, props.bet))
+    dispatch(rotateActive())
   }
 
   const DealerWin = () => {
@@ -39,6 +43,8 @@ function Player(props) {
     dispatch(
       removeFromWallet(props.id, calcResults(props.bet, currentDealer.result))
     )
+    dispatch(removeBet(props.id, props.bet))
+    dispatch(rotateActive())
   }
 
   let diceRoll = displayRoll()
@@ -85,16 +91,50 @@ function Player(props) {
     }
   }
 
-  function checkNumRolls(roll, result) {
-    console.log('roll count is : ' + roll)
-    console.log('result code is: ' + result)
-    if (roll === 3) {
-      return dispatch(rotateActive())
-    } else if (result === 2) {
-      console.log('this should be bust')
-      dispatch(setRoll(props.id, props.roll))
-    } else return dispatch(rotateActive())
+  function compareResults(activePlayerResult) {
+    const currentDealer = players.find((player) => player.isDealer)
+    console.log(currentDealer.result, "current result dealer")
+    console.log(activePlayerResult, "current Active Player result")
+    if(currentDealer.result == activePlayerResult) {
+      return dispatch(removeBet(props.id, props.bet))
+    }else if(currentDealer.result > activePlayerResult) {
+      return DealerWin()
+    }else if (currentDealer.result < activePlayerResult){
+      return PlayerWin()
+    }else return dispatch(removeBet(props.id, props.bet))
+
   }
+
+  function checkNumRolls(rollCount, result) {
+    
+    if(props.isDealer == true) {
+      console.log('roll count is : ' + rollCount)
+      console.log('result code is: ' + result)
+      if (rollCount === 2) {
+        dispatch(resetRoll(props.id))  
+      } else if (result === 2) {
+        console.log('this should be bust')
+        dispatch(setRoll(props.id, props.roll))
+      } else{ 
+      dispatch(resetRoll(props.id))
+      }
+    } else if(props.isDealer == false) {
+      console.log('roll count is : ' + rollCount)
+      console.log('result code is: ' + result)
+      if (rollCount === 2) {
+        dispatch(resetRoll(props.id))
+        return compareResults(result)
+      } else if (result === 2) {
+        console.log('this should be bust')
+        dispatch(setRoll(props.id, props.roll))
+      } else{ 
+      dispatch(resetRoll(props.id))
+      return  compareResults(result) 
+      }
+
+    }
+  }
+    
 
   return (
     <div className="card-container">
@@ -176,3 +216,6 @@ function calcResults(bet, result) {
 }
 
 export default Player
+    
+    
+

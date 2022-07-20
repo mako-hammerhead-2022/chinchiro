@@ -16,7 +16,7 @@ export default function GameBoard() {
   useEffect(() => {
     dispatch(fetchPlayers())
   }, [])
-  console.log(players)
+
 
   function handleShow() {
     setShow(true)

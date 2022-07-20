@@ -48,6 +48,13 @@ export function setRoll(id, roll) {
   }
 }
 
+export function resetRoll(id) {
+  return {
+    type: 'RESET_ROLL',
+    id,
+  }
+}
+
 export function rotateDealer() {
   return {
     type: 'ROTATE_DEALER',
@@ -172,6 +179,16 @@ export default function playersReducer(state = null, action) {
         } else return player
       })
 
+    case 'RESET_ROLL':
+      return state.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            roll: 0,
+          }
+        } else return player
+      })
+
     case 'ROTATE_DEALER':
       return getNewDealer(state)
 
@@ -199,7 +216,7 @@ function getNewDealer(state) {
 
 export function makeNextPlayerActive(state) {
   const currentActiveId = state.find((player) => player.isActive).id
-  console.log(currentActiveId)
+
   const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
 
   return state.map((player) => {
