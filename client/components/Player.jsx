@@ -115,8 +115,6 @@ function Player(props) {
 
   function compareResults(activePlayerResult) {
     const currentDealer = players.find((player) => player.isDealer)
-    console.log(currentDealer.result, 'current result dealer')
-    console.log(activePlayerResult, 'current Active Player result')
     if (currentDealer.result == activePlayerResult) {
       return PlayerDraw()
     } else if (currentDealer.result > activePlayerResult) {
@@ -167,6 +165,7 @@ function Player(props) {
               <div className='username-wallet'>
                 <h1 className='player-name'>{props.name}</h1>
                 <h2 className='subhead'>Wallet: {props.wallet}</h2>
+                <h2 className='subhead'>RollCount: {props.roll}</h2>
               </div>
             </div>
           </div>
