@@ -45,5 +45,33 @@ describe('<Counter />', () => {
       userEvent.click(screen.getByRole('button', { name: '-1' }))
       expect(myFakeDispatch).toHaveBeenCalledWith(removeBet(1, 1))
     })
+
+    test('Clicking add +5 adds $5 to bet', () => {
+      userEvent.click(screen.getByRole('button', { name: '+5' }))
+      expect(myFakeDispatch).toHaveBeenCalledWith(addBet(1, 5))
+    })
+
+    test('Clicking add -5 removes $5 from bet', () => {
+      userEvent.click(screen.getByRole('button', { name: '-5' }))
+      expect(myFakeDispatch).toHaveBeenCalledWith(removeBet(1, 5))
+    })
+
+    test('Clicking add +10 adds $10 to bet', () => {
+      userEvent.click(screen.getByRole('button', { name: '+10' }))
+      expect(myFakeDispatch).toHaveBeenCalledWith(addBet(1, 10))
+    })
+    test('Clicking add -10 removes $10 from bet', () => {
+      userEvent.click(screen.getByRole('button', { name: '-10' }))
+      expect(myFakeDispatch).toHaveBeenCalledWith(removeBet(1, 10))
+    })
+    test('Clicking add +50 adds $50 to bet', () => {
+      userEvent.click(screen.getByRole('button', { name: '+50' }))
+      expect(myFakeDispatch).toHaveBeenCalledWith(addBet(1, 50))
+    })
+
+    test('Clicking add -50 removes $50 from bet', () => {
+      userEvent.click(screen.getByRole('button', { name: '-50' }))
+      expect(myFakeDispatch).toHaveBeenCalledWith(removeBet(1, 50))
+    })
   })
 })

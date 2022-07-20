@@ -3,7 +3,6 @@ import { IfAuthenticated, IfNotAuthenticated } from '../Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
 import { cacheUser } from '../../auth0-utils'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-
 import { playAudio } from '../../actions/actions'
 
 export default function HomePage() {

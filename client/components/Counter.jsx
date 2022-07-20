@@ -5,6 +5,7 @@ import { addBet, removeBet } from '../reducers/players'
 // store with bets to work
 // parent that gets those bet values
 function Counter(props) {
+
   const dispatch = useDispatch()
 
   return (

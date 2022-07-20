@@ -29,6 +29,7 @@ export function updateUserEarnings(data) {
 }
 
 export function getUserInfo(authId) {
+  console.log(authId)
   return request
     .get(`${url}/users/${authId}`)
     .then((response) => {

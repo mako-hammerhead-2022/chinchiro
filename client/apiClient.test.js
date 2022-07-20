@@ -26,16 +26,16 @@ describe('test GET API', () => {
 
   test('get userinfo', () => {
     const scope = nock('http://localhost')
-      .get('/api/v1/users/allusers/${authId}')
-      .reply(200, userInfo[0])
-    return getUserInfo().then((users) => {
-      expect(users).toEqual(arrPlayers)
+      .get(`/api/v1/users/1`)
+      .reply(200, userInfo)
+    return getUserInfo(1).then((users) => {
+      expect(users).toEqual(userInfo)
       scope.done()
       return null
     })
   })
-})
 
-describe('test POST API', () => {
-  test('POST /api', () => {})
+  describe('test POST API', () => {
+    test('POST /api', () => {})
+  })
 })

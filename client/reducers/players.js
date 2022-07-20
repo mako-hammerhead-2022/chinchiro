@@ -56,6 +56,19 @@ export function resetRoll(id) {
   }
 }
 
+export function completeTurn(id) {
+  return {
+    type: 'COMPLETE_TURN',
+    id,
+  }
+}
+
+export function resetTurn() {
+  return {
+    type: 'RESET_TURN',
+  }
+}
+
 export function rotateDealer() {
   return {
     type: 'ROTATE_DEALER',
@@ -65,6 +78,12 @@ export function rotateDealer() {
 export function rotateActive() {
   return {
     type: 'CHANGE_PLAYER',
+  }
+}
+
+export function setActive() {
+  return {
+    type: 'SET_ACTIVE',
   }
 }
 
@@ -96,6 +115,7 @@ export default function playersReducer(state = null, action) {
         ...player,
         isDealer: false,
         isActive: false,
+        completeTurn: false,
         wallet: 1000,
         bet: 0,
         roll: 0,
@@ -112,7 +132,8 @@ export default function playersReducer(state = null, action) {
 
     case 'START_ACTIVE':
       return state.map((player) => {
-        if (player.id === 1) {
+        const currentDealerId = state.find((player) => player.isDealer).id
+        if (player.id === currentDealerId + 1) {
           return { ...player, isActive: true }
         } else return { ...player, isActive: false }
       })
@@ -188,6 +209,25 @@ export default function playersReducer(state = null, action) {
           return {
             ...player,
             roll: 0,
+          }
+        } else return player
+      })
+
+    case 'COMPLETE_TURN':
+      return state.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            completeTurn: true,
+          }
+        } else return player
+      })
+    case 'RESET_TURN':
+      return state.map((player) => {
+        if (player.completeTurn === true) {
+          return {
+            ...player,
+            completeTurn: false,
           }
         } else return player
       })
