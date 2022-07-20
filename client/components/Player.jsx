@@ -21,31 +21,25 @@ import {
 function Player(props) {
   const players = useSelector((state) => state.players)
 
+  console.log(props.result)
+
   const dispatch = useDispatch()
 
-  const PlayerWin = () => {
+  const PlayerWin = (result) => {
     const currentDealer = players.find((player) => player.isDealer)
-
-    dispatch(addToWallet(props.id, calcResults(props.bet, props.result)))
-    dispatch(
-      removeFromWallet(currentDealer.id, calcResults(props.bet, props.result))
-    )
+    const calculatedResult = calcResults(props.bet, result)
+    console.log({ calculatedResult })
+    dispatch(addToWallet(props.id, calculatedResult))
+    dispatch(removeFromWallet(currentDealer.id, calculatedResult))
     dispatch(removeBet(props.id, props.bet))
     dispatch(rotateActive())
   }
 
   const DealerWin = () => {
     const currentDealer = players.find((player) => player.isDealer)
-
-    dispatch(
-      addToWallet(
-        currentDealer.id,
-        calcResults(props.bet, currentDealer.result)
-      )
-    )
-    dispatch(
-      removeFromWallet(props.id, calcResults(props.bet, currentDealer.result))
-    )
+    const calculatedResult = calcResults(props.bet, currentDealer.result)
+    dispatch(addToWallet(currentDealer.id, calculatedResult))
+    dispatch(removeFromWallet(props.id, calculatedResult))
     dispatch(removeBet(props.id, props.bet))
     dispatch(rotateActive())
   }
@@ -56,26 +50,25 @@ function Player(props) {
   }
 
   const checkComplete = () => {
-    
     const currentActiveId = players.find((player) => player.isActive).id
     const nextActiveId = currentActiveId + 1 > 3 ? 0 : currentActiveId + 1
-    
+
     const checkedPlayer = players[nextActiveId]
 
-    console.log(checkedPlayer, "checked PLayer")
+    console.log(checkedPlayer, 'checked PLayer')
 
-    if(checkedPlayer.completeTurn == true) {
+    if (checkedPlayer.completeTurn == true) {
       dispatch(resetTurn())
       dispatch(rotateDealer())
       dispatch(rotateActive())
       dispatch(rotateActive())
       console.log('set complete turn to false')
-    }else{
+    } else {
       dispatch(completeTurn(props.id))
     }
   }
 
-// todo create instant loss function to call if player or dealer result is equal to '-x2'
+  // todo create instant loss function to call if player or dealer result is equal to '-x2'
   let diceRoll = displayRoll()
 
   function displayRoll() {
@@ -122,67 +115,62 @@ function Player(props) {
 
   function compareResults(activePlayerResult) {
     const currentDealer = players.find((player) => player.isDealer)
-    console.log(currentDealer.result, "current result dealer")
-    console.log(activePlayerResult, "current Active Player result")
-    if(currentDealer.result == activePlayerResult) {
+    console.log(currentDealer.result, 'current result dealer')
+    console.log(activePlayerResult, 'current Active Player result')
+    if (currentDealer.result == activePlayerResult) {
       return PlayerDraw()
-    }else if(currentDealer.result > activePlayerResult) {
-      return DealerWin()
-    }else if (currentDealer.result < activePlayerResult){
-      return PlayerWin()
-    }else return dispatch(removeBet(props.id, props.bet))
+    } else if (currentDealer.result > activePlayerResult) {
+      return DealerWin(activePlayerResult)
+    } else if (currentDealer.result < activePlayerResult) {
+      return PlayerWin(activePlayerResult)
+    } else return dispatch(removeBet(props.id, props.bet))
   }
 
-      
-
   function checkNumRolls(rollCount, result) {
-    
-    if(props.isDealer == true) {
+    if (props.isDealer == true) {
       if (rollCount === 2) {
-        dispatch(resetRoll(props.id))  
+        dispatch(resetRoll(props.id))
         checkComplete()
       } else if (result === 2) {
         dispatch(setRoll(props.id, props.roll))
-      } else{ 
-      dispatch(resetRoll(props.id))
-      checkComplete()
+      } else {
+        dispatch(resetRoll(props.id))
+        checkComplete()
       }
-    } else if(props.isDealer == false) {
+    } else if (props.isDealer == false) {
       if (rollCount === 2) {
         dispatch(resetRoll(props.id))
         checkComplete()
         return compareResults(result)
       } else if (result === 2) {
         dispatch(setRoll(props.id, props.roll))
-      } else{ 
-      dispatch(resetRoll(props.id))
-      checkComplete()
-      return  compareResults(result) 
+      } else {
+        dispatch(resetRoll(props.id))
+        checkComplete()
+        return compareResults(result)
       }
-
     }
   }
-    
 
   return (
-    <div className="card-container">
+    <div className='card-container'>
       {props.wallet !== 0 ? (
         <React.Fragment>
-          <div className="dice-result">{diceRoll}</div>
-          <div className="card-top">
-            <div className="user-info">
+          <div className='dice-result'>{diceRoll}</div>
+          <div className='card-top'>
+            <div className='user-info'>
               <img
-                className="avatar-container card-avatar"
+                className='avatar-container card-avatar'
                 src={props.avatar}
-                alt="player avatar"
+                alt='player avatar'
               ></img>
-              <div className="username-wallet">
-                <h1 className="player-name">{props.name}</h1>
-                <h2 className="subhead">Wallet: {props.wallet}</h2>
+              <div className='username-wallet'>
+                <h1 className='player-name'>{props.name}</h1>
+                <h2 className='subhead'>Wallet: {props.wallet}</h2>
               </div>
             </div>
           </div>
-          <div className="card-dice">
+          <div className='card-dice'>
             <Dice
               id={props.id}
               dice={props.dice}
@@ -194,9 +182,9 @@ function Player(props) {
 
           {/* or dice? */}
           {props.isDealer ? (
-            <h1 className="player-name">DEALER</h1>
+            <h1 className='player-name'>DEALER</h1>
           ) : (
-            <div className="card-bottom">
+            <div className='card-bottom'>
               <Counter id={props.id} bet={props.bet} />
             </div>
           )}
@@ -205,9 +193,9 @@ function Player(props) {
         <PlayerDead username={props.name} avatar={props.avatar} />
       )}
       {props.isActive ? (
-        <p className="subhead">YOUR TURN</p>
+        <p className='subhead'>YOUR TURN</p>
       ) : (
-        <p className="subhead">NOT YOUR TURN</p>
+        <p className='subhead'>NOT YOUR TURN</p>
       )}
     </div>
   )
@@ -216,6 +204,7 @@ function Player(props) {
 //Scores order [123, pisser, bust, 1, 2, 3, 4, 5, 6, 456, 222, 111]
 
 function calcResults(bet, result) {
+  console.log(result)
   switch (result) {
     case (result = 0):
       return bet * 2
@@ -242,6 +231,3 @@ function calcResults(bet, result) {
 }
 
 export default Player
-    
-    
-
