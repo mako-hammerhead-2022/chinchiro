@@ -170,7 +170,9 @@ function Player(props) {
               </div>
             </div>
           </div>
-          <div className='card-dice'>
+          {props.isActive ? (<div>
+        <p className='subhead'>YOUR TURN</p>
+        <div className='card-dice'>
             <Dice
               id={props.id}
               dice={props.dice}
@@ -179,10 +181,25 @@ function Player(props) {
               result={props.result}
             />
           </div>
+          </div>
+      ) : (
+        <p className='subhead'>NOT YOUR TURN</p>
+      )}
+          
 
           {/* or dice? */}
-          {props.isDealer ? (
+          {props.isDealer ? (<div>
             <h1 className='player-name'>DEALER</h1>
+            <div className='card-dice'>
+            <Dice
+              id={props.id}
+              dice={props.dice}
+              checkRoll={checkNumRolls}
+              roll={props.roll}
+              result={props.result}
+            />
+          </div>
+          </div>
           ) : (
             <div className='card-bottom'>
               <Counter id={props.id} bet={props.bet} />
@@ -192,11 +209,7 @@ function Player(props) {
       ) : (
         <PlayerDead username={props.name} avatar={props.avatar} />
       )}
-      {props.isActive ? (
-        <p className='subhead'>YOUR TURN</p>
-      ) : (
-        <p className='subhead'>NOT YOUR TURN</p>
-      )}
+      
     </div>
   )
 }
