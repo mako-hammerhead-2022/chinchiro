@@ -47,7 +47,6 @@ describe('<Counter />', () => {
     })
 
     test('Clicking add +5 adds $5 to bet', () => {
-      console.log(addBet)
       userEvent.click(screen.getByRole('button', { name: '+5' }))
       expect(myFakeDispatch).toHaveBeenCalledWith(addBet(1, 5))
     })
@@ -58,7 +57,6 @@ describe('<Counter />', () => {
     })
 
     test('Clicking add +10 adds $10 to bet', () => {
-      console.log(addBet)
       userEvent.click(screen.getByRole('button', { name: '+10' }))
       expect(myFakeDispatch).toHaveBeenCalledWith(addBet(1, 10))
     })
@@ -67,7 +65,6 @@ describe('<Counter />', () => {
       expect(myFakeDispatch).toHaveBeenCalledWith(removeBet(1, 10))
     })
     test('Clicking add +50 adds $50 to bet', () => {
-      console.log(addBet)
       userEvent.click(screen.getByRole('button', { name: '+50' }))
       expect(myFakeDispatch).toHaveBeenCalledWith(addBet(1, 50))
     })
