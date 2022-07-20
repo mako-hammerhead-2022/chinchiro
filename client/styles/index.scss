@@ -23,11 +23,16 @@ h2 {
   src: url('../../server/public/fonts/game-font/SINGLE\ FIGHTER.woff');
 }
 
-.main{
+.gameboard-page-container{
   background-image: url("https://i.pinimg.com/originals/99/8e/05/998e055aba57c24138220937cc5166ab.gif"); 
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-top: 0.5rem;
+}
+
+.main{
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -40,6 +45,36 @@ h2 {
   height: 100%;
 }
 
+.menu-buttons{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttons-container{
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.nav-btn{
+  margin-left: 1rem;
+  font-size: 1rem;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: #ffffe9;
+  cursor: pointer;
+  outline: inherit;
+}
+
+
+.nav-btn:hover{
+  text-decoration: underline;
+}
 .navbar-container{
   background: #1c1037;
   opacity: 100;
@@ -74,7 +109,6 @@ h2 {
 .logo{
   font-family: 'Press Start 2P';
   font-size: 1.5rem;
-  height: 1.2rem;
   margin-left: 1rem;
   color: #ffffe9;
 }
@@ -82,6 +116,7 @@ h2 {
 .logo:hover{
   text-decoration: underline;
   color: #ffffe9;
+  cursor: pointer;
 }
 
 .header{
@@ -258,6 +293,60 @@ h2 {
 }
 
 // modal
+
+.modal-dialog{
+  height: 50%;
+}
+
+.modal-content{
+  height: 100%;
+  font-family: "Press Start 2P", cursive;
+  color: #ffffe9;
+  border-style: solid;
+    border-radius: 0.25rem;
+    background: rgba(238, 12, 231, 0.1019607843);
+    border-color: #ee0ce7;
+}
+
+.modal-header{
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #ee0ce7;
+  border-top-left-radius: calc(0.3rem - 1px);
+  border-top-right-radius: calc(0.3rem - 1px);
+  flex-direction: column;
+}
+
+.modal-body{
+  padding: 0rem;
+}
+
+.menu-container{
+  height: 100%
+}
+
+.menu-item-container{
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-item-container:hover{
+  cursor: pointer;
+  background-color: rgb(238 12 231 / 38%);
+  opacity: 80;
+}
+
+.menu-item{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
 
 .paragraph-container{
   margin-top: .3rem;
