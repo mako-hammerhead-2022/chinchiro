@@ -27,9 +27,15 @@ export default function GameBoard() {
   useEffect(() => {
     dispatch(fetchPlayers())
   }, [])
+<<<<<<< HEAD
   players ? setUpPlayers() : ''
 
   console.log(currentUser.auth0Id)
+||||||| fb46f00
+  console.log(players)
+=======
+
+>>>>>>> dev
 
   function handleShow() {
     setShow(true)
